@@ -1,6 +1,7 @@
 """Build Markdown notes and the static GitHub Pages site into docs/."""
 from pathlib import Path
 import html
+import hashlib
 import json
 import re
 import shutil
@@ -75,7 +76,8 @@ for note,rendered in zip(notes,prepared):
  rendered=re.sub(r'<img (?![^>]*loading=)', '<img loading="lazy" decoding="async" ',rendered)
  if 'notion-file-block://' in rendered:raise SystemExit(f'Unresolved image or attachment in {note["slug"]}')
  (dist/'notes'/f'{note["slug"]}.html').write_text(rendered)
- note['contentUrl']=f'notes/{note["slug"]}.html'
+ version=hashlib.sha256(rendered.encode()).hexdigest()[:12]
+ note['contentUrl']=f'notes/{note["slug"]}.html?v={version}'
 notes.sort(key=lambda n:(n['date'],n.get('topic',''),n['slug']),reverse=True)
 (dist/'notes.json').write_text(json.dumps(notes,ensure_ascii=False))
 (dist/'.nojekyll').touch()

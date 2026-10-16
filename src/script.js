@@ -21,14 +21,14 @@ async function openNote(note){
  const body=el('div','Loading review…','reader-status');content.append(body);
  if(!dialog.open)dialog.showModal();dialog.scrollTop=0;
  history.replaceState(null,'',`?note=${encodeURIComponent(note.slug)}#notes`);
- try{const response=await fetch(note.contentUrl);if(!response.ok)throw Error('Unable to load review');const rendered=await response.text();if(request!==readerRequest)return;body.className='review-body';body.innerHTML=rendered;}
+ try{const response=await fetch(note.contentUrl,{cache:'no-cache'});if(!response.ok)throw Error('Unable to load review');const rendered=await response.text();if(request!==readerRequest)return;body.className='review-body';body.innerHTML=rendered;}
  catch(error){if(request===readerRequest){body.replaceChildren(el('p','The review could not be loaded. Please try again.'));const retry=el('button','Try again');retry.type='button';retry.addEventListener('click',()=>openNote(note));body.append(retry);}}
 }
 document.querySelector('#close-note').addEventListener('click',()=>dialog.close());
 dialog.addEventListener('close',()=>{readerRequest++;history.replaceState(null,'',location.pathname+'#notes');});
 dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close();}});
 document.querySelectorAll('[data-filter]').forEach(button=>button.addEventListener('click',()=>{activeFilter=button.dataset.filter;document.querySelectorAll('[data-filter]').forEach(b=>{const selected=b===button;b.classList.toggle('active',selected);b.setAttribute('aria-pressed',String(selected));});renderNotes();}));
-fetch('notes.json').then(r=>{if(!r.ok)throw Error('Unable to load notes');return r.json();}).then(data=>{notes=data;renderNotes();const slug=new URLSearchParams(location.search).get('note');const note=notes.find(n=>n.slug===slug);if(note)openNote(note);}).catch(()=>{notesList.replaceChildren(el('p','Notes could not be loaded. Please refresh the page.'));});
+fetch('notes.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('Unable to load notes');return r.json();}).then(data=>{notes=data;renderNotes();const slug=new URLSearchParams(location.search).get('note');const note=notes.find(n=>n.slug===slug);if(note)openNote(note);}).catch(()=>{notesList.replaceChildren(el('p','Notes could not be loaded. Please refresh the page.'));});
 if('IntersectionObserver' in window){const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){document.querySelectorAll('nav a').forEach(a=>{const selected=a.hash==='#'+entry.target.id;a.classList.toggle('current',selected);if(selected)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current');});}});},{rootMargin:'-10% 0px -65% 0px',threshold:0});document.querySelectorAll('main section').forEach(section=>observer.observe(section));}
 
 const contactDialog=document.querySelector('#contact-dialog');

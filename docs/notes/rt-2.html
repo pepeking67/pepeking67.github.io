@@ -29,7 +29,7 @@
 <p>PaLI-X: An Encoder-Decoder vision-language model featuring a ViT backbone, specialized for  superior visual/spatial perception. And 1000 integers have a unique token, so we simply associate the action bins to token.<br />
 PaLM-E: A decoder-only multimodal model built on the PaLM LLM backbone, leveraging massive web-scale text and code pre-training for exceptional commonsense reasoning, logic, and mathematical calculation.</p>
 <h2 id="robot-action-fine-tunig">Robot-action fine-tunig</h2>
-<p>We represent actions as language tokens in the model’s output. Action encoding is based on the RT-1 model method, the continuous dimensions of actions are discretized into 256 bins. This requires <strong>reserving 256 tokens to serve as action tokens.</strong> For PaLI-X, we just associate the action bins to unique integer tokens. At PaLM-E, we overwrite the 256 least frequently used tokens to represent actions.<strong>Co-fine-tuning</strong> robotics data with the original web data can improve robot performance. <br />
+<p>We represent actions as language tokens in the model’s output. Action encoding is based on the RT-1 model method, the continuous dimensions of actions are discretized into 256 bins. This requires <strong>reserving 256 tokens to serve as action tokens.</strong> For PaLI-X, we just associate the action bins to unique integer tokens. At PaLM-E, we overwrite the 256 least frequently used tokens to represent actions. <strong>Co-fine-tuning</strong> robotics data with the original web data can improve robot performance. <br />
 To allow the model to accurately process instructions semantically, it must also be trained to produce text outputs; therefore, prompting is configured to restrict outputs to action tokens only during robot-action tasks, while permitting full natural language outputs for all other tasks.</p>
 <h2 id="real-time-inference">Real-time inference</h2>
 <p>Using multi-TPU cloud service, 55B paramter RT-2-PaLI-X model can run at 1\~3Hz. For 5B model can run 5Hz.</p>
@@ -40,7 +40,7 @@ To allow the model to accurately process instructions semantically, it must also
 For seen task, we use the same instructions in RT-1. Note that these in-distribution evaluations still have vary placement of objects and factors, requiring the skills to generalize. <br />
 The strength of VLAs lies in transferring more generalizable and semantic concepts from their <strong>internet-scale</strong> pretraining data. </p>
 <h2 id="2-emergent-capabilities-of-rt-2">2. Emergent capabilities of RT-2</h2>
-<p>We do not expect such transfer to enable new <strong>robot motions</strong>, but<strong>semantic and visual concepts</strong>.<br />
+<p>We do not expect such transfer to enable new <strong>robot motions</strong>, but <strong>semantic and visual concepts</strong>.<br />
 There are 3 categories of emergent capabilities.<br />
 <img loading="lazy" decoding="async" alt="" src="assets/reviews/7fb14e8fe0699a0758a6.png" /><br />
 <img loading="lazy" decoding="async" alt="" src="assets/reviews/aafab27f4af29b8ddaa9.png" /><br />

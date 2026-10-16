@@ -48,7 +48,7 @@ for note in notes:
  source=re.sub(r'<span underline="true">(.*?)</span>',r'<u>\1</u>',source,flags=re.S)
  source=re.sub(r'\s*\{(?:color|toggle)="[^"\n]*"(?:\s+[^}\n]*)?\}', '',source)
  # Bold with trailing whitespace is valid in Notion; normalize its delimiter placement for HTML.
- source=re.sub(r'\*\*([^*\n]+?)\s+\*\*',lambda m:'**'+m.group(1).rstrip()+'**',source)
+ source=re.sub(r'\*\*([^*\n]+)\*\*',lambda m:m.group(1)[:len(m.group(1))-len(m.group(1).lstrip())]+'**'+m.group(1).strip()+'**'+m.group(1)[len(m.group(1).rstrip()):],source)
 
  def stash(m):
   display=m.group(1) is not None

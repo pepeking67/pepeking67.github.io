@@ -22,7 +22,7 @@
 </ul>
 </div>
 <h1 id="introduction">Introduction</h1>
-<p>Prior VLAs are closed and fail to explore methods for efficiently fine-tuning. Octo compose pretrained encoders but with transformer-backbone and diffusion head <strong>initialized from scratch</strong>. OpenVLA adopts end-to-end approach, directly fine-tuning VLMs to generate robot actions(VLA). However, existing VLAs focus on single robot, and thus<strong>lack of generality </strong>and<strong>closed</strong>. OpenVLA is the first generalist VLA that is open-source. And it first demonstrates the effectiveness of<strong>parameter-efficient fine-tuning</strong> and<strong>quantization</strong> approachers for VLAs.</p>
+<p>Prior VLAs are closed and fail to explore methods for efficiently fine-tuning. Octo compose pretrained encoders but with transformer-backbone and diffusion head <strong>initialized from scratch</strong>. OpenVLA adopts end-to-end approach, directly fine-tuning VLMs to generate robot actions(VLA). However, existing VLAs focus on single robot, and thus <strong>lack of generality</strong> and <strong>closed</strong>. OpenVLA is the first generalist VLA that is open-source. And it first demonstrates the effectiveness of <strong>parameter-efficient fine-tuning</strong> and <strong>quantization</strong> approachers for VLAs.</p>
 <h1 id="model">Model</h1>
 <p><img loading="lazy" decoding="async" alt="" src="assets/reviews/e3f46ea235121a59a418.png" /></p>
 <h2 id="vlms">VLMs</h2>
@@ -30,12 +30,12 @@
 1. Visual encoder(600M)<br />
 2. Projector(2 layers MLP)<br />
 3. LLM backbone(7B Llama 2)<br />
-Specifically, openVLA builds on <strong>Prismatic-7B</strong> VLM. It uses a<strong>two-part</strong> visual encoder consisting of<strong>SigLIP</strong> and<strong>DinoV2</strong> models. Resulting feature vectors are concatenated channel-wise. The addition of DinoV2 is helpful for improving<strong>spatial reasoning</strong>, so is for robot control. Prismatic VLM is fine-tuned on these components using LLaVA 1.5 data mixture.</p>
+Specifically, openVLA builds on <strong>Prismatic-7B</strong> VLM. It uses a <strong>two-part</strong> visual encoder consisting of <strong>SigLIP</strong> and <strong>DinoV2</strong> models. Resulting feature vectors are concatenated channel-wise. The addition of DinoV2 is helpful for improving <strong>spatial reasoning</strong>, so is for robot control. Prismatic VLM is fine-tuned on these components using LLaVA 1.5 data mixture.</p>
 <h2 id="training-procedure">Training procedure</h2>
 <p>Like RT-2, we formulate the action prediction problem as a vision-language task, where an input observation image and a natural language task instruction are mapped to a string of predicted robot actions. We represent the actions to discrete tokens. Instead of the min-max bounds in RT-2, we use division of <strong>1st and 99th</strong> quantile of the actions, so that ignore outlier. <br />
 Since the tokenizer of OpenVLA language backbone Llama tokenizer only reserves 100 special tokens, so we overwrite the 256 least used tokens as RT-2. </p>
 <h2 id="training-data">Training Data</h2>
-<p>For a <strong>coherent input and output</strong>, we contain at least one 3rd person camera and use single-arm-end-effector control. For a<strong>balanced mix of embodiments</strong>, tasks, and scenes in the final training mixture, we use the data mixture weights of Octo. Octo down-weights or removes less diverse datasets. </p>
+<p>For a <strong>coherent input and output</strong>, we contain at least one 3rd person camera and use single-arm-end-effector control. For a <strong>balanced mix of embodiments</strong>, tasks, and scenes in the final training mixture, we use the data mixture weights of Octo. Octo down-weights or removes less diverse datasets. </p>
 <h2 id="design-decisions">Design decisions</h2>
 <p>Instead of training on the full OpenX dataset, we first train OpenVLA on the smaller BridgeData V2 for exploring design decisions. Since <strong>increased image resolution does not improve performance</strong>, so we use 224*224 inputs rather than 384*384 inputs. For VLMs, freezing vision encoders leads to higher performance, because it may better preserve the robust features learned from Internet-scale pretraining. But <strong>fine-tuning the vision encoder</strong> during VLA is crucial for performance. We attribute this performance to spatial detail. </p>
 <h1 id="experiments">Experiments</h1>
@@ -47,15 +47,19 @@ Since the tokenizer of OpenVLA language backbone Llama tokenizer only reserves 1
 <strong>[WidowX robot evaluation results]</strong><br />
 <img loading="lazy" decoding="async" alt="" src="assets/reviews/764c80dac6f9a151ce08.png" /><br />
 <strong>[Google robot evaluation results]</strong><br />
-RT-2-X achieves higher performance in semantic generalization, which is expected given that it uses <strong>larger Internet data</strong>and <strong>co-fine-tuned</strong> with both robot data and Internet data. However, OpenVLA performs better in all other task, which is attributed to a<strong>larger training dataset</strong>(970k for OpenVLA vs. 350k for RT-2-X) and<strong>fused vision encoder</strong>(ablation analysis in Table 9). <br />
+RT-2-X achieves higher performance in semantic generalization, which is expected given that it uses <strong>larger Internet data</strong> and <strong>co-fine-tuned</strong> with both robot data and Internet data. However, OpenVLA performs better in all other task, which is attributed to a <strong>larger training dataset</strong>(970k for OpenVLA vs. 350k for RT-2-X) and <strong>fused vision encoder</strong>(ablation analysis in Table 9). <br />
 <img loading="lazy" decoding="async" alt="" src="assets/reviews/d1e1a34f71c1e592bcf8.png" /></p>
 <h2 id="2-data-efficient-adaptationfine-tuning">2. Data-efficient adaptation(fine-tuning)</h2>
 <p><img loading="lazy" decoding="async" alt="" src="assets/reviews/8c39e0b99fba523cba52.png" /><br />
-We do full <strong>fine-tuning</strong> of all model parameters, using small datasets with 10-150 demonstrations of a target task. We compare<strong>diffusion policy </strong>trained from scratch, where diffusion policy(matched) is a version that matches the input and output as OpenVLA and<strong>Octo</strong> fine-tuned on the target dataset. To assess benefit of large-scale OpenX pre-training, we also compare OpenVLA(scratch). We can see that diffusion policy outperforms on narrower single-instruction tasks, which is expected with<strong>action chunking</strong> and<strong>temporal smoothing</strong>.</p>
+We do full <strong>fine-tuning</strong> of all model parameters, using small datasets with 10-150 demonstrations of a target task. We compare <strong>diffusion policy</strong> trained from scratch, where diffusion policy(matched) is a version that matches the input and output as OpenVLA and <strong>Octo</strong> fine-tuned on the target dataset. To assess benefit of large-scale OpenX pre-training, we also compare OpenVLA(scratch). We can see that diffusion policy outperforms on narrower single-instruction tasks, which is expected with <strong>action chunking</strong> and <strong>temporal smoothing</strong>.</p>
 <h2 id="3-parameter-efficient-fine-tuning">3. Parameter-efficient fine-tuning</h2>
 <p><img loading="lazy" decoding="async" alt="" src="assets/reviews/cf6cfef582f60ea5b9b6.png" /><br />
 We investigate the effectiveness of parameters.<br />
-<strong>Full fine-tuning</strong>: updates all weights<strong>Last layer only</strong>: updates the last layer of transformer-backbone and token embedding matrix.<strong>Frozen vision</strong>: freezes the vision encoder.<strong>Sandwich fine-tuning</strong>: unfreezes the vision encoder, token embedding matrix, and last layer.<strong>LoRA</strong>: low-rank adaptation technique.</p>
+<strong>Full fine-tuning</strong>: updates all weights<br />
+<strong>Last layer only</strong>: updates the last layer of transformer-backbone and token embedding matrix. <br />
+<strong>Frozen vision</strong>: freezes the vision encoder.<br />
+<strong>Sandwich fine-tuning</strong>: unfreezes the vision encoder, token embedding matrix, and last layer.<br />
+<strong>LoRA</strong>: low-rank adaptation technique.</p>
 <h3 id="lora">LoRA</h3>
 <p>Suppose we update weight matrix 4096*4096 W. If we full fine-tune, then we need to update 4096*4096=16777216. LoRA uses low-rank matrices with rank value r.<br />
     X(4096) → A(4096 * r) <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>×</mo></mrow><annotation encoding="application/x-tex">\times</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord">×</span></span></span></span> B(r*4096) → output(4096)<br />

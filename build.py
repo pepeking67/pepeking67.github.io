@@ -18,7 +18,7 @@ if not katex.exists():raise SystemExit('Run npm ci before building.')
 math_assets=dist/'assets/katex'
 math_assets.mkdir(parents=True,exist_ok=True)
 css=(katex/'katex.min.css').read_text()
-css=re.sub(r',url\([^)]*\.(?:woff|ttf)\)format\([^)]*\)', '',css)
+css=re.sub(r',url\([^)]*\.(?:woff|ttf)\)\s*format\([^)]*\)', '',css)
 (math_assets/'katex.min.css').write_text(css)
 (math_assets/'fonts').mkdir()
 for font in (katex/'fonts').glob('*.woff2'):shutil.copy(font,math_assets/'fonts'/font.name)

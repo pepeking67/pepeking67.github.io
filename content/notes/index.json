@@ -194,5 +194,85 @@
     "dateLabel": "Imported",
     "sourceId": "ee60ad69a5f883168abf812402963073",
     "authors": ""
+  },
+  {
+    "slug": "topology",
+    "title": "Topology",
+    "date": "2026-10-17",
+    "category": "Mathematics",
+    "topic": "Topology",
+    "summary": "",
+    "file": "topology.md",
+    "sourceId": "6f00ad69a5f8823da8640111006051ae"
+  },
+  {
+    "slug": "cs470-1",
+    "title": "CS470 — Introduction to Artificial Intelligence (1)",
+    "date": "2026-10-17",
+    "category": "Computer Science",
+    "topic": "CS470",
+    "summary": "Search",
+    "file": "cs470-1.md",
+    "sourceId": "83b0ad69a5f883c49d788158a8b786a5"
+  },
+  {
+    "slug": "cs470-2",
+    "title": "CS470 — Introduction to Artificial Intelligence (2)",
+    "date": "2026-10-17",
+    "category": "Computer Science",
+    "topic": "CS470",
+    "summary": "Deep Learning",
+    "file": "cs470-2.md",
+    "sourceId": "7e30ad69a5f8827785c181f0d905a820"
+  },
+  {
+    "slug": "cs470-3",
+    "title": "CS470 — Introduction to Artificial Intelligence (3)",
+    "date": "2026-10-17",
+    "category": "Computer Science",
+    "topic": "CS470",
+    "summary": "Reinforcement Learning",
+    "file": "cs470-3.md",
+    "sourceId": "a130ad69a5f882a28336010d60aa9ffd"
+  },
+  {
+    "slug": "cs484-1",
+    "title": "CS484 — Introduction to Computer Vision (1)",
+    "date": "2026-10-17",
+    "category": "Computer Science",
+    "topic": "CS484",
+    "summary": "Midterm",
+    "file": "cs484-1.md",
+    "sourceId": "5a40ad69a5f8825ea87a011dc77f5ecc"
+  },
+  {
+    "slug": "cs484-2",
+    "title": "CS484 — Introduction to Computer Vision (2)",
+    "date": "2026-10-17",
+    "category": "Computer Science",
+    "topic": "CS484",
+    "summary": "Final",
+    "file": "cs484-2.md",
+    "sourceId": "57f0ad69a5f883ff979c81f7663d5f4f"
+  },
+  {
+    "slug": "cs485-1",
+    "title": "CS485 — Machine Learning for Computer Vision (1)",
+    "date": "2026-10-17",
+    "category": "Computer Science",
+    "topic": "CS485",
+    "summary": "Part 1",
+    "file": "cs485-1.md",
+    "sourceId": "41f0ad69a5f8825d8abc015a0f24178f"
+  },
+  {
+    "slug": "cs485-2",
+    "title": "CS485 — Machine Learning for Computer Vision (2)",
+    "date": "2026-10-17",
+    "category": "Computer Science",
+    "topic": "CS485",
+    "summary": "Part 2",
+    "file": "cs485-2.md",
+    "sourceId": "dda0ad69a5f882bb912681f950b9bf0e"
   }
 ]

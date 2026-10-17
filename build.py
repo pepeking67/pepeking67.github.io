@@ -38,7 +38,7 @@ for note in notes:
  source=path.read_text()
  # Convert only export/display syntax. Source Markdown remains byte-for-byte intact.
  for original,local in asset_map.items():source=source.replace(original,local)
- source=re.sub(r'<table_of_contents[^>]*\s*/>', '\n\n[TOC]\n\n', source)
+ source=re.sub(r'<table_of_contents[^>]*\s*/>', '', source)
  source=re.sub(r'<empty-block[^>]*\s*/>', '\n\n', source)
  source=re.sub(r'^\s*</?(?:columns|column)\b[^>]*>\s*$', '', source, flags=re.M)
  source=re.sub(r'^\s*(!\[.*)',r'\1',source,flags=re.M)
@@ -48,6 +48,7 @@ for note in notes:
  source=re.sub(r'<(?:file|pdf) src="([^"]+)"[^>]*>.*?</(?:file|pdf)>',attachment,source,flags=re.S)
  source=re.sub(r'<span underline="true">(.*?)</span>',r'<u>\1</u>',source,flags=re.S)
  source=re.sub(r'\s*\{(?:color|toggle)="[^"\n]*"(?:\s+[^}\n]*)?\}', '',source)
+ source=re.sub(r'\*\*[ \t]+\*\*', '',source)
  # Bold with trailing whitespace is valid in Notion; normalize its delimiter placement for HTML.
  source=re.sub(r'\*\*([^*\n]+)\*\*',lambda m:m.group(1)[:len(m.group(1))-len(m.group(1).lstrip())]+'**'+m.group(1).strip()+'**'+m.group(1)[len(m.group(1).rstrip()):],source)
 
@@ -59,15 +60,21 @@ for note in notes:
   return ('\n\n'+placeholder+'\n\n') if display else placeholder
  # Protect math before Markdown can interpret underscores, escapes, and angle brackets.
  source=re.sub(r'\$\$\s*\n?(.*?)\n?\$\$|\$`(.*?)`\$',stash,source,flags=re.S)
- rendered=markdown.markdown(source,extensions=['fenced_code','tables','toc','md_in_html','sane_lists','nl2br'])
- prepared.append(rendered)
+ # Notion indents ordinary prose and callouts with tabs. They are not code blocks.
+ source=re.sub(r'^>\s*\n[\t ]+([^\n]+)', r'\n> \1\n\n',source,flags=re.M)
+ source=re.sub(r'^(?:\t| {4})+([^\n]+)', r'\n\1\n',source,flags=re.M)
+ # One page title, then a consistent section hierarchy for all imported reviews.
+ source=re.sub(r'^(#{1,5})(?= )',r'#\1',source,flags=re.M)
+ md=markdown.Markdown(extensions=['fenced_code','tables','toc','md_in_html','sane_lists'])
+ rendered=md.convert(source)
+ prepared.append((rendered,md.toc))
 result=subprocess.run(['node',str(root/'scripts/render_math.cjs')],input=json.dumps(equations),text=True,capture_output=True,check=True)
 math_results=json.loads(result.stdout)
 errors=[{'note':e['note'],'tex':e['tex'],'error':r['error']} for e,r in zip(equations,math_results) if 'error' in r]
 if errors:
  print(json.dumps(errors,ensure_ascii=False,indent=2))
  raise SystemExit(f'{len(errors)} math expressions could not be rendered.')
-for note,rendered in zip(notes,prepared):
+for note,(rendered,toc) in zip(notes,prepared):
  def replace(m):
   index=int(m.group(1));return math_results[index]['html']
  rendered=re.sub(r'NOTIONMATHPLACEHOLDER(\d+)END',replace,rendered)
@@ -75,9 +82,29 @@ for note,rendered in zip(notes,prepared):
  # Image requests go to durable local assets and wait until needed.
  rendered=re.sub(r'<img (?![^>]*loading=)', '<img loading="lazy" decoding="async" ',rendered)
  if 'notion-file-block://' in rendered:raise SystemExit(f'Unresolved image or attachment in {note["slug"]}')
- (dist/'notes'/f'{note["slug"]}.html').write_text(rendered)
- version=hashlib.sha256(rendered.encode()).hexdigest()[:12]
- note['contentUrl']=f'notes/{note["slug"]}.html?v={version}'
+ # Paths are relative to the standalone review page, including PDF downloads.
+ rendered=rendered.replace('src="assets/', 'src="../assets/').replace('href="assets/', 'href="../assets/')
+ esc=lambda value:html.escape(str(value),quote=True)
+ meta=' · '.join(esc(note.get(k,'')) for k in ('category','topic','paperYear') if note.get(k))
+ paper=(f'<a href="{esc(note["paperUrl"])}" target="_blank" rel="noopener noreferrer">Original paper ↗</a>' if note.get('paperUrl') else '')
+ authors=f'<p class="review-authors">{esc(note["authors"])}</p>' if note.get('authors') else ''
+ version=hashlib.sha256((dist/'style.css').read_bytes()).hexdigest()[:12]
+ outline=f'<aside class="review-outline" aria-label="Table of contents"><details open><summary>On this page</summary>{toc}</details></aside>' if '<li>' in toc else ''
+ page=f'''<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{esc(note['title'])} — Kim Su Hwan</title>
+<meta name="description" content="{esc(note.get('summary') or note['title'])}">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../style.css?v={version}"><link rel="stylesheet" href="../assets/katex/katex.min.css">
+</head><body class="review-page"><a class="skip" href="#review-body">Skip to review</a>
+<header class="review-topbar"><a href="../index.html">Kim Su Hwan</a><a href="../index.html#notes">← All notes</a></header>
+<main class="review-shell"><article class="review-article"><header class="review-header"><p class="note-meta">{meta}</p><h1>{esc(note['title'])}</h1>{authors}<div class="review-links">{paper}</div></header>
+<div class="review-body" id="review-body">{rendered}</div>
+<footer class="review-footer"><a href="../index.html#notes">← Back to all notes</a><a href="#">Back to top ↑</a></footer></article>{outline}</main>
+</body></html>'''
+ page='\n'.join(line.rstrip() for line in page.splitlines())+'\n'
+ (dist/'notes'/f'{note["slug"]}.html').write_text(page)
+ note['contentUrl']=f'notes/{note["slug"]}.html'
 notes.sort(key=lambda n:(n['date'],n.get('topic',''),n['slug']),reverse=True)
 (dist/'notes.json').write_text(json.dumps(notes,ensure_ascii=False))
 # Version asset URLs so readers always receive the matching script and stylesheet.

@@ -41,7 +41,7 @@ If the sample is sorted as $`x_{(1)}\le \cdots\le x_{(n)}`$:
 <callout icon="📘" color="blue_bg">
 	**Def. (Sample Correlation)**
 	$$
-																									r=\frac{\sum_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})}
+																																																									r=\frac{\sum_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})}
 {(n-1)s_xs_y}
 =\frac{\sum_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})}
 {\sqrt{\sum_{i=1}^n(x_i-\bar{x})^2}\sqrt{\sum_{i=1}^n(y_i-\bar{y})^2}}.
@@ -115,7 +115,7 @@ $$
 <details>
 <summary>Proof (1)</summary>
 	$$
-																									P(E)=P(E\cap F)+P(E\cap F^c)
+																																																									P(E)=P(E\cap F)+P(E\cap F^c)
 =P(E)P(F)+P(E\cap F^c).
 	$$
 	Therefore $`P(E\cap F^c)=P(E)(1-P(F))=P(E)P(F^c)`$.
@@ -175,7 +175,7 @@ $$
 	**Def. (Continuous Random Variable)**
 	There is a nonnegative probability density function (PDF) $`f`$ on $`(-\infty,\infty)`$ such that
 	$$
-																									P(X\in B)=\int_Bf(t)\,dt,\quad\int_{-\infty}^{\infty}f(t)\,dt=1,
+																																																									P(X\in B)=\int_Bf(t)\,dt,\quad\int_{-\infty}^{\infty}f(t)\,dt=1,
 \quad F(x)=\int_{-\infty}^xf(t)\,dt.
 	$$
 </callout>
@@ -186,7 +186,7 @@ $$
 	$$
 	At points where the density is continuous, $`F'(x)=f(x)`$.
 	$$
-						P\left(a-\frac{\varepsilon}{2}<X\le a+\frac{\varepsilon}{2}\right)
+																																						P\left(a-\frac{\varepsilon}{2}<X\le a+\frac{\varepsilon}{2}\right)
 =\int_{a-\varepsilon/2}^{a+\varepsilon/2}f(x)\,dx
 \approx f(a)\varepsilon.
 	$$
@@ -198,7 +198,7 @@ $$
 	Discrete joint PMF: $`p(x_i,y_j)=P(X=x_i,Y=y_j)`$.
 	Continuous joint PDF: $`P((X,Y)\in C)=\iint_Cf(x,y)\,dx\,dy`$.
 	$$
-																									p_X(x_i)=\sum_jp(x_i,y_j),\qquad
+																																																									p_X(x_i)=\sum_jp(x_i,y_j),\qquad
 f_X(x)=\int_{-\infty}^\infty f(x,y)\,dy.
 	$$
 	Similarly for $`Y`$.
@@ -216,7 +216,10 @@ f_X(x)=\int_{-\infty}^\infty f(x,y)\,dy.
 	$$
 	For small increments, $`P(a<X<a+da,\ b<Y<b+db)\approx f(a,b)\,da\,db`$.
 </callout>
-**Ex.** With $`f(x,y)=2e^{-x}e^{-2y}`$ for $`x,y>0`$ and zero otherwise, compute $`P(X<Y)`$ by integrating over $`0<x<y<\infty`$.
+**Ex.** With $`f(x,y)=2e^{-x}e^{-2y}`$ for $`0<x,y<\infty`$ and zero otherwise, compute $`P(X<Y)`$.
+$$
+P(X<Y)=\int_0^\infty\int_0^y2e^{-x}e^{-2y}\,dx\,dy.
+$$
 <callout icon="📘" color="blue_bg">
 	**Def. (Independent Random Variables)**
 	$`X,Y`$ are independent if
@@ -225,7 +228,7 @@ f_X(x)=\int_{-\infty}^\infty f(x,y)\,dy.
 	$$
 	Equivalently $`F(x,y)=F_X(x)F_Y(y)`$, and for discrete/continuous variables,
 	$$
-																									p(x,y)=p_X(x)p_Y(y),\qquad
+																																																									p(x,y)=p_X(x)p_Y(y),\qquad
 f(x,y)=f_X(x)f_Y(y).
 	$$
 </callout>
@@ -306,7 +309,7 @@ $$
 	\operatorname{Cov}(X,Y)=E[(X-\mu_X)(Y-\mu_Y)]=E[XY]-\mu_X\mu_Y.
 	$$
 	$$
-																									\rho=\operatorname{Corr}(X,Y)
+																																																									\rho=\operatorname{Corr}(X,Y)
 =\frac{\operatorname{Cov}(X,Y)}
 {\sqrt{\operatorname{Var}(X)\operatorname{Var}(Y)}}.
 \qquad |\rho|\le1.
@@ -315,7 +318,7 @@ $$
 <callout icon="📜" color="yellow_bg">
 	**Prop. (Variance of a Sum)**
 	$$
-																									\operatorname{Var}\left(\sum_{i=1}^{n}X_i\right)
+																																																									\operatorname{Var}\left(\sum_{i=1}^{n}X_i\right)
 =\sum_{i=1}^{n}\operatorname{Var}(X_i)
 +2\sum_{i<j}\operatorname{Cov}(X_i,X_j).
 	$$
@@ -330,7 +333,7 @@ but $`X`$ and $`Y`$ are not independent, since $`X^2+Y^2=1`$.
 <callout icon="📘" color="blue_bg">
 	**Def. (Moment Generating Function, MGF)**
 	$$
-																								\phi_X(t)=E[e^{tX}]
+																																																								\phi_X(t)=E[e^{tX}]
 =\begin{cases}
 \sum_x e^{tx}p(x),&\text{discrete},\\
 \int_{-\infty}^{\infty}e^{tx}f(x)\,dx,&\text{continuous}.
@@ -338,7 +341,7 @@ but $`X`$ and $`Y`$ are not independent, since $`X^2+Y^2=1`$.
 	$$
 	The MGF does not always exist for all $`t\in\mathbb{R}`$.
 	$$
-																								\phi_X^{(k)}(t)=E[X^ke^{tX}],\quad \phi_X'(0)=E[X],\quad
+																																																								\phi_X^{(k)}(t)=E[X^ke^{tX}],\quad \phi_X'(0)=E[X],\quad
 \phi_X^{(k)}(0)=E[X^k].
 	$$
 	For independent $`X,Y`$: $`\phi_{X+Y}(t)=\phi_X(t)\phi_Y(t)`$.
@@ -354,7 +357,7 @@ but $`X`$ and $`Y`$ are not independent, since $`X^2+Y^2=1`$.
 <details>
 <summary>Proof</summary>
 	$$
-																								E[X]=\int_0^\infty x f(x)\,dx
+																																																								E[X]=\int_0^\infty x f(x)\,dx
 \ge\int_a^\infty x f(x)\,dx
 \ge a\int_a^\infty f(x)\,dx
 =aP(X\ge a).
@@ -363,7 +366,7 @@ but $`X`$ and $`Y`$ are not independent, since $`X^2+Y^2=1`$.
 <callout icon="📜" color="yellow_bg">
 	**Prop. (Chebyshev's Inequality)**
 	$$
-																								P(|X-\mu|\ge k)\le \frac{\sigma^2}{k^2}
+																																																								P(|X-\mu|\ge k)\le \frac{\sigma^2}{k^2}
 =\frac{\operatorname{Var}(X)}{k^2}.
 	$$
 </callout>
@@ -371,7 +374,7 @@ but $`X`$ and $`Y`$ are not independent, since $`X^2+Y^2=1`$.
 	**Thm. (Weak Law of Large Numbers)**
 	Let $`X_1,\ldots,X_n`$ be independent and identically distributed random variables with mean $`\mu`$ and variance $`\sigma^2`$. Then for every $`\varepsilon>0`$,
 	$$
-																								P\left(\left|\frac{X_1+\cdots+X_n}{n}-\mu\right|>\varepsilon\right)\to0
+																																																								P\left(\left|\frac{X_1+\cdots+X_n}{n}-\mu\right|>\varepsilon\right)\to0
 \qquad(n\to\infty).
 	$$
 	Thus the sample mean converges to the population mean in probability as sample size increases.
@@ -423,12 +426,12 @@ By the uniqueness of MGFs, adding independent binomial variables with equal $`p`
 <callout icon="📘" color="blue_bg">
 	**Def. (Poisson Random Variable)**
 	$$
-																								P(X=i)=e^{-\lambda}\frac{\lambda^i}{i!},\quad
+																																																								P(X=i)=e^{-\lambda}\frac{\lambda^i}{i!},\quad
 X\sim\operatorname{Poisson}(\lambda),\quad i=0,1,2,\ldots
 	$$
 	$`\sum_{i=0}^\infty \lambda^i/i!=e^\lambda`$.
 	$$
-																								\phi_X(t)=e^{\lambda(e^t-1)},
+																																																								\phi_X(t)=e^{\lambda(e^t-1)},
 \qquad E[X]=\lambda,\quad\operatorname{Var}(X)=\lambda.
 	$$
 </callout>
@@ -440,7 +443,7 @@ $$
 	**Prop. (Poisson Approximation to the Binomial)**
 	If $`X\sim B(n,p)`$, $`n\to\infty`$, $`p\to0`$, and $`np=\lambda`$ is fixed, then
 	$$
-																								P(X=i)=\binom ni p^i(1-p)^{n-i}
+																																																								P(X=i)=\binom ni p^i(1-p)^{n-i}
 \approx e^{-\lambda}\frac{\lambda^i}{i!}.
 	$$
 </callout>
@@ -448,7 +451,7 @@ $$
 <summary>Derivation</summary>
 	Take $`p=\lambda/n`$:
 	$$
-																								\binom ni\left(\frac{\lambda}{n}\right)^i
+																																																								\binom ni\left(\frac{\lambda}{n}\right)^i
 \left(1-\frac\lambda n\right)^{n-i}
 =\frac{n(n-1)\cdots(n-i+1)}{n^i}
 \frac{\lambda^i}{i!}\,
@@ -473,6 +476,16 @@ $$
 =\frac{(\lambda p)^n e^{-\lambda p}}{n!}
 \frac{[\lambda(1-p)]^m e^{-\lambda(1-p)}}{m!}.
 $$
+**(b)**
+$$
+P(N_1=n)=\sum_{m=0}^{\infty}P(N_1=n,N_2=m)
+=\frac{(\lambda p)^n e^{-\lambda p}}{n!}.
+$$
+**(c)**
+$$
+P(N_2=m)=\sum_{n=0}^{\infty}P(N_1=n,N_2=m)
+=\frac{[\lambda(1-p)]^m e^{-\lambda(1-p)}}{m!}.
+$$
 Thus $`N_1\sim\operatorname{Poisson}(\lambda p)`$, $`N_2\sim\operatorname{Poisson}(\lambda(1-p))`$, and they are independent.
 <callout icon="📜" color="yellow_bg">
 	**Prop. (Splitting a Poisson Distribution)**
@@ -489,7 +502,7 @@ Thus $`N_1\sim\operatorname{Poisson}(\lambda p)`$, $`N_2\sim\operatorname{Poisso
 	P(X=i)=\frac{\binom Mi\binom{N-M}{n-i}}{\binom Nn}.
 	$$
 	$$
-																								E[X]=\frac{nM}{N},\quad
+																																																								E[X]=\frac{nM}{N},\quad
 \operatorname{Var}(X)=n\frac MN\left(1-\frac MN\right)\frac{N-n}{N-1}.
 	$$
 	Sampling **with** replacement gives a binomial model; sampling **without** replacement gives a hypergeometric model.
@@ -509,17 +522,17 @@ This has a hypergeometric distribution.
 <callout icon="📘" color="blue_bg">
 	**Def. (Uniform Random Variable)**
 	$$
-																								f(x)=\begin{cases}
+																																																								f(x)=\begin{cases}
 \frac1{\beta-\alpha},&\alpha\le x\le\beta,\\
 0,&\text{otherwise}.
 \end{cases}
 	$$
 	$$
-																								X\sim U(\alpha,\beta),\quad
+																																																								X\sim U(\alpha,\beta),\quad
 P(a<X\le b)=\frac{b-a}{\beta-\alpha},
 	$$
 	$$
-																								E[X]=\frac{\alpha+\beta}{2},\quad
+																																																								E[X]=\frac{\alpha+\beta}{2},\quad
 \operatorname{Var}(X)=\frac{(\beta-\alpha)^2}{12}.
 	$$
 </callout>
@@ -527,11 +540,11 @@ P(a<X\le b)=\frac{b-a}{\beta-\alpha},
 <callout icon="📘" color="blue_bg">
 	**Def. (Normal Random Variable)**
 	$$
-																								f(x)=\frac1{\sqrt{2\pi}\sigma}\exp\left[-\frac{(x-\mu)^2}{2\sigma^2}\right],
+																																																								f(x)=\frac1{\sqrt{2\pi}\sigma}\exp\left[-\frac{(x-\mu)^2}{2\sigma^2}\right],
 \quad X\sim N(\mu,\sigma^2).
 	$$
 	$$
-																								\phi_X(t)=\exp\left(\mu t+\frac{\sigma^2t^2}{2}\right),
+																																																								\phi_X(t)=\exp\left(\mu t+\frac{\sigma^2t^2}{2}\right),
 \quad E[X]=\mu,\quad\operatorname{Var}(X)=\sigma^2.
 	$$
 	If $`X\sim N(\mu,\sigma^2)`$,
@@ -549,15 +562,15 @@ $$
 <callout icon="📘" color="blue_bg">
 	**Def. (Exponential Random Variable)**
 	$$
-																								f(x)=\begin{cases}\lambda e^{-\lambda x},&x\ge0,\\0,&x<0,\end{cases}
+																																																								f(x)=\begin{cases}\lambda e^{-\lambda x},&x\ge0,\\0,&x<0,\end{cases}
 \quad X\sim\operatorname{Exp}(\lambda).
 	$$
 	$$
-																								F(x)=1-e^{-\lambda x}\quad(x\ge0),
+																																																								F(x)=1-e^{-\lambda x}\quad(x\ge0),
 \quad\phi_X(t)=\frac\lambda{\lambda-t}\ (t<\lambda).
 	$$
 	$$
-																								E[X]=\frac1\lambda,\quad
+																																																								E[X]=\frac1\lambda,\quad
 \operatorname{Var}(X)=\frac1{\lambda^2}.
 	$$
 	Rate $`\lambda=1/\beta`$ corresponds to scale $`\beta`$.
@@ -571,7 +584,7 @@ $$
 <details>
 <summary>Proof</summary>
 	$$
-																								P(X>s+t\mid X>t)
+																																																								P(X>s+t\mid X>t)
 =\frac{P(X>s+t,X>t)}{P(X>t)}
 =\frac{e^{-\lambda(s+t)}}{e^{-\lambda t}}=e^{-\lambda s}.
 	$$
@@ -586,7 +599,7 @@ $$
 <details>
 <summary>Proof</summary>
 	$$
-																								P(\min_iX_i>x)=P(X_1>x,\ldots,X_n>x)
+																																																								P(\min_iX_i>x)=P(X_1>x,\ldots,X_n>x)
 =\prod_{i=1}^ne^{-\lambda_i x}
 =e^{-(\sum_i\lambda_i)x}.
 	$$
@@ -599,7 +612,7 @@ $$
 	2. Distribution of the number of events in an interval depends only on its length (not its location).
 	For small $`h`$:
 	$$
-																								\lim_{h\to0}\frac{P(N(h)=1)}h=\lambda,
+																																																								\lim_{h\to0}\frac{P(N(h)=1)}h=\lambda,
 \quad\lim_{h\to0}\frac{P(N(h)\ge2)}h=0.
 	$$
 </callout>
@@ -609,7 +622,26 @@ $$
 	P(N(t)=k)=e^{-\lambda t}\frac{(\lambda t)^k}{k!},\qquad k=0,1,2,\ldots
 	$$
 </callout>
-**Sketch from notes.** Split $`[0,t]`$ into $`n`$ subintervals. For small length $`t/n`$, a subinterval contains 1 event with approximate probability $`\lambda t/n`$ and 2 or more with negligible probability. Thus $`N(t)`$ is approximately $`B(n,\lambda t/n)`$; as $`n\to\infty`$ this tends to $`\operatorname{Poisson}(\lambda t)`$.
+To compute $`P(N(t)=k)`$, divide $`[0,t]`$ into $`n`$ subintervals.
+- Case 1: $`k`$ subintervals contain 1 event, and the others contain 0.
+- Case 2: at least one subinterval contains 2 or more events.
+$$
+P(\text{Case 1})=\binom nk\left(\frac{\lambda t}{n}\right)^k\left(1-\frac{\lambda t}{n}\right)^{n-k}\longrightarrow e^{-\lambda t}\frac{(\lambda t)^k}{k!}.
+$$
+$$
+P(\text{Case 2})\longrightarrow0\qquad(n\to\infty).
+$$
+Therefore,
+$$
+P(N(t)=k)=P(\text{Case 1})+P(\text{Case 2})=e^{-\lambda t}\frac{(\lambda t)^k}{k!},
+\qquad N(t)\sim\operatorname{Poisson}(\lambda t).
+$$
+**Prop. (Interarrival Times of a Poisson Process).** For a Poisson process with rate $`\lambda`$, the interarrival times $`X_1,X_2,\ldots`$ are independent exponential random variables with mean $`1/\lambda`$.
+Proof:
+$$
+P(X_1>t)=P(N(t)=0)=e^{-\lambda t}\frac{(\lambda t)^0}{0!}=e^{-\lambda t}.
+$$
+Thus $`X_1\sim\operatorname{Exp}(\lambda)`$.
 **Ex. (Customers at a checkout counter)**
 Customers arrive at a checkout counter according to a Poisson distribution at an average of **seven per hour** ($`\lambda=7`$).
 (a) During a given hour, what is the probability that no more than three customers arrive?
@@ -645,33 +677,27 @@ Thus not likely to occur.
 $$
 P(N(2)=2)=e^{-14}\frac{14^2}{2}.
 $$
-**(d) (2)** For two separated 1-hour periods, consider three cases:
-- Case 1: first hour 2 customers; second hour 0 customers.
-- Case 2: first hour 1 customer; second hour 1 customer.
-- Case 3: first hour 0 customers; second hour 2 customers.
-$$
-P(N_1+N_2=2)=P(N_1=2,N_2=0)+P(N_1=1,N_2=1)+P(N_1=0,N_2=2)
-$$
-$$
-=e^{-14}\left(\frac{7^2}{2}+7^2+\frac{7^2}{2}\right)=e^{-14}\frac{14^2}{2}.
-$$
+**(d) (2)** For two separated 1-hour periods:
+- Case 1: $`P(N_1=2,N_2=0)`$.
+- Case 2: $`P(N_1=1,N_2=1)`$.
+- Case 3: $`P(N_1=0,N_2=2)`$.
 ## Gamma and Distributions Arising from the Normal
 ### Gamma
 <callout icon="📘" color="blue_bg">
 	**Def. (Gamma Random Variable: Shape and Rate)**
 	For $`\alpha,\lambda>0`$,
 	$$
-																								f(x)=\begin{cases}
+																																																								f(x)=\begin{cases}
 \frac{\lambda e^{-\lambda x}(\lambda x)^{\alpha-1}}{\Gamma(\alpha)},&x\ge0,\\
 0,&\text{otherwise}.
 \end{cases}
 	$$
 	$$
-																								\Gamma(\alpha)=\int_0^\infty e^{-u}u^{\alpha-1}\,du,\quad
+																																																								\Gamma(\alpha)=\int_0^\infty e^{-u}u^{\alpha-1}\,du,\quad
 \Gamma(n)=(n-1)!.
 	$$
 	$$
-																								\phi_X(t)=\left(\frac{\lambda}{\lambda-t}\right)^\alpha,
+																																																								\phi_X(t)=\left(\frac{\lambda}{\lambda-t}\right)^\alpha,
 \quad E[X]=\frac\alpha\lambda,\quad
 \operatorname{Var}(X)=\frac\alpha{\lambda^2}.
 	$$
@@ -694,7 +720,7 @@ $$
 	$$
 	where $`n`$ is the number of degrees of freedom.
 	$$
-																								\phi_{Z^2}(t)=(1-2t)^{-1/2},\quad
+																																																								\phi_{Z^2}(t)=(1-2t)^{-1/2},\quad
 \phi_{\chi^2_n}(t)=(1-2t)^{-n/2}.
 	$$
 	Thus $`\chi^2_n\sim\operatorname{Gamma}(n/2,1/2)`$ and
@@ -720,7 +746,7 @@ To find $`P(X_1^2+X_2^2>9)`$, rewrite as $`P(\chi^2_2>9/4)`$.
 	$`E[T_n]=0`$ (when $`n>1`$), $`\operatorname{Var}(T_n)=n/(n-2)`$ for $`n>2`$.
 	For large $`n`$, $`t_n`$ approaches $`N(0,1)`$.
 	$$
-																								P(T_n>t_{\alpha,n})=\alpha,\qquad
+																																																								P(T_n>t_{\alpha,n})=\alpha,\qquad
 t_{1-\alpha,n}=-t_{\alpha,n}.
 	$$
 </callout>
@@ -737,13 +763,31 @@ t_{1-\alpha,n}=-t_{\alpha,n}.
 	Reciprocal identity: $`F_{\alpha,m,n}=1/F_{1-\alpha,n,m}`$.
 </callout>
 ![](notion-file-block://01831e50-c662-4ccc-8ca0-cf28d392b7a0/4549fd85-dc63-4dbd-a2a7-e362b6b1d43c?space_id=a572f2a2-f7b0-4923-b5c0-74f5db67bcd1&name=source_t_distribution_tight.svg)
-**Ex.** For independent $`X_i\sim N(\mu,\sigma^2)`$, the standardized variables $`(X_1-X_2)/(\sqrt2\sigma)`$ and $`(X_1+X_2-2\mu)/(\sqrt2\sigma)`$ are normal; their squares lead to independent chi-square variables, and their ratio has an F distribution.
+**Ex.** For independent $`X_i\sim N(\mu,\sigma^2)`$, find the distribution of
+$$
+\frac{(X_1-X_2)^2}{(X_3+X_4-2\mu)^2}.
+$$
+$$
+X_1-X_2\sim N(0,2\sigma^2),\qquad
+\frac{X_1-X_2}{\sqrt2\sigma}\sim N(0,1),\qquad
+\left(\frac{X_1-X_2}{\sqrt2\sigma}\right)^2\sim\chi_1^2.
+$$
+$$
+X_3+X_4\sim N(2\mu,2\sigma^2),\qquad
+\frac{X_3+X_4-2\mu}{\sqrt2\sigma}\sim N(0,1),\qquad
+\left(\frac{X_3+X_4-2\mu}{\sqrt2\sigma}\right)^2\sim\chi_1^2.
+$$
+The two chi-square random variables are independent. Therefore,
+$$
+\frac{(X_1-X_2)^2}{(X_3+X_4-2\mu)^2}
+=\frac{\chi_1^2/1}{\chi_1^2/1}\sim F_{1,1}.
+$$
 # Distributions of Sampling Statistics
 <callout icon="📘" color="blue_bg">
 	**Def. (Random Sample)**
 	If $`X_1,\ldots,X_n`$ are independent random variables having a common distribution $`F`$, they constitute a random sample from $`F`$.
-	Parameter inference: obtain information about an unknown population parameter (e.g., $`\mu,\sigma^2,p`$).
-	Nonparametric inference: inference not specified in terms of a particular parametric family.
+	Parametric inference: the form of $`F`$ is specified up to an unknown parameter.
+	Nonparametric inference: nothing is specified.
 	An estimator is a function $`\hat\theta=\theta(X_1,\ldots,X_n)`$ of the sample; therefore it is also a random variable and has its own sampling distribution.
 </callout>
 ![](notion-file-block://df9c793c-f96a-41e8-a8c6-13e8932195b1/04d01078-30a4-457f-b778-f9e69436975e?space_id=a572f2a2-f7b0-4923-b5c0-74f5db67bcd1&name=source_sampling_diagram_tight.svg)
@@ -764,7 +808,7 @@ t_{1-\alpha,n}=-t_{\alpha,n}.
 	**Thm. (Central Limit Theorem)**
 	Let $`X_1,X_2,\ldots`$ be i.i.d. random variables with mean $`\mu`$ and variance $`\sigma^2`$. For large $`n`$,
 	$$
-																							P\left(\frac{X_1+\cdots+X_n-n\mu}{\sigma\sqrt n}\le x\right)
+																																																							P\left(\frac{X_1+\cdots+X_n-n\mu}{\sigma\sqrt n}\le x\right)
 \to P(Z\le x),\qquad Z\sim N(0,1).
 	$$
 	Consequently,
@@ -784,6 +828,10 @@ t_{1-\alpha,n}=-t_{\alpha,n}.
 	P(11\le X\le14)\approx P(10.5\le Y\le14.5)
 	$$
 	for the corresponding normal variable $`Y`$.
+	For the strict lower endpoint,
+	$$
+	P(11<X\le14)=P(12\le X\le14)\approx P(11.5\le Y\le14.5).
+	$$
 </callout>
 ## Sample Variance
 <callout icon="📘" color="blue_bg">
@@ -792,7 +840,7 @@ t_{1-\alpha,n}=-t_{\alpha,n}.
 	S^2=\frac1{n-1}\sum_{i=1}^n(X_i-\overline X)^2.
 	$$
 	$$
-																							(n-1)S^2=\sum_i(X_i-\overline X)^2
+																																																							(n-1)S^2=\sum_i(X_i-\overline X)^2
 =\sum_iX_i^2-n\overline X^2.
 	$$
 </callout>
@@ -805,31 +853,47 @@ t_{1-\alpha,n}=-t_{\alpha,n}.
 <details>
 <summary>Proof</summary>
 	$$
-	E[(n-1)S^2]=E\left[\sum_iX_i^2-n\overline X^2\right]
+														(n-1)S^2=\sum_{i=1}^n(X_i-\overline X)^2
+=\sum_iX_i^2-2\overline X\sum_iX_i+n\overline X^2
+=\sum_iX_i^2-n\overline X^2.
 	$$
 	$$
-																							=\sum_i(\sigma^2+\mu^2)-n\left(\frac{\sigma^2}{n}+\mu^2\right)
-=(n-1)\sigma^2.
+														E[(n-1)S^2]=E\left[\sum_iX_i^2\right]-nE[\overline X^2]
+=\sum_iE[X_i^2]-nE[\overline X^2].
+	$$
+	$$
+														=\sum_i(\sigma^2+\mu^2)-n\left(\frac{\sigma^2}{n}+\mu^2\right)
+=n\sigma^2+n\mu^2-\sigma^2-n\mu^2=(n-1)\sigma^2.
 	$$
 </details>
 <callout icon="📜" color="yellow_bg">
 	**Thm. (Sample Distribution from a Normal Population)**
 	For $`X_1,\ldots,X_n\sim N(\mu,\sigma^2)`$ independent,
 	$$
-																							\overline X\sim N\left(\mu,\frac{\sigma^2}n\right),
+																																																							\overline X\sim N\left(\mu,\frac{\sigma^2}n\right),
 \qquad
 \frac{(n-1)S^2}{\sigma^2}\sim\chi^2_{n-1}.
 	$$
 	Moreover, $`\overline X`$ and $`S^2`$ are independent.
 </callout>
 <details>
-<summary>Proof sketch</summary>
-	By expanding the squared deviations,
+<summary>Proof</summary>
 	$$
-																							\sum_{i=1}^n(X_i-\mu)^2
+														\sum_{i=1}^n(X_i-\mu)^2
+=\sum_{i=1}^n\bigl((X_i-\overline X)+(\overline X-\mu)\bigr)^2
 =\sum_{i=1}^n(X_i-\overline X)^2+n(\overline X-\mu)^2.
 	$$
-	After dividing by $`\sigma^2`$, the left side has $`\chi_n^2`$ and the second right-hand term has $`\chi_1^2`$. This leaves $`\chi^2_{n-1}`$ for the residual sum of squares.
+	$$
+														\sum_{i=1}^n\frac{(X_i-\mu)^2}{\sigma^2}
+=\frac{(n-1)S^2}{\sigma^2}
++\left(\frac{\overline X-\mu}{\sigma/\sqrt n}\right)^2
+\sim\chi_n^2.
+	$$
+	Since $`(\overline X-\mu)/(\sigma/\sqrt n)\sim N(0,1)`$, its square has a $`\chi_1^2`$ distribution. Therefore
+	$$
+	\frac{(n-1)S^2}{\sigma^2}\sim\chi_{n-1}^2.
+	$$
+	Also, $`\overline X`$ and $`S^2`$ are independent.
 </details>
 <callout icon="📜" color="yellow_bg">
 	**Cor. (Sample t Statistic)**
@@ -854,7 +918,7 @@ t_{1-\alpha,n}=-t_{\alpha,n}.
 	It measures how likely the observed data are for each parameter value (with the data fixed).
 	Log-likelihood:
 	$$
-																							\ell(\theta)=\log L(\theta\mid x_1,\ldots,x_n)
+																																																							\ell(\theta)=\log L(\theta\mid x_1,\ldots,x_n)
 =\sum_{i=1}^n\log f(x_i\mid\theta).
 	$$
 	Choose $`\hat\theta`$ maximizing $`L`$ or $`\ell`$; usually solve $`\partial\ell/\partial\theta=0`$ and check the maximum.
@@ -879,12 +943,12 @@ $$
 	**Prop. (MLE for Bernoulli / Binomial)**
 	For $`X_1,\ldots,X_n\sim\operatorname{Bernoulli}(p)`$,
 	$$
-																							L(p)=\prod_i p^{x_i}(1-p)^{1-x_i},
+																																																							L(p)=\prod_i p^{x_i}(1-p)^{1-x_i},
 \quad
 \ell(p)=\sum_i[x_i\log p+(1-x_i)\log(1-p)].
 	$$
 	$$
-																							\frac{\partial\ell}{\partial p}=\frac{\sum_i x_i}{p}
+																																																							\frac{\partial\ell}{\partial p}=\frac{\sum_i x_i}{p}
 -\frac{n-\sum_i x_i}{1-p}=0
 \ \Longrightarrow\ 
 \hat p=\frac{\sum_i x_i}{n}=\overline X.
@@ -903,7 +967,7 @@ $$
 	\ell(\lambda)=-n\lambda+\log\lambda\sum_i x_i-\sum_i\log(x_i!).
 	$$
 	$$
-																							\ell'(\lambda)=-n+\frac{\sum_i x_i}{\lambda}=0
+																																																							\ell'(\lambda)=-n+\frac{\sum_i x_i}{\lambda}=0
 \ \Longrightarrow\ \hat\lambda=\overline X.
 	$$
 </callout>
@@ -911,23 +975,23 @@ $$
 	**Prop. (MLE for Normal)**
 	For i.i.d. $`X_i\sim N(\mu,\sigma^2)`$,
 	$$
-					L(\mu,\sigma^2)=\prod_i\frac1{\sqrt{2\pi\sigma^2}}
+																																					L(\mu,\sigma^2)=\prod_i\frac1{\sqrt{2\pi\sigma^2}}
 \exp\left(-\frac{(x_i-\mu)^2}{2\sigma^2}\right).
 	$$
 	$$
-					\ell(\mu,\sigma^2)=-\frac n2\log(2\pi\sigma^2)
+																																					\ell(\mu,\sigma^2)=-\frac n2\log(2\pi\sigma^2)
 -\frac1{2\sigma^2}\sum_i(x_i-\mu)^2.
 	$$
 	$$
-					\frac{\partial\ell}{\partial\mu}=\frac{\sum_i(x_i-\mu)}{\sigma^2}=0
+																																					\frac{\partial\ell}{\partial\mu}=\frac{\sum_i(x_i-\mu)}{\sigma^2}=0
 \quad\Longrightarrow\quad\hat\mu=\overline X.
 	$$
 	$$
-					\frac{\partial\ell}{\partial\sigma^2}=-\frac n{2\sigma^2}
+																																					\frac{\partial\ell}{\partial\sigma^2}=-\frac n{2\sigma^2}
 +\frac{\sum_i(x_i-\mu)^2}{2\sigma^4}=0.
 	$$
 	$$
-					\Longrightarrow\quad\hat\sigma^2
+																																					\Longrightarrow\quad\hat\sigma^2
 =\frac1n\sum_i(x_i-\hat\mu)^2
 =\frac1n\sum_i(x_i-\overline X)^2.
 	$$
@@ -966,7 +1030,7 @@ $$
 	r(d,\theta)=E[(d-E[d]+E[d]-\theta)^2]
 	$$
 	$$
-																							=E[(d-E[d])^2]+(E[d]-\theta)^2
+																																																							=E[(d-E[d])^2]+(E[d]-\theta)^2
 =\operatorname{Var}(d)+b_d(\theta)^2.
 	$$
 </details>
@@ -975,13 +1039,13 @@ $$
 	**Def. (Bayes Estimator)**
 	Let $`p(\theta)`$ be the prior distribution and $`f(x\mid\theta)`$ the likelihood. Then
 	$$
-																							f(\theta\mid x_1,\ldots,x_n)
+																																																							f(\theta\mid x_1,\ldots,x_n)
 =\frac{f(x_1,\ldots,x_n\mid\theta)p(\theta)}
 {\int f(x_1,\ldots,x_n\mid\theta)p(\theta)\,d\theta}.
 	$$
-	Under squared error loss, the Bayes estimator is the posterior mean:
+	The Bayes estimator of $`\theta`$ is defined by:
 	$$
-																							E[\theta\mid X_1=x_1,\ldots,X_n=x_n]
+																																																							E[\theta\mid X_1=x_1,\ldots,X_n=x_n]
 =\int\theta f(\theta\mid x_1,\ldots,x_n)\,d\theta.
 	$$
 </callout>
@@ -999,7 +1063,7 @@ $$
 	**Def. (Two-Sided Confidence Interval)**
 	At $`100(1-\alpha)\%`$ confidence,
 	$$
-																							\boxed{\left(\overline X-z_{\alpha/2}\frac{\sigma}{\sqrt n},\
+																																																							\boxed{\left(\overline X-z_{\alpha/2}\frac{\sigma}{\sqrt n},\
 \overline X+z_{\alpha/2}\frac{\sigma}{\sqrt n}\right)}.
 	$$
 	Example: $`\alpha=0.05`$, $`z_{\alpha/2}=1.96`$.
@@ -1015,6 +1079,7 @@ $$
 	\left(\overline X-z_\alpha\frac{\sigma}{\sqrt n},\ +\infty\right).
 	$$
 </callout>
+**Note.** The probability that $`\mu`$ lies in this confidence interval is not $`0.95`$ ($`\mu`$ is not a random variable). In $`95\%`$ of cases, $`\mu`$ lies in the interval.
 ## Confidence Interval for a Normal Mean: Unknown Variance
 <callout icon="📜" color="yellow_bg">
 	**Thm. (Studentized Mean)**
@@ -1029,7 +1094,7 @@ $$
 <callout icon="📘" color="blue_bg">
 	**Def. (Confidence Interval for **$`\mu`$**: Unknown Variance)**
 	$$
-																							\boxed{\left(\overline X-t_{\alpha/2,n-1}\frac{S}{\sqrt n},\
+																																																							\boxed{\left(\overline X-t_{\alpha/2,n-1}\frac{S}{\sqrt n},\
 \overline X+t_{\alpha/2,n-1}\frac{S}{\sqrt n}\right)}.
 	$$
 </callout>
@@ -1044,7 +1109,7 @@ $$
 	**Def. (Prediction Interval)**
 	At $`100(1-\alpha)\%`$:
 	$$
-																							\boxed{\left(\overline X-t_{\alpha/2,n-1}S\sqrt{1+\frac1n},\
+																																																							\boxed{\left(\overline X-t_{\alpha/2,n-1}S\sqrt{1+\frac1n},\
 \overline X+t_{\alpha/2,n-1}S\sqrt{1+\frac1n}\right)}.
 	$$
 </callout>
@@ -1057,12 +1122,13 @@ With upper-tail convention $`P(\chi^2_\nu>\chi^2_{\alpha,\nu})=\alpha`$, a two-s
 <callout icon="📘" color="blue_bg">
 	**Def. (Confidence Interval for **$`\sigma^2`$**)**
 	$$
-																							\boxed{\left(
+																																																							\boxed{\left(
 \frac{(n-1)S^2}{\chi^2_{\alpha/2,n-1}},
 \frac{(n-1)S^2}{\chi^2_{1-\alpha/2,n-1}}
 \right)}.
 	$$
 </callout>
+*Note.* The chi-square distribution is not symmetric.
 ## Difference in Two Means
 Let $`X_1,\ldots,X_n`$ be sampled from $`N(\mu_1,\sigma_1^2)`$, and $`Y_1,\ldots,Y_m`$ independently from $`N(\mu_2,\sigma_2^2)`$.
 **Known variances**
@@ -1073,7 +1139,7 @@ $$
 <callout icon="📘" color="blue_bg">
 	**Def. (CI for Difference of Means, Known Variances)**
 	$$
-																							\boxed{\left(
+																																																							\boxed{\left(
 \overline X-\overline Y-z_{\alpha/2}\sqrt{\frac{\sigma_1^2}n+\frac{\sigma_2^2}m},\
 \overline X-\overline Y+z_{\alpha/2}\sqrt{\frac{\sigma_1^2}n+\frac{\sigma_2^2}m}
 \right)}.
@@ -1092,14 +1158,14 @@ $$
 <callout icon="📘" color="blue_bg">
 	**Def. (CI for Difference of Means, Pooled Variance)**
 	$$
-																							\boxed{\left(
+																																																							\boxed{\left(
 \overline X-\overline Y-t_{\alpha/2,n+m-2}S_p\sqrt{\frac1n+\frac1m},\
 \overline X-\overline Y+t_{\alpha/2,n+m-2}S_p\sqrt{\frac1n+\frac1m}
 \right)}.
 	$$
 </callout>
 ## Approximate Confidence Interval for a Bernoulli Mean
-If $`X_i\sim\operatorname{Bernoulli}(p)`$ and $`\hat p=\overline X`$,
+If $`X_i\sim\operatorname{Bernoulli}(p)`$ and $`\hat p=\overline X`$, with $`np,n(1-p)>5`$ for large $`n`$,
 $$
 \frac{\overline X-p}{\sqrt{p(1-p)/n}}\overset{\rm approx}{\sim} N(0,1).
 $$
@@ -1107,22 +1173,31 @@ Substitute $`\hat p`$ for unknown $`p`$ in the standard error:
 <callout icon="📘" color="blue_bg">
 	**Def. (Approximate CI for **$`p`$**)**
 	$$
-																							\boxed{\left(
+																																																							\boxed{\left(
 \hat p-z_{\alpha/2}\sqrt{\frac{\hat p(1-\hat p)}n},\
 \hat p+z_{\alpha/2}\sqrt{\frac{\hat p(1-\hat p)}n}
 \right)}.
 	$$
 </callout>
 ## Sample Size Determination
-If desired interval length is no more than $`b`$ for a Bernoulli proportion, the approximate interval length is
+We want to specify an approximate $`100(1-\alpha)\%`$ confidence interval for $`p`$ whose length is no greater than $`b`$ (e.g., a $`\pm3\%`$ error margin gives $`b=6`$).
+The theoretical length is
 $$
-2z_{\alpha/2}\sqrt{\frac{p(1-p)}n}\le b.
+2z_{\alpha/2}\sqrt{\frac{p(1-p)}n}.
 $$
-Unknown $`p`$: use a preliminary sample to estimate $`p`$ (or $`p=1/2`$ for a conservative choice). Then
+We want
 $$
-n\ge \frac{4z_{\alpha/2}^2p(1-p)}{b^2}.
+2z_{\alpha/2}\sqrt{\frac{p(1-p)}n}=b,
 $$
-If a preliminary sample gives $`\hat p`$, substitute $`\hat p(1-\hat p)`$; maximize at $`p=1/2`$.
+but $`p`$ is unknown. First take a preliminary sample to obtain $`p^*`$, and use it to obtain $`n`$:
+$$
+n=\frac{(2z_{\alpha/2})^2p^*(1-p^*)}{b^2}.
+$$
+If $`k`$ items are sampled in the preliminary sample, sample an additional $`n-k`$ items.
+$`n`$ is maximized when $`p=1/2`$:
+$$
+n\le\frac{z_{\alpha/2}^2}{b^2}.
+$$
 # Hypothesis Testing
 ## Null Hypothesis, Alternative, and Errors
 <callout icon="📘" color="blue_bg">
@@ -1180,7 +1255,7 @@ $$
 	**Thm. (One-Sided Z Test)**
 	For $`H_0:\mu\le\mu_0`$ versus $`H_1:\mu>\mu_0`$:
 	$$
-																						\text{Reject }H_0\quad\text{if}\quad
+																																																						\text{Reject }H_0\quad\text{if}\quad
 \frac{\overline X-\mu_0}{\sigma/\sqrt n}>z_\alpha.
 	$$
 	For $`H_0:\mu\ge\mu_0`$ versus $`H_1:\mu<\mu_0`$:
@@ -1223,14 +1298,6 @@ $$
 =1-\Phi\left(z_\alpha-\frac{\mu_1-\mu_0}{\sigma/\sqrt n}\right)
 =1-\beta.
 $$
-<callout icon="📜" color="yellow_bg">
-	**Prop. (Sample Size for One-Sided Power)**
-	For desired power $`1-\beta`$ at alternative $`\mu_1>\mu_0`$,
-	$$
-	\boxed{n\approx\frac{(z_\alpha+z_\beta)^2\sigma^2}{(\mu_1-\mu_0)^2}}.
-	$$
-	Choose the next higher integer.
-</callout>
 **Two-sided power** for $`H_1:\mu=\mu_1`$:
 $$
 \beta(\mu_1)=P_{\mu_1}\left(
@@ -1301,6 +1368,7 @@ $$
 	$$
 	One-sided tests use $`T>t_{\alpha,n-1}`$ or $`T<-t_{\alpha,n-1}`$ according to $`H_1`$.
 </callout>
+The two-sided p-value is $`P(|T_{n-1}|\ge|t_{\rm obs}|)`$.
 ## Testing Equality of Two Normal Population Means
 ### Known Variances
 With independent normal samples and known $`\sigma_1^2,\sigma_2^2`$:
@@ -1330,9 +1398,13 @@ $$
 </callout>
 ### Unknown and Unequal Variances (Large Samples)
 $$
-T=\frac{\overline X-\overline Y}{\sqrt{S_1^2/n+S_2^2/m}},
+H_0:\mu_1=\mu_2,\qquad H_1:\mu_1\ne\mu_2.
 $$
-When both sample sizes are large, use the approximate normal distribution.
+Assume $`n,m`$ are both large. Use
+$$
+Z=\frac{\overline X-\overline Y}{\sqrt{S_1^2/n+S_2^2/m}}.
+$$
+Fail to reject $`H_0`$ if $`|Z|\le z_{\alpha/2}`$; reject otherwise.
 ## Paired t Test
 For pairs $`(X_i,Y_i)`$, the two measurements within a pair are dependent. Set $`W_i=X_i-Y_i`$.
 <callout icon="📜" color="yellow_bg">
@@ -1361,6 +1433,11 @@ $$
 	$$
 	Otherwise reject $`H_0`$.
 </callout>
+The p-value is
+$$
+2\min\left\{P(\chi^2_{n-1}>c),P(\chi^2_{n-1}<c)\right\},
+\qquad c=\frac{(n-1)S^2}{\sigma_0^2}.
+$$
 ## Testing Equality of Two Variances
 For independent normal samples with variances $`\sigma_1^2,\sigma_2^2`$:
 $$
@@ -1377,13 +1454,21 @@ $$
 	$$
 	Reject otherwise.
 </callout>
+The p-value is
+$$
+2\min\left\{P(F_{n-1,m-1}>v),P(F_{n-1,m-1}<v)\right\},
+\qquad v=\frac{S_1^2}{S_2^2}.
+$$
 ## Tests for a Bernoulli Proportion
 If $`X=\sum_{i=1}^n X_i\sim B(n,p)`$,
 $$
-H_0:p\le p_0,\qquad H_1:p>p_0,
+H_0:p\le p_0,\qquad H_1:p>p_0.
 $$
-the exact binomial test rejects for large $`X`$: $`C=\{X>k\}`$, chosen to control $`P_{p_0}(X>k)\le\alpha`$.
-The p-value is $`P_{p_0}(X\ge x_{\rm obs})`$.
+Let $`k^*`$ be the smallest integer such that
+$$
+\sum_{i=k^*}^n\binom ni p_0^i(1-p_0)^{n-i}\le\alpha.
+$$
+Fail to reject $`H_0`$ if $`X<k^*`$; reject otherwise. The p-value is $`P_{p_0}(X\ge x_{\rm obs})`$.
 For large $`np_0,n(1-p_0)`$:
 $$
 Z=\frac{X-np_0}{\sqrt{np_0(1-p_0)}}\overset{\rm approx}{\sim}N(0,1)\quad(H_0).
@@ -1391,16 +1476,15 @@ $$
 <callout icon="📜" color="yellow_bg">
 	**Thm. (Normal Approximation for a Proportion Test)**
 	For $`H_1:p>p_0`$, reject if $`Z>z_\alpha`$.
-	For $`H_1:p\ne p_0`$, reject if $`|Z|>z_{\alpha/2}`$.
 </callout>
 ## Testing Equality of Two Proportions
 Let $`X\sim B(n,p_1)`$ and $`Y\sim B(m,p_2)`$ independent. Estimate
 $$
 \hat p_1=\frac Xn,\qquad\hat p_2=\frac Ym.
 $$
-For approximate confidence intervals use
+A 95% confidence interval for $`p_1-p_2`$ is
 $$
-\hat p_1-\hat p_2\pm z_{\alpha/2}
+\hat p_1-\hat p_2\pm1.96
 \sqrt{\frac{\hat p_1(1-\hat p_1)}n+\frac{\hat p_2(1-\hat p_2)}m}.
 $$
 Under $`H_0:p_1=p_2=p`$, use pooled
@@ -1410,26 +1494,31 @@ $$
 <callout icon="📜" color="yellow_bg">
 	**Thm. (Two-Proportion Z Test)**
 	$$
-																						Z=\frac{\hat p_1-\hat p_2}
+																																																						Z=\frac{\hat p_1-\hat p_2}
 {\sqrt{\hat p(1-\hat p)(1/n+1/m)}}\overset{\rm approx}{\sim}N(0,1).
 	$$
 	Two-sided $`H_1:p_1\ne p_2`$: reject if $`|Z|>z_{\alpha/2}`$.
 </callout>
 # Regression
+We want to determine a relationship between a response variable and explanatory variables:
+$$
+Y=\beta_0+\beta_1x_1+\cdots+\beta_px_p+e.
+$$
+$`Y`$ is the response (dependent) variable; $`x_1,\ldots,x_p`$ are the explanatory (independent) variables; $`\beta_0,\ldots,\beta_p`$ are regression coefficients; $`e`$ is random error.
 ## Simple Linear Regression and Correlation
 <callout icon="📘" color="blue_bg">
 	**Def. (Simple Linear Regression Model)**
 	We want to determine a relationship between a response $`Y`$ and an explanatory variable $`x`$:
 	$$
-	Y=\beta_0+\beta_1x+\varepsilon,\qquad \varepsilon\sim N(0,\sigma^2).
+	Y=\alpha+\beta x+e,\qquad e\sim N(0,\sigma^2).
 	$$
-	Response $`Y`$ is the dependent variable; the explanatory variable $`x`$ is treated as given (independent variable), and $`\varepsilon`$ is random error.
-	The regression coefficients $`\beta_0,\beta_1`$ are unknown parameters.
+	Response $`Y`$ is the dependent variable; the explanatory variable $`x`$ is treated as given (independent variable), and $`e`$ is random error.
+	The regression coefficients $`\alpha,\beta`$ are unknown parameters.
 </callout>
 <callout icon="📘" color="blue_bg">
 	**Def. (Corrected Sums)**
 	$$
-																					S_{XY}=\sum_{i=1}^n(x_i-\overline x)(y_i-\overline y)
+																																																					S_{XY}=\sum_{i=1}^n(x_i-\overline x)(y_i-\overline y)
 =\sum_i x_iy_i-n\overline x\,\overline y.
 	$$
 	$$
@@ -1442,12 +1531,11 @@ $$
 <callout icon="📘" color="blue_bg">
 	**Def. (Sample Correlation Coefficient)**
 	$$
-	r=\frac{S_{XY}}{\sqrt{S_{XX}S_{YY}}}.
+	\hat{\rho}=\frac{S_{XY}}{(n-1)s_xs_y}=\frac{S_{XY}}{\sqrt{S_{XX}S_{YY}}}.
 	$$
-	For independent bivariate normal pairs, a test of zero population correlation
-	$`H_0:\rho=0`$ uses
+	The test of $`H_0:\rho=0`$ (no linear relationship) uses
 	$$
-	T=\frac{\sqrt{n-2}\,r}{\sqrt{1-r^2}}\sim t_{n-2}.
+	T=\frac{\sqrt{n-2}\,\hat{\rho}}{\sqrt{1-\hat{\rho}^2}}\sim t_{n-2}.
 	$$
 </callout>
 ## Least Squares Estimators
@@ -1457,29 +1545,29 @@ $$
 	$$
 	SS=\sum_{i=1}^n(y_i-A-Bx_i)^2.
 	$$
-	$`A`$ estimates $`\beta_0`$ and $`B`$ estimates $`\beta_1`$.
+	$`A`$ estimates $`\alpha`$ and $`B`$ estimates $`\beta`$.
 </callout>
 <details>
 <summary>Derivation of Least Squares Estimates</summary>
 	Set partial derivatives equal to zero:
 	$$
-																					\frac{\partial SS}{\partial A}
+																																																					\frac{\partial SS}{\partial A}
 =-2\sum_i(y_i-A-Bx_i)=0,
 	$$
 	$$
-																					\frac{\partial SS}{\partial B}
+																																																					\frac{\partial SS}{\partial B}
 =-2\sum_i x_i(y_i-A-Bx_i)=0.
 	$$
 	Normal equations:
 	$$
-																					\begin{cases}
+																																																					\begin{cases}
 nA+B\sum_i x_i=\sum_i y_i,\\
 A\sum_i x_i+B\sum_i x_i^2=\sum_i x_iy_i.
 \end{cases}
 	$$
 	Thus
 	$$
-																					\boxed{B=\frac{\sum_i x_iy_i-n\overline x\,\overline y}{\sum_i x_i^2-n\overline x^2}
+																																																					\boxed{B=\frac{\sum_i x_iy_i-n\overline x\,\overline y}{\sum_i x_i^2-n\overline x^2}
 =\frac{S_{XY}}{S_{XX}},
 \qquad A=\overline y-B\overline x}.
 	$$
@@ -1489,125 +1577,125 @@ A\sum_i x_i+B\sum_i x_i^2=\sum_i x_iy_i.
 	**Prop. (Sampling Distributions of Least Squares Estimators)**
 	Assume fixed $`x_i`$, independent normal errors with mean zero and variance $`\sigma^2`$.
 	$$
-																					B=\beta_1+\frac{\sum_i(x_i-\overline x)\varepsilon_i}{S_{XX}},
-\quad E[B]=\beta_1,\quad \operatorname{Var}(B)=\frac{\sigma^2}{S_{XX}}.
+																																																					B=\beta+\frac{\sum_i(x_i-\overline x)e_i}{S_{XX}},
+\quad E[B]=\beta,\quad \operatorname{Var}(B)=\frac{\sigma^2}{S_{XX}}.
 	$$
 	$$
-	\boxed{B\sim N\left(\beta_1,\frac{\sigma^2}{S_{XX}}\right)}.
+	\boxed{B\sim N\left(\beta,\frac{\sigma^2}{S_{XX}}\right)}.
 	$$
 	Also
 	$$
-	A=\overline Y-B\overline x,\quad E[A]=\beta_0,
+	A=\overline Y-B\overline x,\quad E[A]=\alpha,
 	$$
 	$$
-																					\operatorname{Var}(A)=\sigma^2\left(\frac1n+\frac{\overline x^2}{S_{XX}}\right),
+																																																					\operatorname{Var}(A)=\frac{\sigma^2\sum_i x_i^2}{nS_{XX}},
 \quad
-\boxed{A\sim N\left(\beta_0,\sigma^2\left(\frac1n+\frac{\overline x^2}{S_{XX}}\right)\right)}.
+\boxed{A\sim N\left(\alpha,\frac{\sigma^2\sum_i x_i^2}{nS_{XX}}\right)}.
 	$$
 </callout>
 ## Residual Variance and Inference on Regression Parameters
 <callout icon="📘" color="blue_bg">
 	**Def. (Residual Sum of Squares / Residual Mean Square)**
 	$$
-	SSR=\sum_{i=1}^n(Y_i-A-Bx_i)^2.
+	SS_R=\sum_{i=1}^n(Y_i-A-Bx_i)^2.
 	$$
 	Under normal errors,
 	$$
-																					\frac{SSR}{\sigma^2}\sim\chi^2_{n-2},\quad
-E\left[\frac{SSR}{n-2}\right]=\sigma^2.
+																																																					\frac{SS_R}{\sigma^2}\sim\chi^2_{n-2},\quad
+E\left[\frac{SS_R}{n-2}\right]=\sigma^2.
 	$$
-	Therefore $`S_{Y\mid X}^2=SSR/(n-2)`$ is an unbiased estimator of $`\sigma^2`$.
+	Therefore $`SS_R/(n-2)`$ is an unbiased estimator of $`\sigma^2`$.
 </callout>
 <callout icon="📜" color="yellow_bg">
 	**Prop. (Regression Estimators and Residuals)**
-	$`A`$ and $`B`$ are unbiased. Under the normal linear model, $`(A,B)`$ is independent of $`SSR`$, and
+	$`A`$ and $`B`$ are unbiased. Under the normal linear model, $`(A,B)`$ is independent of $`SS_R`$, and
 	$$
-	\frac{SSR}{\sigma^2}\sim\chi^2_{n-2}.
+	\frac{SS_R}{\sigma^2}\sim\chi^2_{n-2}.
 	$$
 </callout>
 **Residual sum of squares and regression parameter calculations**
 $$
-SSR=\sum_{i=1}^n(Y_i-A-Bx_i)^2=\sum_{i=1}^n\hat e_i^2.
+SS_R=\sum_{i=1}^n(Y_i-A-Bx_i)^2=\sum_{i=1}^n\hat e_i^2.
 $$
 $$
-\frac{SSR}{\sigma^2}\sim\chi^2_{n-2},\qquad
-E\left[\frac{SSR}{\sigma^2}\right]=n-2,
-\quad E\left[\frac{SSR}{n-2}\right]=\sigma^2.
+\frac{SS_R}{\sigma^2}\sim\chi^2_{n-2},\qquad
+E\left[\frac{SS_R}{\sigma^2}\right]=n-2,
+\quad E\left[\frac{SS_R}{n-2}\right]=\sigma^2.
 $$
-Therefore $`SSR/(n-2)`$ is an unbiased estimator of $`\sigma^2`$.
-Recall $`B=S_{XY}/S_{XX}\sim N(\beta_1,\sigma^2/S_{XX})`$ and $`A=\bar Y-B\bar x`$.
+Therefore $`SS_R/(n-2)`$ is an unbiased estimator of $`\sigma^2`$.
+Recall $`B=S_{XY}/S_{XX}\sim N(\beta,\sigma^2/S_{XX})`$ and $`A=\bar Y-B\bar x`$.
 $$
-\boxed{SSR=\frac{S_{XX}S_{YY}-S_{XY}^2}{S_{XX}}}.
+\boxed{SS_R=\frac{S_{XX}S_{YY}-S_{XY}^2}{S_{XX}}}.
 $$
 $$
-A\sim N\left(\beta_0,\frac{\sigma^2\sum_i x_i^2}{nS_{XX}}\right).
+A\sim N\left(\alpha,\frac{\sigma^2\sum_i x_i^2}{nS_{XX}}\right).
 $$
 ### Hypothesis Test for Slope
 $$
-H_0:\beta_1=0\qquad\text{vs.}\qquad H_1:\beta_1\ne0.
+H_0:\beta=0\qquad\text{vs.}\qquad H_1:\beta\ne0.
 $$
 <callout icon="📜" color="yellow_bg">
 	**Thm. (t Test for Slope)**
 	Under $`H_0`$,
 	$$
-	T=\frac{B}{\sqrt{SSR/[(n-2)S_{XX}]}}\sim t_{n-2}.
+	T=\frac{B}{\sqrt{SS_R/[(n-2)S_{XX}]}}\sim t_{n-2}.
 	$$
 	Two-sided: reject $`H_0`$ if $`|T|>t_{\alpha/2,n-2}`$.
 	The p-value is $`2P(T_{n-2}>|t_{\rm obs}|)`$.
 </callout>
-*Note (from notes).* In simple regression, the test for $`\beta_1=0`$ is related to the zero-correlation test
+*Note (from notes).* In simple regression, the test for $`\beta=0`$ is related to the zero-correlation test
 $$
-T=\frac{\sqrt{n-2}\,r}{\sqrt{1-r^2}},
+T=\frac{\sqrt{n-2}\,\hat{\rho}}{\sqrt{1-\hat{\rho}^2}},
 $$
-where $`r`$ is the sample correlation coefficient.
+where $`\hat{\rho}`$ is the sample correlation coefficient.
 **Derivation of slope significance and the correlation test**
-Under $`H_0:\beta_1=0`$:
+Under $`H_0:\beta=0`$:
 $$
-\frac{B-\beta_1}{\sqrt{\sigma^2/S_{XX}}}\sim N(0,1),
-\qquad \frac{SSR}{\sigma^2}\sim\chi^2_{n-2}.
+\frac{B-\beta}{\sqrt{\sigma^2/S_{XX}}}\sim N(0,1),
+\qquad \frac{SS_R}{\sigma^2}\sim\chi^2_{n-2}.
 $$
 $$
-\sqrt{\frac{(n-2)S_{XX}}{SSR}}B\sim t_{n-2}.
+\sqrt{\frac{(n-2)S_{XX}}{SS_R}}B\sim t_{n-2}.
 $$
-*Sample mean/correlation relation:* $`H_0:\rho=0\iff H_0:\beta_1=0`$; the t value is the same.
+*Sample mean/correlation relation:* $`H_0:\rho=0\iff H_0:\beta=0`$; the t value is the same.
 $$
-t=\frac{B}{\sqrt{[SSR/(n-2)]/S_{XX}}}
+t=\frac{B}{\sqrt{[SS_R/(n-2)]/S_{XX}}}
 =\frac{S_{XY}}{\sqrt{S_{XX}}}
 \frac{\sqrt{n-2}}{\sqrt{S_{YY}-S_{XY}^2/S_{XX}}}
 $$
 $$
 =\frac{S_{XY}}{\sqrt{S_{XX}S_{YY}}}
 \frac{\sqrt{n-2}}{\sqrt{1-S_{XY}^2/(S_{XX}S_{YY})}}
-=r\frac{\sqrt{n-2}}{\sqrt{1-r^2}}.
+=\hat{\rho}\frac{\sqrt{n-2}}{\sqrt{1-\hat{\rho}^2}}.
 $$
 ### Confidence Interval for the Slope
 <callout icon="📘" color="blue_bg">
-	**Def. (CI for **$`\beta_1`$**)**
+	**Def. (CI for **$`\beta`$**)**
 	$$
-																					\boxed{\left(
-B-t_{\alpha/2,n-2}\sqrt{\frac{SSR}{(n-2)S_{XX}}},\
-B+t_{\alpha/2,n-2}\sqrt{\frac{SSR}{(n-2)S_{XX}}}
+																																																					\boxed{\left(
+B-t_{\alpha/2,n-2}\sqrt{\frac{SS_R}{(n-2)S_{XX}}},\
+B+t_{\alpha/2,n-2}\sqrt{\frac{SS_R}{(n-2)S_{XX}}}
 \right)}.
 	$$
 </callout>
 ### Confidence Interval for the Intercept
 <callout icon="📘" color="blue_bg">
-	**Def. (CI for **$`\beta_0`$**)**
+	**Def. (CI for **$`\alpha`$**)**
 	$$
-																					\boxed{\left(
-A-t_{\alpha/2,n-2}\sqrt{\frac{SSR}{n-2}\left(\frac1n+\frac{\overline x^2}{S_{XX}}\right)},\
-A+t_{\alpha/2,n-2}\sqrt{\frac{SSR}{n-2}\left(\frac1n+\frac{\overline x^2}{S_{XX}}\right)}
+																																																					\boxed{\left(
+A-t_{\alpha/2,n-2}\sqrt{\frac{SS_R}{n-2}\frac{\sum_i x_i^2}{nS_{XX}}},\
+A+t_{\alpha/2,n-2}\sqrt{\frac{SS_R}{n-2}\frac{\sum_i x_i^2}{nS_{XX}}}
 \right)}.
 	$$
 </callout>
 ## Mean Response and Prediction at a New x
 For a given $`x_0`$, the mean response is
 $$
-E[Y\mid x_0]=\beta_0+\beta_1 x_0.
+E[Y\mid x_0]=\alpha+\beta x_0.
 $$
-We want to estimate the mean response $`\beta_0+\beta_1x_0`$ for input $`x_0`$.
+We want to estimate the mean response $`\alpha+\beta x_0`$ for input $`x_0`$.
 $$
-E[A+Bx_0]=\beta_0+\beta_1x_0
+E[A+Bx_0]=\alpha+\beta x_0
 \quad\text{(unbiased estimator)}.
 $$
 $$
@@ -1631,25 +1719,25 @@ $$
 Thus
 $$
 \boxed{A+Bx_0\sim
-N\left(\beta_0+\beta_1x_0,\
+N\left(\alpha+\beta x_0,\
 \sigma^2\left(\frac1n+\frac{(\bar x-x_0)^2}{S_{XX}}\right)\right)}.
 $$
 $$
-\frac{A+Bx_0-(\beta_0+\beta_1x_0)}
+\frac{A+Bx_0-(\alpha+\beta x_0)}
 {\sqrt{\sigma^2(1/n+(\bar x-x_0)^2/S_{XX})}}
-\frac1{\sqrt{SSR/[\sigma^2(n-2)]}}
+\frac1{\sqrt{SS_R/[\sigma^2(n-2)]}}
 \sim t_{n-2}.
 $$
 <callout icon="📘" color="blue_bg">
 	**Def. (CI for Mean Response)**
 	$$
-																					\boxed{\left(
+																																																					\boxed{\left(
 A+Bx_0\pm t_{\alpha/2,n-2}
-\sqrt{\frac{SSR}{n-2}\left(\frac1n+\frac{(x_0-\overline x)^2}{S_{XX}}\right)}
+\sqrt{\frac{SS_R}{n-2}\left(\frac1n+\frac{(x_0-\overline x)^2}{S_{XX}}\right)}
 \right)}.
 	$$
 </callout>
-**Prediction of a future response.** For $`Y_0=\beta_0+\beta_1x_0+\varepsilon_0`$, with $`\varepsilon_0`$ independent of the sample,
+**Prediction of a future response.** For $`Y_0=\alpha+\beta x_0+e_0`$, with $`e_0`$ independent of the sample,
 $$
 Y_0-A-Bx_0\sim N\left(0,\
 \sigma^2\left[1+\frac1n+\frac{(x_0-\overline x)^2}{S_{XX}}\right]\right).
@@ -1657,9 +1745,9 @@ $$
 <callout icon="📘" color="blue_bg">
 	**Def. (Prediction Interval for a Future Response)**
 	$$
-																					\boxed{\left(
+																																																					\boxed{\left(
 A+Bx_0\pm t_{\alpha/2,n-2}
-\sqrt{\frac{SSR}{n-2}\left(1+\frac1n+\frac{(x_0-\overline x)^2}{S_{XX}}\right)}
+\sqrt{\frac{SS_R}{n-2}\left(1+\frac1n+\frac{(x_0-\overline x)^2}{S_{XX}}\right)}
 \right)}.
 	$$
 </callout>
@@ -1671,17 +1759,17 @@ A+Bx_0\pm t_{\alpha/2,n-2}
 	S_{YY}=\sum_i(Y_i-\overline Y)^2.
 	$$
 	$$
-											S_{YY}=\sum_{i=1}^n(Y_i-\bar Y)^2
+																																											S_{YY}=\sum_{i=1}^n(Y_i-\bar Y)^2
 =\underbrace{\sum_i(\hat Y_i-\bar Y)^2}_{\text{variation explained by the model}}
-+\underbrace{\sum_i(Y_i-\hat Y_i)^2}_{SSR:\text{ variation due to error}}.
++\underbrace{\sum_i(Y_i-\hat Y_i)^2}_{SS_R:\text{ variation due to error}}.
 	$$
-	$`S_{YY}-SSR`$ is the amount of variation in the responses explained by the different input values.
+	$`S_{YY}-SS_R`$ is the amount of variation in the responses explained by the different input values.
 		$$
-		R^2=\frac{S_{YY}-SSR}{S_{YY}}=1-\frac{SSR}{S_{YY}}.
+		R^2=\frac{S_{YY}-SS_R}{S_{YY}}=1-\frac{SS_R}{S_{YY}}.
 		$$
 		For simple linear regression,
 		$$
-		R^2=r^2,\qquad r=\frac{S_{XY}}{\sqrt{S_{XX}S_{YY}}}.
+		R^2=\hat{\rho}^2,\qquad \hat{\rho}=\frac{S_{XY}}{\sqrt{S_{XX}S_{YY}}}.
 		$$
 </callout>
 # Analysis of Variance (ANOVA)
@@ -1692,21 +1780,21 @@ H_0:\mu_1=\cdots=\mu_m,
 \qquad
 H_1:\text{at least two population means differ}.
 $$
-Let $`X_{ij}=\mu_i+\varepsilon_{ij}`$, independent errors $`\varepsilon_{ij}\sim N(0,\sigma^2)`$.
+Let $`X_{ij}=\mu_i+e_{ij}`$, independent errors $`e_{ij}\sim N(0,\sigma^2)`$.
 ![](notion-file-block://f38146b1-c5fd-4319-b5f5-538a9a9f40b5/0f8a01f2-1ed8-4962-8b9c-473a60a41efb?space_id=a572f2a2-f7b0-4923-b5c0-74f5db67bcd1&name=source_anova_groups_tight.svg)
 <callout icon="📘" color="blue_bg">
 	**Def. (Total, Between, and Within Sum of Squares)**
 	For $`m`$ groups each having $`n`$ observations,
 	$$
-																					\sum_{i=1}^m\sum_{j=1}^n(X_{ij}-\overline X_{\cdot\cdot})^2
-=SS_B+SS_W.
+																																																					\sum_{i=1}^m\sum_{j=1}^n(X_{ij}-\overline X_{\cdot\cdot})^2
+=SS_b+SS_w.
 	$$
 	$$
-																					SS_B=n\sum_{i=1}^m(\overline X_{i\cdot}-\overline X_{\cdot\cdot})^2
+																																																					SS_b=n\sum_{i=1}^m(\overline X_{i\cdot}-\overline X_{\cdot\cdot})^2
 \quad\text{(between-group variation)},
 	$$
 	$$
-																					SS_W=\sum_{i=1}^m\sum_{j=1}^n(X_{ij}-\overline X_{i\cdot})^2
+																																																					SS_w=\sum_{i=1}^m\sum_{j=1}^n(X_{ij}-\overline X_{i\cdot})^2
 \quad\text{(within-group variation)}.
 	$$
 	Overall mean: $`\overline X_{\cdot\cdot}=(mn)^{-1}\sum_{ij}X_{ij}`$.
@@ -1727,13 +1815,13 @@ $$
 as with $`(n-1)S^2/\sigma^2`$.
 Thus
 $$
-\frac{SS_W}{\sigma^2}
+\frac{SS_w}{\sigma^2}
 =\frac{\sum_{i=1}^m\sum_{j=1}^n(X_{ij}-\bar X_{i\cdot})^2}{\sigma^2}
 \sim\chi^2_{m(n-1)}.
 $$
 $$
-\frac{E[SS_W]}{\sigma^2}=m(n-1),
-\qquad\boxed{E\left[\frac{SS_W}{m(n-1)}\right]=\sigma^2}.
+\frac{E[SS_w]}{\sigma^2}=m(n-1),
+\qquad\boxed{E\left[\frac{SS_w}{m(n-1)}\right]=\sigma^2}.
 $$
 This is an estimator of $`\sigma^2`$ **regardless of whether **$`H_0`$** is true or not**.
 **When **$`H_0`$** is true:** $`\mu_1=\cdots=\mu_m=\mu`$.
@@ -1744,26 +1832,26 @@ $$
 $$
 When $`H_0`$ is true, estimator of $`\mu`$ is $`\bar X_{\cdot\cdot}`$.
 $$
-\frac{SS_B}{\sigma^2}
+\frac{SS_b}{\sigma^2}
 =\frac{n\sum_{i=1}^m(\bar X_{i\cdot}-\bar X_{\cdot\cdot})^2}{\sigma^2}
 \sim\chi^2_{m-1}.
 $$
-Therefore $`E[SS_B/(m-1)]=\sigma^2`$ is a second estimator of $`\sigma^2`$.
+Therefore $`E[SS_b/(m-1)]=\sigma^2`$ is a second estimator of $`\sigma^2`$.
 Also,
 $$
-SS_W=\sum_i\sum_j(X_{ij}-\bar X_{i\cdot})^2
+SS_w=\sum_i\sum_j(X_{ij}-\bar X_{i\cdot})^2
 =\sum_i(n-1)S_i^2,
 $$
 where $`S_i^2`$ is the sample variance of the $`i`$th group.
 When $`H_0`$ is true,
 $$
-\frac{SS_B}{\sigma^2}\sim\chi^2_{m-1},\quad
-E\left[\frac{SS_B}{m-1}\right]=\sigma^2.
+\frac{SS_b}{\sigma^2}\sim\chi^2_{m-1},\quad
+E\left[\frac{SS_b}{m-1}\right]=\sigma^2.
 $$
 <callout icon="📜" color="yellow_bg">
 	**Thm. (One-Way ANOVA F Test)**
 	$$
-																					F=\frac{SS_B/(m-1)}{SS_W/[m(n-1)]}
+																																																					F=\frac{SS_b/(m-1)}{SS_w/[m(n-1)]}
 \sim F_{m-1,m(n-1)}\qquad(H_0).
 	$$
 	Reject $`H_0`$ for sufficiently large $`F`$:
@@ -1786,53 +1874,58 @@ $$
 =1-P(\text{correctly not reject test 1})P(\text{correctly not reject test 2})
 $$
 $$
-=1-[1-P(\alpha_{I_1})][1-P(\alpha_{I_2})].
+=1-(1-\alpha_{I_1})(1-\alpha_{I_2}).
 $$
 Let $`\alpha_{I_1}=\alpha_{I_2}=0.05`$, then $`\alpha_e\approx0.0975`$.
-3 tests: $`\alpha_e\approx0.143`$. 4 tests: the overall error increases further.
+3 tests: $`\alpha_e\approx0.143`$. 4 tests: $`\alpha_e=0.190`$.
 ## ANOVA with Unequal Sample Sizes
 Let group $`i`$ contain $`n_i`$ observations, $`i=1,\ldots,m`$, and total $`N=\sum_i n_i`$.
-<callout icon="📘" color="blue_bg">
-	**Def. (ANOVA Sums of Squares: Unequal Sizes)**
-	$$
-	SS_W=\sum_{i=1}^m\sum_{j=1}^{n_i}(X_{ij}-\overline X_{i\cdot})^2,
-	$$
-	$$
-																					\overline X_{\cdot\cdot}=\frac1N\sum_i n_i\overline X_{i\cdot},
-\qquad
-SS_B=\sum_{i=1}^m n_i(\overline X_{i\cdot}-\overline X_{\cdot\cdot})^2.
-	$$
-</callout>
-For equal population variances,
 $$
-\frac{SS_W}{\sigma^2}\sim\chi^2_{N-m},
+SS_w=\sum_{i=1}^m\sum_{j=1}^{n_i}(X_{ij}-\overline X_{i\cdot})^2,
 \qquad
-\frac{SS_B}{\sigma^2}\sim\chi^2_{m-1}\quad\text{under }H_0.
+\overline X_{\cdot\cdot}=\frac1N\sum_i n_i\overline X_{i\cdot},
+\qquad
+SS_b=\sum_{i=1}^m n_i(\overline X_{i\cdot}-\overline X_{\cdot\cdot})^2.
 $$
-<callout icon="📜" color="yellow_bg">
-	**Thm. (ANOVA F Test: Unequal Sample Sizes)**
-	$$
-																					F=\frac{SS_B/(m-1)}{SS_W/(N-m)}
+$$
+SS_w=\sum_{i=1}^m(n_i-1)S_i^2,
+$$
+where $`S_i^2`$ is the sample variance of group $`i`$.
+For independent normal samples with equal variance $`\sigma^2`$,
+$$
+\frac{SS_w}{\sigma^2}\sim\chi^2_{N-m},
+\qquad
+E\left[\frac{SS_w}{N-m}\right]=\sigma^2.
+$$
+When $`H_0`$ is true, $`\mu_1=\cdots=\mu_m=\mu`$:
+$$
+\sum_{i=1}^m\frac{n_i(\overline X_{i\cdot}-\mu)^2}{\sigma^2}
+\sim\chi_m^2,
+\qquad
+\frac{SS_b}{\sigma^2}\sim\chi^2_{m-1},
+\qquad
+E\left[\frac{SS_b}{m-1}\right]=\sigma^2.
+$$
+Therefore,
+$$
+F=\frac{SS_b/(m-1)}{SS_w/(N-m)}
 \sim F_{m-1,N-m}\quad(H_0).
-	$$
-</callout>
-**Relation among tests**
-<table fit-page-width="true" header-row="true">
+$$
+<table header-row="true">
 <tr>
-<td>Question</td>
-<td>Type / Procedure</td>
+<td>$`X\backslash Y`$</td>
+<td>Continuous</td>
+<td>Categorical</td>
 </tr>
 <tr>
-<td>Continuous response, categorical group</td>
-<td>ANOVA, regression</td>
+<td>Continuous</td>
+<td>Regression</td>
+<td>Logistic regression / classification</td>
 </tr>
 <tr>
-<td>Two group means</td>
-<td>Two-sample t test</td>
-</tr>
-<tr>
-<td>Difference or relation between quantitative variables</td>
-<td>Regression / correlation</td>
+<td>Categorical</td>
+<td>ANOVA / regression</td>
+<td>$`\chi^2`$-test</td>
 </tr>
 </table>
 # Chi-Square Tests for Categorical Data
@@ -1851,42 +1944,47 @@ $$
 	$$
 	T=\sum_{j=1}^k\frac{(X_j-np_j)^2}{np_j}.
 	$$
-	Under $`H_0`$, $`T\overset{\rm approx}{\sim}\chi^2_{k-1}`$ for sufficiently large expected cell counts.
+	Under $`H_0`$, $`T\overset{\rm approx}{\sim}\chi^2_{k-1}`$.
 </callout>
 <callout icon="📜" color="yellow_bg">
 	**Prop. (Two-Category Chi-Square Statistic)**
 	For $`k=2`$, $`X_1+X_2=n`$ and $`p_1+p_2=1`$,
 	$$
-																					T=\frac{(X_1-np_1)^2}{np_1}+
+																																														T=\frac{(X_1-np_1)^2}{np_1}+
 \frac{(X_2-np_2)^2}{np_2}
 	$$
 	$$
-																					=(X_1-np_1)^2\left(\frac1{np_1}+\frac1{n(1-p_1)}\right)
+																																														=(X_1-np_1)^2\left(\frac1{np_1}+\frac1{n(1-p_1)}\right)
 =\frac{(X_1-np_1)^2}{np_1(1-p_1)}.
 	$$
 	Thus $`T=Z^2`$, where $`Z`$ is the approximate normal statistic for a single population proportion.
 </callout>
 ## Tests of Independence in Contingency Tables
-Suppose each unit is classified by two categorical characteristics $`X`$ and $`Y`$.
-Let $`X`$ have categories $`1,\ldots,r`$ and $`Y`$ categories $`1,\ldots,c`$.
+Assume each member of a population can be classified according to two distinct $`(X,Y)`$ characteristics.
+Let $`X`$ have categories $`1,\ldots,r`$ and $`Y`$ have categories $`1,\ldots,s`$.
 <callout icon="📘" color="blue_bg">
 	**Def. (Independence in a Contingency Table)**
 	$$
-																					p_{ij}=P(X=i,Y=j),\quad
-p_{i\cdot}=P(X=i),\quad p_{\cdot j}=P(Y=j).
+	p_{ij}=P(X=i,Y=j),\qquad i=1,\ldots,r,\quad j=1,\ldots,s.
+	$$
+	$$
+																p_i=\sum_{j=1}^{s}p_{ij}=P(X=i),\qquad
+q_j=\sum_{i=1}^{r}p_{ij}=P(Y=j).
 	$$
 	Under the independence null:
 	$$
-	H_0:p_{ij}=p_{i\cdot}p_{\cdot j}\quad\text{for every }i,j.
+																H_0:p_{ij}=p_iq_j\quad\text{for every }i,j
+\quad(\text{independent; no association}).
 	$$
-	$`H_1`$: at least one pair is associated (not independent).
+	$$
+																H_1:p_{ij}\ne p_iq_j\quad\text{for some }i,j
+\quad(\text{associated}).
+	$$
 </callout>
-**Counts and expected frequencies.** $`N_{ij}`$ is the number in cell $`(i,j)`$, and
+$`N_{ij}`$ is the number of items that have $`X=i`$ and $`Y=j`$ simultaneously.
 $$
-\hat p_{i\cdot}=\frac{N_{i\cdot}}N,\quad
-\hat p_{\cdot j}=\frac{N_{\cdot j}}N,
-\quad E_{ij}=N\hat p_{i\cdot}\hat p_{\cdot j}
-=\frac{N_{i\cdot}N_{\cdot j}}N.
+\hat p_i=\frac{N_{i\cdot}}n,\qquad
+\hat q_j=\frac{N_{\cdot j}}n.
 $$
 <table fit-page-width="true" header-row="true">
 <tr>
@@ -1894,6 +1992,7 @@ $$
 <td>1</td>
 <td>2</td>
 <td>…</td>
+<td>$`s`$</td>
 <td>Total</td>
 </tr>
 <tr>
@@ -1901,6 +2000,7 @@ $$
 <td>$`N_{11}`$</td>
 <td>$`N_{12}`$</td>
 <td>…</td>
+<td>$`N_{1s}`$</td>
 <td>$`N_{1\cdot}`$</td>
 </tr>
 <tr>
@@ -1908,24 +2008,45 @@ $$
 <td>$`N_{21}`$</td>
 <td>$`N_{22}`$</td>
 <td>…</td>
+<td>$`N_{2s}`$</td>
 <td>$`N_{2\cdot}`$</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr>
+<td>$`r`$</td>
+<td>$`N_{r1}`$</td>
+<td>$`N_{r2}`$</td>
+<td>…</td>
+<td>$`N_{rs}`$</td>
+<td>$`N_{r\cdot}`$</td>
 </tr>
 <tr>
 <td>Total</td>
 <td>$`N_{\cdot1}`$</td>
 <td>$`N_{\cdot2}`$</td>
 <td>…</td>
-<td>$`N`$</td>
+<td>$`N_{\cdot s}`$</td>
+<td>$`n`$</td>
 </tr>
 </table>
+The expected frequency in cell $`(i,j)`$ is
+$$
+n\hat p_i\hat q_j=\frac{N_{i\cdot}N_{\cdot j}}n.
+$$
 <callout icon="📜" color="yellow_bg">
 	**Thm. (Chi-Square Test of Independence)**
 	$$
-																					T=\sum_{i=1}^r\sum_{j=1}^c
-\frac{(N_{ij}-E_{ij})^2}{E_{ij}}
-\overset{\rm approx}{\sim}\chi^2_{(r-1)(c-1)}
-\quad(H_0).
+																T=\sum_{i=1}^{r}\sum_{j=1}^{s}
+\frac{(N_{ij}-n\hat p_i\hat q_j)^2}{n\hat p_i\hat q_j}
+=\sum_{i=1}^{r}\sum_{j=1}^{s}\frac{(\text{observed frequency}-\text{expected frequency})^2}{\text{expected frequency}}
+\sim\chi^2_{(r-1)(s-1)}\quad(H_0).
 	$$
-	Reject independence for sufficiently large $`T`$.
-	For a $`2\times2`$ table, the chi-square test corresponds asymptotically to a two-sample population proportion test.
+	For a $`2\times2`$ table, the chi-square test corresponds to the two-sample population test $`p_1=p_2`$.
 </callout>

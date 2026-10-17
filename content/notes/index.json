@@ -293,5 +293,25 @@
     "summary": "",
     "file": "probability-statistics.md",
     "sourceId": "3fc0ad69a5f881cb90f9e35134d8be0b"
+  },
+  {
+    "slug": "differential-geometry",
+    "title": "Differential Geometry",
+    "date": "2026-10-17",
+    "category": "Mathematics",
+    "topic": "Differential Geometry",
+    "summary": "",
+    "file": "differential-geometry.md",
+    "sourceId": "3fc0ad69a5f881bf9cf2d90f3d1ece19"
+  },
+  {
+    "slug": "cs471",
+    "title": "CS471 — Graph Machine Learning and Mining",
+    "date": "2026-10-17",
+    "category": "Computer Science",
+    "topic": "CS471",
+    "summary": "",
+    "file": "cs471.md",
+    "sourceId": "3fc0ad69a5f881f6aaa1c7e5dead9407"
   }
 ]

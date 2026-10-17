@@ -53,7 +53,7 @@ for note in notes:
  source=re.sub(r'<(?:file|pdf) src="([^"]+)"[^>]*>.*?</(?:file|pdf)>',attachment,source,flags=re.S)
  source=re.sub(r'<span underline="true">(.*?)</span>',r'<u>\1</u>',source,flags=re.S)
  source=re.sub(r'\s*\{(?:color|toggle)="[^"\n]*"(?:\s+[^}\n]*)?\}', '',source)
- source=re.sub(r'\*\*[ \t]+\*\*', '',source)
+ source=re.sub(r'\*\*[ \t]+\*\*(?=\s|$)', '',source)
  # Bold with trailing whitespace is valid in Notion; normalize its delimiter placement for HTML.
  source=re.sub(r'\*\*([^*\n]+)\*\*',lambda m:m.group(1)[:len(m.group(1))-len(m.group(1).lstrip())]+'**'+m.group(1).strip()+'**'+m.group(1)[len(m.group(1).rstrip()):],source)
 

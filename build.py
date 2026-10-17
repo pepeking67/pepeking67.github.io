@@ -105,7 +105,7 @@ for note,(rendered,toc) in zip(notes,prepared):
  page='\n'.join(line.rstrip() for line in page.splitlines())+'\n'
  (dist/'notes'/f'{note["slug"]}.html').write_text(page)
  note['contentUrl']=f'notes/{note["slug"]}.html'
-notes.sort(key=lambda n:(n['date'],n.get('topic',''),n['slug']),reverse=True)
+notes.sort(key=lambda n:n['title'].casefold())
 (dist/'notes.json').write_text(json.dumps(notes,ensure_ascii=False))
 # Version asset URLs so readers always receive the matching script and stylesheet.
 index=(dist/'index.html').read_text()

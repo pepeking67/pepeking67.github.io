@@ -80,5 +80,11 @@ for note,rendered in zip(notes,prepared):
  note['contentUrl']=f'notes/{note["slug"]}.html?v={version}'
 notes.sort(key=lambda n:(n['date'],n.get('topic',''),n['slug']),reverse=True)
 (dist/'notes.json').write_text(json.dumps(notes,ensure_ascii=False))
+# Version asset URLs so readers always receive the matching script and stylesheet.
+index=(dist/'index.html').read_text()
+for filename,attribute in [('script.js','src'),('style.css','href')]:
+ version=hashlib.sha256((dist/filename).read_bytes()).hexdigest()[:12]
+ index=index.replace(f'{attribute}="{filename}"',f'{attribute}="{filename}?v={version}"')
+(dist/'index.html').write_text(index)
 (dist/'.nojekyll').touch()
 print(f'Built {len(notes)} notes with {len(equations)} rendered equations.')

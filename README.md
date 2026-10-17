@@ -31,3 +31,5 @@ GitHub Pages: Deploy from a branch → `main` → `/docs`. No backend, credentia
 All categories share the standalone reading page with the table of contents on the right (above the article on smaller screens). Keep the imported Markdown body unchanged in `content/notes/`, and add its title, category, topic, slug, file, and sourceId to `content/notes/index.json`. Course notes use the course name followed by `(1)`, `(2)`, etc.; the summary identifies the source section. Counts, title sorting, and 15-entry pagination update from this index.
 
 Notion callouts and proofs are converted only for presentation. Course images retain their original bytes in local image packs under `src/assets/notes/`; `content/notion-assets.json` and `content/image-dimensions.json` connect stable references to those images. The reader loads image packs as they approach the viewport. Never commit temporary signed Notion URLs or modify the Notion source while importing.
+
+For newly imported Notion pages, set `sourceFormat` to `notion` in the metadata. The builder adds Markdown list boundaries for display without changing the stored source body.

@@ -69,6 +69,20 @@ for note in notes:
  # Notion indents ordinary prose and callouts with tabs. They are not code blocks.
  source=re.sub(r'^>\s*\n[\t ]+([^\n]+)', r'\n> \1\n\n',source,flags=re.M)
  source=re.sub(r'^(?:\t| {4})+([^\n]+)', r'\n\1\n',source,flags=re.M)
+ # Notion exports adjacent paragraph/list blocks without Markdown's blank lines.
+ # Add display-only boundaries so bullets do not become inline paragraph text.
+ if note.get('sourceFormat')=='notion':
+  lines=source.splitlines();normalized=[];in_code=False
+  is_list=lambda line:bool(re.match(r'^\s*(?:[-+*]|\d+[.)])\s+',line))
+  for i,line in enumerate(lines):
+   if line.lstrip().startswith(('```','~~~')):in_code=not in_code
+   if not in_code and i and line.strip() and lines[i-1].strip():
+    previous=lines[i-1]
+    starts_list=is_list(line) and not is_list(previous)
+    ends_list=is_list(previous) and not is_list(line) and not line.startswith(('  ','\t'))
+    if starts_list or ends_list:normalized.append('')
+   normalized.append(line)
+  source='\n'.join(normalized)
  # One page title, then a consistent section hierarchy for all imported reviews.
  source=re.sub(r'^(#{1,5})(?= )',r'#\1',source,flags=re.M)
  md=markdown.Markdown(extensions=['fenced_code','tables','toc','md_in_html','sane_lists'],extension_configs={'toc':{'slugify':lambda value,separator:slugify(re.sub(r'NOTIONMATHPLACEHOLDER\d+END','formula',value),separator)}})

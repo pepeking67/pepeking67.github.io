@@ -274,5 +274,14 @@
     "summary": "Part 2",
     "file": "cs485-2.md",
     "sourceId": "dda0ad69a5f882bb912681f950b9bf0e"
+  },
+  {
+    "slug": "analysis",
+    "title": "Analysis",
+    "date": "2026-10-17",
+    "category": "Mathematics",
+    "topic": "Analysis",
+    "file": "analysis.md",
+    "sourceId": "3fc0ad69a5f881f29ea2df95dd09c707"
   }
 ]

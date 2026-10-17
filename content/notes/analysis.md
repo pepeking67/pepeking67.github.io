@@ -1,5 +1,6 @@
 <table_of_contents color="gray"/>
 # Chapter 2. Basic Topology
+## Countability and Uncountability
 <callout icon="📜" color="yellow_bg">
 	**Thm. 2.12.**
 	Countable union of countable sets is countable.
@@ -28,6 +29,7 @@
 <summary>Proof</summary>
 	Let $`E=\{s_1,s_2,\ldots\}`$ be a countable subset of $`A`$. Construct $`s`$ such that its n-th digit differs from the n-th digit of $`s_n`$. Then $`s\notin E`$; every countable subset of $`A`$ is proper.
 </details>
+## Convexity, Limit Points, and Open Sets
 <callout icon="📘" color="blue_bg">
 	**Def. (Convex).**
 	$`E\subset\mathbb{R}^k`$ is convex if, for $`x,y\in E`$ and $`0\le\lambda\le1`$,
@@ -53,6 +55,7 @@
 	If it contained only finitely many other points $`q_m`$, choose a smaller radius using $`\min d(p,q_m)`$, a contradiction.
 </details>
 **Ex.** $`\mathbb{Z}`$ is closed, not open.
+## Closure and Relative Topology
 <callout icon="📘" color="blue_bg">
 	**Def. (Closure).**
 	$`E'`$: set of all limit points of $`E`$ in $`X`$. The closure is $`\overline E=E\cup E'`$.
@@ -75,6 +78,7 @@
 	**Thm. 2.30.**
 	Let $`Y\subset X`$ and $`E\subset Y`$. Then $`E`$ is open relative to $`Y`$ iff $`E=Y\cap G`$ for some open $`G`$ in $`X`$.
 </callout>
+## Compactness
 <callout icon="📜" color="yellow_bg">
 	**Thm. 2.33.**
 	Let $`K\subset Y\subset X`$. Then $`K`$ is compact relative to $`X`$ iff it is compact relative to $`Y`$.
@@ -150,6 +154,7 @@
 	**Cor.**
 	The set of all real numbers is uncountable.
 </callout>
+## Perfect Sets and Connectedness
 <callout icon="📘" color="blue_bg">
 	**Def. (Separated).**
 	Sets $`A,B`$ are separated if $`A\cap\overline B=\varnothing`$ and $`\overline A\cap B=\varnothing`$.
@@ -163,6 +168,7 @@
 	A subset $`E`$ of the real line is connected iff whenever $`x,y\in E`$ and $`x<z<y`$, then $`z\in E`$.
 </callout>
 # Chapter 3. Numerical Sequences and Series
+## Convergence and Subsequences
 <callout icon="📘" color="blue_bg">
 	**Def. (Convergence).**
 	In metric space $`X`$, $`\{p_n\}`$ converges if there exists $`p\in X`$ such that for every $`\varepsilon>0`$ there is $`N`$ for which $`n\ge N`$ implies $`d(p_n,p)<\varepsilon`$.
@@ -195,6 +201,7 @@
 	**Thm. 3.7.**
 	The subsequential limits of $`\{p_n\}`$ in metric space $`X`$ form a closed subset of $`X`$.
 </callout>
+## Cauchy Sequences and Completeness
 <callout icon="📘" color="blue_bg">
 	**Def. (Cauchy sequence).**
 	$`\{p_n\}`$ is Cauchy if for every $`\varepsilon>0`$, there exists $`N`$ such that $`d(p_n,p_m)<\varepsilon`$ whenever $`n,m\ge N`$.
@@ -223,7 +230,7 @@
 <summary>Proof (b)</summary>
 	Put $`E_N=\{p_N,p_{N+1},\ldots\}`$. Then
 	$$
-		\lim_{N\to\infty}\operatorname{diam}\overline E_N=0,\qquad
+			\lim_{N\to\infty}\operatorname{diam}\overline E_N=0,\qquad
 \overline E_N\supset\overline E_{N+1}.
 	$$
 	Each $`\overline E_N`$ is compact (closed subset of a compact set). By Thm. 3.10(b), there is a unique $`p\in X`$ contained in all $`\overline E_N`$. For every $`\varepsilon>0`$, choose $`N_0`$ so that $`\operatorname{diam}\overline E_N<\varepsilon`$ for $`N\ge N_0`$. Since $`p,p_n\in\overline E_N`$ for $`n\ge N`$, $`d(p,p_n)<\varepsilon`$ and $`p_n\to p`$.
@@ -232,6 +239,7 @@
 	**Def. (Complete).**
 	A metric space in which every Cauchy sequence converges.
 </callout>
+## Monotone Sequences and Limits
 <callout icon="📜" color="yellow_bg">
 	**Thm. 3.14.**
 	A monotone sequence $`\{s_n\}`$ converges iff it is bounded.
@@ -250,7 +258,7 @@
 <callout icon="📘" color="blue_bg">
 	**Def. (Upper and lower limits).**
 	$$
-		s^*=\limsup_{n\to\infty}s_n,\qquad
+			s^*=\limsup_{n\to\infty}s_n,\qquad
 s_*=\liminf_{n\to\infty}s_n.
 	$$
 </callout>
@@ -286,12 +294,13 @@ $$
 <summary>Proof (b)</summary>
 	Choose an integer $`k>\alpha`$, $`k>0`$. For $`n>2k`$,
 	$$
-		(1+p)^n>\binom nk p^k
+			(1+p)^n>\binom nk p^k
 =\frac{n(n-1)\cdots(n-k+1)}{k!}p^k
 >\frac{n^kp^k}{2^kk!}.
 	$$
 	Hence $`0<\frac{n^\alpha}{(1+p)^n}<\frac{2^kk!}{p^k}n^{\alpha-k}\to0`$.
 </details>
+## Series and Convergence Tests
 <callout icon="📘" color="blue_bg">
 	**Def. (Series).**
 	$`\displaystyle\sum_{n=1}^{\infty}a_n=s`$: $`s`$ is the sum of the series.
@@ -320,7 +329,7 @@ $$
 <summary>Proof (a)</summary>
 	By the Cauchy criterion,
 	$$
-		\left|\sum_{k=n}^m a_k\right|
+			\left|\sum_{k=n}^m a_k\right|
 \le\sum_{k=n}^m|a_k|
 \le\sum_{k=n}^m c_k\le\varepsilon.
 	$$
@@ -333,7 +342,7 @@ $$
 	**Thm. 3.27 (Cauchy condensation test).**
 	If $`a_1\ge a_2\ge\cdots\ge0`$, then
 	$$
-		\sum_{n=1}^{\infty}a_n\text{ converges}
+			\sum_{n=1}^{\infty}a_n\text{ converges}
 \iff
 \sum_{k=0}^{\infty}2^ka_{2^k}\text{ converges}.
 	$$
@@ -352,14 +361,14 @@ $$
 <summary>Proof</summary>
 	By the condensation test, consider
 	$$
-		\sum_{k=0}^{\infty}2^k\frac1{2^{kp}}
+			\sum_{k=0}^{\infty}2^k\frac1{2^{kp}}
 =\sum_{k=0}^{\infty}2^{(1-p)k}.
 	$$
 </details>
 <callout icon="📜" color="yellow_bg">
 	**Thm. 3.29.**
 	$$
-		\sum_{n=2}^{\infty}\frac1{n(\log n)^p}
+			\sum_{n=2}^{\infty}\frac1{n(\log n)^p}
 \text{ converges if }p>1.
 	$$
 </callout>
@@ -387,7 +396,7 @@ $$
 <summary>Proof</summary>
 	Write $`s_n=\sum_{k=0}^n1/k!`$. Then
 	$$
-		0<e-s_n=\frac1{(n+1)!}+\cdots
+			0<e-s_n=\frac1{(n+1)!}+\cdots
 <\frac1{(n+1)!}\left(1+\frac1{n+1}+\frac1{(n+1)^2}+\cdots\right)
 =\frac1{n!\,n}.
 	$$
@@ -424,7 +433,7 @@ $$
 <summary>Proof (a)</summary>
 	For some $`\beta<1`$ and sufficiently large $`N`$,
 	$$
-		|a_{n+1}|<\beta|a_n|,\quad
+			|a_{n+1}|<\beta|a_n|,\quad
 |a_{n+2}|<\beta^2|a_n|,\quad
 |a_{n+k}|<|a_n|\beta^k.
 	$$
@@ -433,7 +442,7 @@ $$
 	**Thm. 3.37.**
 	For any positive sequence $`\{c_n\}`$,
 	$$
-		\liminf_{n\to\infty}\frac{c_{n+1}}{c_n}
+			\liminf_{n\to\infty}\frac{c_{n+1}}{c_n}
 \le\liminf_{n\to\infty}\sqrt[n]{c_n},
 \qquad
 \limsup_{n\to\infty}\sqrt[n]{c_n}
@@ -444,12 +453,13 @@ $$
 <summary>Proof</summary>
 	Let $`\alpha=\limsup c_{n+1}/c_n`$. For $`\beta>\alpha`$, there exists $`N`$ such that $`c_{n+1}/c_n\le\beta`$ for all $`n\ge N`$. Iterating,
 	$$
-		c_n\le c_N\beta^{n-N},
+			c_n\le c_N\beta^{n-N},
 \qquad
 \sqrt[n]{c_n}\le\sqrt[n]{c_N\beta^{-N}}\cdot\beta.
 	$$
 	Hence $`\limsup\sqrt[n]{c_n}\le\beta`$, then let $`\beta\downarrow\alpha`$.
 </details>
+## Power Series and Partial Summation
 <callout icon="📘" color="blue_bg">
 	**Def. (Power series).**
 	$`\displaystyle\sum_{n=0}^{\infty}c_nz^n`$ is a power series; convergence is considered in the circle.
@@ -458,7 +468,7 @@ $$
 	**Thm. 3.39.**
 	Let
 	$$
-		\alpha=\limsup_{n\to\infty}\sqrt[n]{|c_n|},
+			\alpha=\limsup_{n\to\infty}\sqrt[n]{|c_n|},
 \qquad R=\frac1\alpha.
 	$$
 	Then $`\sum c_nz^n`$ converges if $`|z|<R`$ and diverges if $`|z|>R`$.
@@ -471,7 +481,7 @@ $$
 	**Thm. 3.41 (Partial summation formula).**
 	Let $`A_n=\sum_{k=0}^na_k`$ and $`A_{-1}=0`$. Then
 	$$
-		\sum_{n=p}^q a_nb_n
+			\sum_{n=p}^q a_nb_n
 =\sum_{n=p}^{q-1}A_n(b_n-b_{n+1})
 +A_qb_q-A_{p-1}b_p.
 	$$
@@ -484,7 +494,7 @@ $$
 <summary>Proof</summary>
 	For $`|A_n|\le M`$ and sufficiently large $`p`$ with $`b_p\le\varepsilon/(2M)`$, the partial summation formula gives
 	$$
-		\left|\sum_{n=p}^q a_nb_n\right|
+			\left|\sum_{n=p}^q a_nb_n\right|
 \le M\left(\sum_{n=p}^{q-1}(b_n-b_{n+1})+b_q+b_p\right)
 =2Mb_p\le\varepsilon.
 	$$
@@ -499,6 +509,7 @@ $$
 	Suppose $`R=1`$, $`c_0\ge c_1\ge\cdots`$, and $`c_n\to0`$. Then $`\sum c_nz^n`$ converges at every point on $`|z|=1`$ except $`z=1`$.
 </callout>
 *Relation in notes:* $`a_n=z^n`$, $`b_n=c_n`$.
+## Absolute Convergence and Products
 <callout icon="📘" color="blue_bg">
 	**Def. (Absolute convergence).**
 	$`\sum a_n`$ converges absolutely if $`\sum|a_n|`$ converges.
@@ -511,7 +522,7 @@ $$
 <summary>Proof</summary>
 	By Cauchy,
 	$$
-		\left|\sum_{k=n}^m a_k\right|
+			\left|\sum_{k=n}^m a_k\right|
 \le\sum_{k=n}^m|a_k|.
 	$$
 </details>
@@ -532,12 +543,12 @@ $$
 <summary>Proof</summary>
 	Put $`B_n=\sum_{k=0}^n b_k`$, $`\beta_n=B_n-B`$. For partial sums $`C_n=\sum_{k=0}^n c_k`$,
 	$$
-		C_n=a_0B_n+a_1B_{n-1}+\cdots+a_nB_0
+			C_n=a_0B_n+a_1B_{n-1}+\cdots+a_nB_0
 =A_nB+\underbrace{a_0\beta_n+\cdots+a_n\beta_0}_{\gamma_n}.
 	$$
 	Let $`\alpha=\sum|a_n|`$. As $`\beta_n\to0`$, choose $`N`$ so $`|\beta_n|\le\varepsilon`$ for $`n\ge N`$. Then
 	$$
-		|\gamma_n|
+			|\gamma_n|
 \le|\beta_0a_n+\cdots+\beta_Na_{n-N}|+
 \varepsilon\alpha.
 	$$
@@ -547,6 +558,7 @@ $$
 	**Thm. 3.51.**
 	If $`\sum a_n=A`$, $`\sum b_n=B`$, and their Cauchy product $`\sum c_n=C`$ also converges, then $`C=AB`$.
 </callout>
+## Rearrangements of Series
 <callout icon="📘" color="blue_bg">
 	**Def. (Rearrangement).**
 	Let $`\{k_n\}`$ be a bijection of the positive integers and $`a'_n=a_{k_n}`$. Then $`\sum a'_n`$ is a rearrangement of $`\sum a_n`$.
@@ -555,7 +567,7 @@ $$
 	**Thm. 3.54.**
 	If $`\sum a_n`$ converges nonabsolutely and $`-\infty\le\alpha\le\beta\le\infty`$, there is a rearrangement $`\sum a'_n`$ such that
 	$$
-		\liminf_{n\to\infty}s'_n=\alpha,\qquad
+			\liminf_{n\to\infty}s'_n=\alpha,\qquad
 \limsup_{n\to\infty}s'_n=\beta.
 	$$
 </callout>
@@ -563,7 +575,7 @@ $$
 <summary>Proof</summary>
 	Set
 	$$
-		p_n=\frac{|a_n|+a_n}{2},\qquad
+			p_n=\frac{|a_n|+a_n}{2},\qquad
 q_n=\frac{|a_n|-a_n}{2},
 \qquad a_n=p_n-q_n,\quad |a_n|=p_n+q_n.
 	$$
@@ -578,11 +590,12 @@ q_n=\frac{|a_n|-a_n}{2},
 	Using the Cauchy criterion, show that the original and rearranged partial sums satisfy $`|s_n-s'_m|\le\varepsilon`$ once both include all the initial terms and the absolute tail sum is small.
 </details>
 # Chapter 4. Continuity
+## Limits and Continuity
 <callout icon="📘" color="blue_bg">
 	**Def. (Limit).**
 	Let $`f:E\subset X\to Y`$ and let $`p`$ be a limit point of $`E`$. Then $`\lim_{x\to p}f(x)=q`$ if $`q\in Y`$ and for every $`\varepsilon>0`$ there exists $`\delta>0`$ such that
 	$$
-		d_Y(f(x),q)<\varepsilon
+			d_Y(f(x),q)<\varepsilon
 \quad\text{whenever}\quad
 0<d_X(x,p)<\delta,\ x\in E.
 	$$
@@ -590,7 +603,7 @@ q_n=\frac{|a_n|-a_n}{2},
 <callout icon="📜" color="yellow_bg">
 	**Thm. 4.2.**
 	$$
-		\lim_{x\to p}f(x)=q
+			\lim_{x\to p}f(x)=q
 \iff
 \lim_{n\to\infty}f(p_n)=q
 	$$
@@ -608,7 +621,7 @@ q_n=\frac{|a_n|-a_n}{2},
 	**Def. (Continuous).**
 	$`f`$ is continuous at $`p`$ if for every $`\varepsilon>0`$ there is $`\delta>0`$ such that
 	$$
-		d_Y(f(x),f(p))<\varepsilon
+			d_Y(f(x),f(p))<\varepsilon
 \quad\text{for all }x\text{ with }d_X(x,p)<\delta.
 	$$
 </callout>
@@ -635,6 +648,7 @@ q_n=\frac{|a_n|-a_n}{2},
 	**Cor.**
 	$`f`$ is continuous iff $`f^{-1}(C)`$ is closed for every closed $`C`$.
 </callout>
+## Continuous Functions on Compact Spaces
 <callout icon="📘" color="blue_bg">
 	**Def. (Bounded function).**
 	There exists $`M`$ such that $`|f(x)|\le M`$ for all $`x`$.
@@ -668,11 +682,12 @@ q_n=\frac{|a_n|-a_n}{2},
 <summary>Proof</summary>
 	By Thm. 4.8, it suffices to show $`f(V)`$ is open in $`Y`$ for every open $`V`$ of $`X`$. The set $`V^c`$ is closed, thus compact. So $`f(V^c)`$ is compact and closed. Because $`f`$ is bijective, $`f(V)=(f(V^c))^c`$, hence $`f(V)`$ is open.
 </details>
+## Uniform Continuity
 <callout icon="📘" color="blue_bg">
 	**Def. (Uniformly continuous).**
 	$`f:X\to Y`$ is uniformly continuous if for every $`\varepsilon>0`$ there exists $`\delta>0`$ such that for all $`p,q\in X`$,
 	$$
-		d_X(p,q)<\delta\quad\Longrightarrow\quad
+			d_X(p,q)<\delta\quad\Longrightarrow\quad
 d_Y(f(p),f(q))<\varepsilon.
 	$$
 </callout>
@@ -693,15 +708,16 @@ d_Y(f(p),f(q))<\varepsilon.
 	$$
 	If $`d_X(p,q)<\delta`$, choose $`m`$ with $`p\in J(p_m)`$. Then
 	$$
-		d_X(q,p_m)\le d_X(p,q)+d_X(p,p_m)
+			d_X(q,p_m)\le d_X(p,q)+d_X(p,p_m)
 <\delta+\tfrac12\varphi(p_m)\le\varphi(p_m).
 	$$
 	Hence
 	$$
-		d_Y(f(p),f(q))
+			d_Y(f(p),f(q))
 \le d_Y(f(p),f(p_m))+d_Y(f(q),f(p_m))<\varepsilon.
 	$$
 </details>
+## Connectedness and the Intermediate Value Theorem
 <callout icon="📜" color="yellow_bg">
 	**Thm. 4.22.**
 	If $`f`$ is continuous and $`E`$ is connected, then $`f(E)`$ is connected.
@@ -718,6 +734,7 @@ d_Y(f(p),f(q))<\varepsilon.
 <summary>Proof</summary>
 	$`[a,b]`$ is connected, so $`f([a,b])`$ is connected. Apply Thm. 2.47.
 </details>
+## Discontinuities of Monotone Functions
 <callout icon="📘" color="blue_bg">
 	**Discontinuity.**
 	- **First kind:** discontinuous, but the one-sided limits $`f(x+)`$ and $`f(x-)`$ exist.
@@ -731,7 +748,7 @@ d_Y(f(p),f(q))<\varepsilon.
 <summary>Proof</summary>
 	$`\{f(t):a<t<x\}`$ is bounded above by $`f(x)`$. Put its least upper bound $`A`$. For every $`\varepsilon>0`$ choose $`\delta>0`$ such that $`a<x-\delta<x`$ and $`A-\varepsilon<f(x-\delta)\le A`$. Since $`f`$ is monotonic,
 	$$
-		A-\varepsilon<f(t)\le A
+			A-\varepsilon<f(t)\le A
 \quad(x-\delta<t<x),
 	$$
 	so $`f(x-)=A`$. The other side is similar.
@@ -752,6 +769,7 @@ d_Y(f(p),f(q))<\varepsilon.
 	$$
 	For $`x_1<x_2`$, $`f(x_1+)\le f(x_2-)`$. Hence $`r(x_1)\ne r(x_2)`$: an injection into $`\mathbb{Q}`$.
 </details>
+## Limits at Infinity and Limit Algebra
 <callout icon="📘" color="blue_bg">
 	**Def. (Neighborhoods of ±∞).**
 	$`(c,+\infty)`$ is a neighborhood of $`+\infty`$, and $`(-\infty,c)`$ is a neighborhood of $`-\infty`$.
@@ -769,11 +787,12 @@ d_Y(f(p),f(q))<\varepsilon.
 	- (d) $`(f/g)(t)\to A/B`$ (where defined and $`B\ne0`$).
 </callout>
 # Chapter 5. Differentiation
+## Derivatives and Differentiation Rules
 <callout icon="📘" color="blue_bg">
 	**Def. (Derivative).**
 	Define
 	$$
-		\phi(t)=\frac{f(t)-f(x)}{t-x},
+			\phi(t)=\frac{f(t)-f(x)}{t-x},
 \qquad
 f'(x)=\lim_{t\to x}\phi(t).
 	$$
@@ -792,7 +811,7 @@ f'(x)=\lim_{t\to x}\phi(t).
 <summary>Proof</summary>
 	Let $`h=f/g`$. Then
 	$$
-		\frac{h(t)-h(x)}{t-x}
+			\frac{h(t)-h(x)}{t-x}
 =\frac{1}{g(t)g(x)}
 \left[g(x)\frac{f(t)-f(x)}{t-x}
 -f(x)\frac{g(t)-g(x)}{t-x}\right].
@@ -816,7 +835,7 @@ f'(x)=\lim_{t\to x}\phi(t).
 	$$
 	where $`u(t)\to0`$ as $`t\to x`$ and $`v(s)\to0`$ as $`s\to y`$. Put $`s=f(t)`$. Then
 	$$
-		h(t)-h(x)
+			h(t)-h(x)
 =g(f(t))-g(f(x))
 =[f(t)-f(x)][g'(y)+v(s)]
 	$$
@@ -825,10 +844,11 @@ f'(x)=\lim_{t\to x}\phi(t).
 	$$
 	Hence
 	$$
-		\frac{h(t)-h(x)}{t-x}
+			\frac{h(t)-h(x)}{t-x}
 =[g'(y)+v(s)][f'(x)+u(t)].
 	$$
 </details>
+## Local Extrema and the Mean Value Theorem
 <callout icon="📘" color="blue_bg">
 	**Def. (Local maximum).**
 	$`f`$ has a local maximum at $`p`$ if there exists $`\delta>0`$ such that $`f(q)\le f(p)`$ whenever $`d(p,q)<\delta`$.
@@ -861,6 +881,7 @@ $$
 f(b)-f(a)=(b-a)f'(x).
 $$
 Using this fact, the sign of $`f'(x)`$ determines whether $`f`$ is monotonically increasing or decreasing.
+## Intermediate Value Property of Derivatives
 <callout icon="📜" color="yellow_bg">
 	**Thm. 5.12 (Intermediate value property of derivatives).**
 	If $`f`$ is a real differentiable function on $`[a,b]`$ and $`f'(a)<\lambda<f'(b)`$, then some $`x\in(a,b)`$ satisfies $`f'(x)=\lambda`$.
@@ -883,6 +904,7 @@ g(x)=
 \end{cases}
 $$
 cannot be the derivative of any function.
+## L'Hospital's Rule
 <callout icon="📜" color="yellow_bg">
 	**Thm. 5.13 (L'Hospital's Rule).**
 	Let $`f,g`$ be real and differentiable on $`(a,b)`$, with $`g'(x)\ne0`$, where $`-\infty\le a<b\le\infty`$. Suppose
@@ -898,13 +920,13 @@ cannot be the derivative of any function.
 <summary>Proof (upper-bound argument, $`A`$ finite)</summary>
 	Choose $`A<r<q`$. Since $`f'/g'\to A`$, there exists $`c\in(a,b)`$ such that $`a<x<c`$ implies $`f'(x)/g'(x)<r`$. If $`a<x<y<c`$, the generalized mean value theorem gives some $`t\in(x,y)`$ with
 	$$
-		\frac{f(x)-f(y)}{g(x)-g(y)}
+			\frac{f(x)-f(y)}{g(x)-g(y)}
 =\frac{f'(t)}{g'(t)}<r.
 	$$
 	If $`f(x),g(x)\to0`$, take $`y\to a`$ to obtain $`f(x)/g(x)\le r<q`$.
 	If $`g(x)\to+\infty`$, choose $`c`$ with $`g(x)>g(y)`$ and $`g(x)>0`$ when $`a<x<c`$. Rearranging gives
 	$$
-		\frac{f(x)}{g(x)}
+			\frac{f(x)}{g(x)}
 <r-r\frac{g(y)}{g(x)}+\frac{f(y)}{g(x)},
 	$$
 	so $`\limsup_{x\to a}f(x)/g(x)\le r<q`$.
@@ -913,6 +935,7 @@ cannot be the derivative of any function.
 <summary>Proof (lower-bound argument)</summary>
 	For $`-\infty<A\le+\infty`$, similarly choose $`p<A`$ to obtain the matching lower bound. Together these yield the limit.
 </details>
+## Taylor's Theorem
 <callout icon="📜" color="yellow_bg">
 	**Thm. 5.15 (Taylor's theorem).**
 	Suppose $`f^{(n-1)}`$ is continuous on $`[a,b]`$ and $`f^{(n)}(t)`$ exists for $`t\in(a,b)`$. Let $`\alpha,\beta`$ be distinct points of $`[a,b]`$. Put
@@ -941,6 +964,7 @@ cannot be the derivative of any function.
 $$
 |f(b)-f(a)|\le(b-a)\sup_{a<x<b}|f'(x)|.
 $$
+## Mean Value Estimate for Vector-Valued Functions
 <callout icon="📜" color="yellow_bg">
 	**Thm. 5.19.**
 	Suppose $`f`$ is a continuous mapping of $`[a,b]`$ into $`\mathbb{R}^k`$, differentiable on $`(a,b)`$. Then some $`x\in(a,b)`$ satisfies
@@ -952,13 +976,13 @@ $$
 <summary>Proof</summary>
 	Let $`z=f(b)-f(a)`$, and define the real-valued function $`\varphi(t)=z\cdot f(t)`$. By MVT,
 	$$
-		\varphi(b)-\varphi(a)
+			\varphi(b)-\varphi(a)
 =(b-a)\varphi'(x)
 =(b-a)z\cdot f'(x).
 	$$
 	But $`\varphi(b)-\varphi(a)=z\cdot(f(b)-f(a))=|z|^2`$. By Schwarz's inequality,
 	$$
-		|z|^2=(b-a)\big|z\cdot f'(x)\big|
+			|z|^2=(b-a)\big|z\cdot f'(x)\big|
 \le(b-a)|z|\,|f'(x)|.
 	$$
 	Therefore $`|z|\le(b-a)|f'(x)|`$.

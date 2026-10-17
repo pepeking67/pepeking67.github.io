@@ -283,5 +283,15 @@
     "topic": "Analysis",
     "file": "analysis.md",
     "sourceId": "3fc0ad69a5f881f29ea2df95dd09c707"
+  },
+  {
+    "slug": "probability-statistics",
+    "title": "Probability and Statistics",
+    "date": "2026-10-17",
+    "category": "Mathematics",
+    "topic": "Probability and Statistics",
+    "summary": "",
+    "file": "probability-statistics.md",
+    "sourceId": "3fc0ad69a5f881cb90f9e35134d8be0b"
   }
 ]

@@ -7,7 +7,13 @@
     "period": "Winter 2023",
     "file": "madcamp-week-1.md",
     "sourceId": "2810ad69a5f88299b00a0189141bcc43",
-    "sourceFormat": "notion"
+    "sourceFormat": "notion",
+    "codeLinks": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/Madcamp-2023W/Madcamp_week1"
+      }
+    ]
   },
   {
     "slug": "madcamp-week-2",

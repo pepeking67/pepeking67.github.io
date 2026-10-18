@@ -51,6 +51,8 @@ for note in entries:
    code_blocks.append('```'+language+'\n'+m.group(2)+'```')
    return '\n\nMADCAMPCODEBLOCK'+str(len(code_blocks)-1)+'END\n\n'
   source=re.sub(r'```([^\n]*)\n(.*?)```',preserve_code,source,flags=re.S)
+ for original,local in note.get('pageLinks',{}).items():
+  source=re.sub(r'<page url="'+re.escape(original)+r'">([^<]+)</page>',lambda m:'\n\n['+m.group(1)+']('+local+')\n\n',source)
  # Convert only export/display syntax. Source Markdown remains byte-for-byte intact.
  for original,local in asset_map.items():source=source.replace(original,local)
  if note['category']=='Experiences':

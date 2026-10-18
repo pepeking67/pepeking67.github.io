@@ -316,5 +316,42 @@
     "file": "cs471.md",
     "sourceId": "3fc0ad69a5f881f6aaa1c7e5dead9407",
     "sourceFormat": "notion"
+  },
+  {
+    "slug": "transformer-1-rnn-lstm",
+    "title": "Transformer(1). RNN & LSTM",
+    "date": "2026-10-18",
+    "category": "Computer Science",
+    "topic": "Transformer",
+    "file": "transformer-1-rnn-lstm.md",
+    "dateLabel": "Imported",
+    "sourceId": "c490ad69a5f88353a69681076cd5bd88",
+    "sourceFormat": "notion"
+  },
+  {
+    "slug": "transformer-2-seq2seq-attention",
+    "title": "Transformer(2) Seq2seq & Attention",
+    "date": "2026-10-18",
+    "category": "Computer Science",
+    "topic": "Transformer",
+    "file": "transformer-2-seq2seq-attention.md",
+    "dateLabel": "Imported",
+    "sourceId": "35d0ad69a5f88216804181bb2dcac1be",
+    "sourceFormat": "notion"
+  },
+  {
+    "slug": "transformer-3-self-attention-transformer",
+    "title": "Transformer(3) Self-attention & Transformer",
+    "date": "2026-10-18",
+    "category": "Computer Science",
+    "topic": "Transformer",
+    "file": "transformer-3-self-attention-transformer.md",
+    "dateLabel": "Imported",
+    "sourceId": "ebe0ad69a5f882faa56b01c1994e1c11",
+    "sourceFormat": "notion",
+    "pageLinks": {
+      "https://app.notion.com/p/c490ad69a5f88353a69681076cd5bd88": "transformer-1-rnn-lstm.html",
+      "https://app.notion.com/p/35d0ad69a5f88216804181bb2dcac1be": "transformer-2-seq2seq-attention.html"
+    }
   }
 ]

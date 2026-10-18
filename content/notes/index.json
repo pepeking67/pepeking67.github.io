@@ -353,5 +353,19 @@
       "https://app.notion.com/p/c490ad69a5f88353a69681076cd5bd88": "transformer-1-rnn-lstm.html",
       "https://app.notion.com/p/35d0ad69a5f88216804181bb2dcac1be": "transformer-2-seq2seq-attention.html"
     }
+  },
+  {
+    "slug": "git",
+    "title": "Git",
+    "date": "2026-10-18",
+    "category": "Computer Science",
+    "topic": "Git",
+    "file": "git.md",
+    "sourceId": "7040ad69a5f882898eb68144cc0ad9ab",
+    "sourceFormat": "notion",
+    "preserveCode": true,
+    "renderTableCells": true,
+    "introduction": "이 글은 코딩애플의 Git 영상을 보고 정리한 학습 기록이다.",
+    "videoUrl": "https://www.youtube.com/watch?v=sly2u8BIi9E"
   }
 ]

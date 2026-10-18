@@ -44,7 +44,7 @@ for note in entries:
  assert path.is_relative_to(source_directory)
  source=path.read_text()
  code_blocks=[]
- if note['category']=='Experiences':
+ if note['category']=='Experiences' or note.get('preserveCode'):
   def preserve_code(m):
    language=m.group(1).strip()
    if not re.fullmatch(r'[A-Za-z0-9_+-]*',language):language='text'
@@ -53,6 +53,8 @@ for note in entries:
   source=re.sub(r'```([^\n]*)\n(.*?)```',preserve_code,source,flags=re.S)
  for original,local in note.get('pageLinks',{}).items():
   source=re.sub(r'<page url="'+re.escape(original)+r'">([^<]+)</page>',lambda m:'\n\n['+m.group(1)+']('+local+')\n\n',source)
+ if note.get('renderTableCells'):
+  source=re.sub(r'<td>(.*?)</td>',lambda m:'<td>'+markdown.markdown(m.group(1)).removeprefix('<p>').removesuffix('</p>')+'</td>',source,flags=re.S)
  # Convert only export/display syntax. Source Markdown remains byte-for-byte intact.
  for original,local in asset_map.items():source=source.replace(original,local)
  if note['category']=='Experiences':
@@ -115,6 +117,8 @@ for note in entries:
  source=re.sub(r'^(#{1,5})(?= )',r'#\1',source,flags=re.M)
  md=markdown.Markdown(extensions=['fenced_code','tables','toc','md_in_html','sane_lists'],extension_configs={'toc':{'slugify':lambda value,separator:slugify(re.sub(r'NOTIONMATHPLACEHOLDER\d+END','formula',value),separator)}})
  for i,block in enumerate(code_blocks):source=source.replace('MADCAMPCODEBLOCK'+str(i)+'END',block)
+ if note.get('introduction'):
+  source=note['introduction']+'\n\n[코딩애플 원본 영상 ↗]('+note['videoUrl']+')\n\n'+source
  rendered=md.convert(source)
  prepared.append((rendered,md.toc))
 result=subprocess.run(['node',str(root/'scripts/render_math.cjs')],input=json.dumps(equations),text=True,capture_output=True,check=True)

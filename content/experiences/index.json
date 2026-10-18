@@ -17,7 +17,13 @@
     "period": "Winter 2023",
     "file": "madcamp-week-2.md",
     "sourceId": "0690ad69a5f882c29d82815420b1fc14",
-    "sourceFormat": "notion"
+    "sourceFormat": "notion",
+    "codeLinks": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/suhwankim03/madcamp_week2"
+      }
+    ]
   },
   {
     "slug": "madcamp-week-3",
@@ -27,7 +33,17 @@
     "period": "Winter 2023",
     "file": "madcamp-week-3.md",
     "sourceId": "4060ad69a5f88299b818816319728da8",
-    "sourceFormat": "notion"
+    "sourceFormat": "notion",
+    "codeLinks": [
+      {
+        "label": "GitHub · Frontend",
+        "url": "https://github.com/M-J1nx/MadCamp_week3_front"
+      },
+      {
+        "label": "GitHub · Backend",
+        "url": "https://github.com/M-J1nx/MadCamp_week3_server"
+      }
+    ]
   },
   {
     "slug": "madcamp-week-4",

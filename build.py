@@ -53,7 +53,10 @@ for note in entries:
   source=re.sub(r'```([^\n]*)\n(.*?)```',preserve_code,source,flags=re.S)
  # Convert only export/display syntax. Source Markdown remains byte-for-byte intact.
  for original,local in asset_map.items():source=source.replace(original,local)
- source=re.sub(r'<unknown url="([^"]+)"[^>]*/>',lambda m:'\n\n[View embedded link on Notion ↗]('+m.group(1)+')\n\n',source)
+ if note['category']=='Experiences':
+  source=re.sub(r'<unknown[^>]*/>', '',source)
+ else:
+  source=re.sub(r'<unknown url="([^"]+)"[^>]*/>',lambda m:'\n\n[View embedded link on Notion ↗]('+m.group(1)+')\n\n',source)
  source=re.sub(r'<video src="([^"]+)"[^>]*>\s*</video>',lambda m:'\n\n<div class="note-video" style="margin:24px 0"><button type="button" data-load-video style="padding:10px 16px;border:1px solid #ddd;border-radius:5px;background:#fff;cursor:pointer">Load demo video</button><video hidden controls preload="none" playsinline style="width:100%;max-height:720px" data-video-manifest="'+html.escape(m.group(1),quote=True)+'"></video><p role="status" hidden></p></div>\n\n',source)
  if note['category']=='Experiences':source=re.sub(r'^(Tab\s*\d+\s*:[^\n]+)$',r'## \1',source,flags=re.M)
  source=re.sub(r'<table_of_contents[^>]*\s*/>', '', source)
@@ -144,6 +147,8 @@ for note,(rendered,toc) in zip(entries,prepared):
  footer_label='Back to experiences' if is_experience else 'Back to all notes'
  skip_label='Skip to content' if is_experience else 'Skip to review'
  paper=(f'<a href="{esc(note["paperUrl"])}" target="_blank" rel="noopener noreferrer">Original paper ↗</a>' if note.get('paperUrl') else '')
+ if is_experience:
+  paper=' '.join(f'<a href="{esc(link["url"])}" target="_blank" rel="noopener noreferrer">{esc(link["label"])} ↗</a>' for link in note.get('codeLinks',[]))
  authors=f'<p class="review-authors">{esc(note["authors"])}</p>' if note.get('authors') else ''
  version=hashlib.sha256((dist/'style.css').read_bytes()).hexdigest()[:12]
  loader_version=hashlib.sha256((dist/'note-assets.js').read_bytes()).hexdigest()[:12]

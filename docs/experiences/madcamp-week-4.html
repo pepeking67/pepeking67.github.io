@@ -78,40 +78,31 @@
 <li>최대한 마우스를 사용하지 않도록 탭을 사용하여 입력할 수 있는 곳을 지정할 수 있게 하였고, 음성(구글 클라우드 TTS api)으로 설명을 해주도록 설계했다.</li>
 <li>tkinter 파이썬 라이브러리로 gui를 구성하였다.</li>
 <li>uuid 라이브러리를 통해 사용자 컴퓨터의 mac 주소를 받아와 hashlib으로 암호화하여 이를 라이센스 코드로 사용하였다.</li>
-<li>pyinstaller로 실행파일을 만들었다.
-```plain text</li>
+<li>pyinstaller로 실행파일을 만들었다.</li>
 </ul>
-<h1 id="cmd">실행파일을 만드는 코드(cmd)</h1>
-<p>pyinstaller --noconsole --onefile -n="BlindHelperLicense" --add-data "service_secret_key.json;." --add-data "error.mp3;." --add-data "get.mp3;." --add-data "getfinish.mp3;." check.py</p>
-<h1 id="exe-py">exe가 제대로 실행되기 위한 상대 주소 사용 함수(py)</h1>
-<p>def resource_path(relative_path):
+<pre><code class="language-text">#실행파일을 만드는 코드(cmd)
+pyinstaller --noconsole --onefile -n=&quot;BlindHelperLicense&quot; --add-data &quot;service_secret_key.json;.&quot; --add-data &quot;error.mp3;.&quot; --add-data &quot;get.mp3;.&quot; --add-data &quot;getfinish.mp3;.&quot; check.py
+#exe가 제대로 실행되기 위한 상대 주소 사용 함수(py)
+def resource_path(relative_path):
     try:
         base_path = sys._MEIPASS
     except Exception:
-        base_path = os.path.abspath(".")
-        return os.path.join(base_path, relative_path)</p>
-<pre><code>
-
-
-
-
-
-#### 2. BlindHelper Program
-실행 화면
-![](assets/notes/pack-079.json#71353bd4a2fc85fc89d5.png)
+        base_path = os.path.abspath(&quot;.&quot;)
+        return os.path.join(base_path, relative_path)
+</code></pre>
+<h4 id="2-blindhelper-program">2. BlindHelper Program</h4>
+<p>실행 화면
+<img loading="lazy" decoding="async" alt="" src="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1503 752%22%3E%3C/svg%3E" width="1503" height="752" data-image-pack="../assets/notes/pack-079.json" data-image-key="71353bd4a2fc85fc89d5.png" />
 글자 추출 과정 시각화
-![](assets/notes/pack-079.json#c34134b77bba6c64ad1c.png)
+<img loading="lazy" decoding="async" alt="" src="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1144 767%22%3E%3C/svg%3E" width="1144" height="767" data-image-pack="../assets/notes/pack-079.json" data-image-key="c34134b77bba6c64ad1c.png" />
 글자 추출 과정 시각화(잘리는 부분 제거)
-![](assets/notes/pack-079.json#4d743457640bf82bfcb6.png)
-
-
-
-***Major features***
-
-- BlindHelper 프로그램은 실행한 후에 따로 ui가 존재하지 않고 음성으로만 설명이 되도록 만들었다.
-- 단축키들로 기능을 구현할 수 있다. &quot;ctrl+alt&quot;로 모든 단축키가 시작된다.
-```plain text
-ctrl+alt+q: 캡처 시작
+<img loading="lazy" decoding="async" alt="" src="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 884 244%22%3E%3C/svg%3E" width="884" height="244" data-image-pack="../assets/notes/pack-079.json" data-image-key="4d743457640bf82bfcb6.png" /></p>
+<p><strong><em>Major features</em></strong></p>
+<ul>
+<li>BlindHelper 프로그램은 실행한 후에 따로 ui가 존재하지 않고 음성으로만 설명이 되도록 만들었다.</li>
+<li>단축키들로 기능을 구현할 수 있다. "ctrl+alt"로 모든 단축키가 시작된다.</li>
+</ul>
+<pre><code class="language-text">ctrl+alt+q: 캡처 시작
 ctrl+alt+w: 음성 설명 취소
 ctrl+alt+e: 음성 설명 중지
 ctrl+alt+r: 음성 설명 다시재생(중지된 부분부터)
@@ -141,19 +132,19 @@ ctrl+alt+f: 요약 시작
 <li>이런 식으로 설계하여 글자가 잘렸을 때에도 제대로 글자를 추출할 수 있도록 만들었다.</li>
 </ul>
 <h3 id="e-directory-structure">e. DIRECTORY STRUCTURE</h3>
-<p>```plain text</p>
-<h1 id="_1">라이센스 프로그램</h1>
-<p>📦BlindHelperLicense
- ┣ 📂<strong>pycache</strong>
+<pre><code class="language-text">#라이센스 프로그램
+📦BlindHelperLicense
+ ┣ 📂__pycache__
  ┃ ┗ 📜TTS.cpython-310.pyc
  ┣ 📜check.py
  ┣ 📜error.mp3
  ┣ 📜get.mp3
  ┣ 📜getfinish.mp3
  ┣ 📜service_secret_key.json
- ┗ 📜TTS.py</p>
-<pre><code>```plain text
-#BlindHelper 프로그램
+ ┗ 📜TTS.py
+
+</code></pre>
+<pre><code class="language-text">#BlindHelper 프로그램
 📦BlindHelper
  ┣ 📂__pycache__
  ┃ ┣ 📜ImageLabeler.cpython-310.pyc
@@ -196,9 +187,8 @@ ctrl+alt+f: 요약 시작
  ┗ 📜wait.mp3
 
 </code></pre>
-<p>```plain text</p>
-<h1 id="_2">웹서버/클라이언트</h1>
-<p>📦web
+<pre><code class="language-text">#웹서버/클라이언트
+📦web
  ┣ 📂static
  ┃ ┣ 📂audio
  ┃ ┃ ┣ 📂login
@@ -297,9 +287,9 @@ ctrl+alt+f: 요약 시작
  ┃ ┣ 📜main2.html
  ┃ ┣ 📜signup.html
  ┃ ┗ 📜start.html
- ┗ 📜app.py</p>
-<pre><code>```plain text
-#exe 만드는 cmd 코드
+ ┗ 📜app.py
+</code></pre>
+<pre><code class="language-text">#exe 만드는 cmd 코드
 
 #라이센스 발급
 pyinstaller --noconsole --onefile -n=&quot;BlindHelperLicense&quot; --add-data &quot;service_secret_key.json;.&quot; --add-data &quot;error.mp3;.&quot; --add-data &quot;get.mp3;.&quot; --add-data &quot;getfinish.mp3;.&quot; check.py
@@ -324,17 +314,12 @@ pyinstaller -n=&quot;BlindHelper&quot; --icon=&quot;exefolder.ico&quot; --nocons
 </li>
 <li><a href="#d-exe-program">d. EXE PROGRAM</a><ul>
 <li><a href="#1-license-program">1. License Program</a></li>
+<li><a href="#2-blindhelper-program">2. BlindHelper Program</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li><a href="#cmd">실행파일을 만드는 코드(cmd)</a></li>
-<li><a href="#exe-py">exe가 제대로 실행되기 위한 상대 주소 사용 함수(py)</a><ul>
 <li><a href="#e-directory-structure">e. DIRECTORY STRUCTURE</a></li>
 </ul>
 </li>
-<li><a href="#_1">라이센스 프로그램</a></li>
-<li><a href="#_2">웹서버/클라이언트</a></li>
 </ul>
 </div>
 </details></aside></main>

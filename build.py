@@ -43,6 +43,14 @@ for note in entries:
  path=(source_directory/note['file']).resolve()
  assert path.is_relative_to(source_directory)
  source=path.read_text()
+ code_blocks=[]
+ if note['category']=='Experiences':
+  def preserve_code(m):
+   language=m.group(1).strip()
+   if not re.fullmatch(r'[A-Za-z0-9_+-]*',language):language='text'
+   code_blocks.append('```'+language+'\n'+m.group(2)+'```')
+   return '\n\nMADCAMPCODEBLOCK'+str(len(code_blocks)-1)+'END\n\n'
+  source=re.sub(r'```([^\n]*)\n(.*?)```',preserve_code,source,flags=re.S)
  # Convert only export/display syntax. Source Markdown remains byte-for-byte intact.
  for original,local in asset_map.items():source=source.replace(original,local)
  source=re.sub(r'<unknown url="([^"]+)"[^>]*/>',lambda m:'\n\n[View embedded link on Notion ↗]('+m.group(1)+')\n\n',source)
@@ -101,6 +109,7 @@ for note in entries:
  # One page title, then a consistent section hierarchy for all imported reviews.
  source=re.sub(r'^(#{1,5})(?= )',r'#\1',source,flags=re.M)
  md=markdown.Markdown(extensions=['fenced_code','tables','toc','md_in_html','sane_lists'],extension_configs={'toc':{'slugify':lambda value,separator:slugify(re.sub(r'NOTIONMATHPLACEHOLDER\d+END','formula',value),separator)}})
+ for i,block in enumerate(code_blocks):source=source.replace('MADCAMPCODEBLOCK'+str(i)+'END',block)
  rendered=md.convert(source)
  prepared.append((rendered,md.toc))
 result=subprocess.run(['node',str(root/'scripts/render_math.cjs')],input=json.dumps(equations),text=True,capture_output=True,check=True)

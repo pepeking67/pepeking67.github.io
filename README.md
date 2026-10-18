@@ -33,3 +33,6 @@ All categories share the standalone reading page with the table of contents on t
 Notion callouts and proofs are converted only for presentation. Course images retain their original bytes in local image packs under `src/assets/notes/`; `content/notion-assets.json` and `content/image-dimensions.json` connect stable references to those images. The reader loads image packs as they approach the viewport. Never commit temporary signed Notion URLs or modify the Notion source while importing.
 
 For newly imported Notion pages, set `sourceFormat` to `notion` in the metadata. The builder adds Markdown list boundaries for display without changing the stored source body.
+
+## Experience pages
+Madcamp week pages live in `content/experiences/` with their own metadata index and are linked from Experiences. They share the standalone reader and right-hand outline, retain original images and videos, and are excluded from Study / Notes counts. Unsupported Notion embeds remain links to their original blocks.

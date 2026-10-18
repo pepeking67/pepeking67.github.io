@@ -26,20 +26,28 @@ css=re.sub(r',url\([^)]*\.(?:woff|ttf)\)\s*format\([^)]*\)', '',css)
 for font in (katex/'fonts').glob('*.woff2'):shutil.copy(font,math_assets/'fonts'/font.name)
 shutil.copy(root/'node_modules/katex/LICENSE',math_assets/'LICENSE')
 notes=json.loads((root/'content/notes/index.json').read_text())
+experience_index=root/'content/experiences/index.json'
+experiences=json.loads(experience_index.read_text()) if experience_index.exists() else []
+entries=notes+experiences
 asset_map=json.loads((root/'content/notion-assets.json').read_text())
 image_dimensions=json.loads((root/'content/image-dimensions.json').read_text())
 asset_names={local:parse_qs(urlparse(original).query).get('name',[Path(local).name])[0] for original,local in asset_map.items()}
 (dist/'notes').mkdir(exist_ok=True)
-valid={'Paper Reviews','Mathematics','Computer Science','Coding','Miscellaneous'}
+(dist/'experiences').mkdir(exist_ok=True)
+valid={'Paper Reviews','Mathematics','Computer Science','Coding','Miscellaneous','Experiences'}
 seen=set();equations=[];prepared=[]
-for note in notes:
+for note in entries:
  assert note['slug'] not in seen,'Duplicate slug'
  seen.add(note['slug']);assert note['category'] in valid
- path=(root/'content/notes'/note['file']).resolve()
- assert path.is_relative_to(root/'content/notes')
+ source_directory=root/('content/experiences' if note['category']=='Experiences' else 'content/notes')
+ path=(source_directory/note['file']).resolve()
+ assert path.is_relative_to(source_directory)
  source=path.read_text()
  # Convert only export/display syntax. Source Markdown remains byte-for-byte intact.
  for original,local in asset_map.items():source=source.replace(original,local)
+ source=re.sub(r'<unknown url="([^"]+)"[^>]*/>',lambda m:'\n\n[View embedded link on Notion ↗]('+m.group(1)+')\n\n',source)
+ source=re.sub(r'<video src="([^"]+)"[^>]*>\s*</video>',lambda m:'\n\n<div class="note-video" style="margin:24px 0"><button type="button" data-load-video style="padding:10px 16px;border:1px solid #ddd;border-radius:5px;background:#fff;cursor:pointer">Load demo video</button><video hidden controls preload="none" playsinline style="width:100%;max-height:720px" data-video-manifest="'+html.escape(m.group(1),quote=True)+'"></video><p role="status" hidden></p></div>\n\n',source)
+ if note['category']=='Experiences':source=re.sub(r'^(Tab\s*\d+\s*:[^\n]+)$',r'## \1',source,flags=re.M)
  source=re.sub(r'<table_of_contents[^>]*\s*/>', '', source)
  source=re.sub(r'<callout[^>]*>', '\n\n<div class="note-callout" markdown="1">\n\n',source)
  source=source.replace('</callout>', '\n\n</div>\n\n')
@@ -68,7 +76,14 @@ for note in notes:
  source=source.replace(r'\<','&lt;').replace(r'\>','&gt;')
  # Notion indents ordinary prose and callouts with tabs. They are not code blocks.
  source=re.sub(r'^>\s*\n[\t ]+([^\n]+)', r'\n> \1\n\n',source,flags=re.M)
- source=re.sub(r'^(?:\t| {4})+([^\n]+)', r'\n\1\n',source,flags=re.M)
+ if note['category']=='Experiences':
+  # Keep project directory trees and code indentation intact.
+  lines=source.splitlines(keepends=True);in_code=False;unindented=[]
+  for line in lines:
+   if line.lstrip().startswith(('```','~~~')):in_code=not in_code
+   unindented.append(line if in_code else re.sub(r'^(?:\t| {4})+([^\n]+)',r'\n\1\n',line))
+  source=''.join(unindented)
+ else:source=re.sub(r'^(?:\t| {4})+([^\n]+)', r'\n\1\n',source,flags=re.M)
  # Notion exports adjacent paragraph/list blocks without Markdown's blank lines.
  # Add display-only boundaries so bullets do not become inline paragraph text.
  if note.get('sourceFormat')=='notion':
@@ -94,7 +109,7 @@ errors=[{'note':e['note'],'tex':e['tex'],'error':r['error']} for e,r in zip(equa
 if errors:
  print(json.dumps(errors,ensure_ascii=False,indent=2))
  raise SystemExit(f'{len(errors)} math expressions could not be rendered.')
-for note,(rendered,toc) in zip(notes,prepared):
+for note,(rendered,toc) in zip(entries,prepared):
  def replace(m):
   index=int(m.group(1));return math_results[index]['html']
  rendered=re.sub(r'NOTIONMATHPLACEHOLDER(\d+)END',replace,rendered)
@@ -110,13 +125,20 @@ for note,(rendered,toc) in zip(notes,prepared):
   return f'src="{placeholder}" width="{width}" height="{height}" data-image-pack="../{pack}" data-image-key="{key}"'
  rendered=re.sub(r'src="(assets/notes/pack-[^"#]+\.json#[^"]+)"',pack_image,rendered)
  # Paths are relative to the standalone review page, including PDF downloads.
- rendered=rendered.replace('src="assets/', 'src="../assets/').replace('href="assets/', 'href="../assets/')
+ rendered=rendered.replace('data-video-manifest="assets/', 'data-video-manifest="../assets/').replace('src="assets/', 'src="../assets/').replace('href="assets/', 'href="../assets/')
  esc=lambda value:html.escape(str(value),quote=True)
- meta=' · '.join(esc(note.get(k,'')) for k in ('category','topic','paperYear') if note.get(k))
+ meta=' · '.join(esc(note.get(k,'')) for k in ('category','topic','paperYear','period') if note.get(k))
+ is_experience=note['category']=='Experiences'
+ folder='experiences' if is_experience else 'notes'
+ home_anchor='experiences' if is_experience else 'notes'
+ back_label='All experiences' if is_experience else 'All notes'
+ footer_label='Back to experiences' if is_experience else 'Back to all notes'
+ skip_label='Skip to content' if is_experience else 'Skip to review'
  paper=(f'<a href="{esc(note["paperUrl"])}" target="_blank" rel="noopener noreferrer">Original paper ↗</a>' if note.get('paperUrl') else '')
  authors=f'<p class="review-authors">{esc(note["authors"])}</p>' if note.get('authors') else ''
  version=hashlib.sha256((dist/'style.css').read_bytes()).hexdigest()[:12]
  loader_version=hashlib.sha256((dist/'note-assets.js').read_bytes()).hexdigest()[:12]
+ media_loader=f'<script src="../madcamp-media.js?v={hashlib.sha256((root / "src" / "madcamp-media.js").read_bytes()).hexdigest()[:12]}" defer></script>' if 'data-video-manifest=' in rendered else ''
  image_loader=f'<script src="../note-assets.js?v={loader_version}" defer></script>' if 'data-image-pack=' in rendered else ''
  outline=f'<aside class="review-outline" aria-label="Table of contents"><details open><summary>On this page</summary>{toc}</details></aside>' if '<li>' in toc else ''
  page=f'''<!doctype html>
@@ -125,15 +147,15 @@ for note,(rendered,toc) in zip(notes,prepared):
 <meta name="description" content="{esc(note.get('summary') or note['title'])}">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../style.css?v={version}"><link rel="stylesheet" href="../assets/katex/katex.min.css">
-{image_loader}</head><body class="review-page"><a class="skip" href="#review-body">Skip to review</a>
-<header class="review-topbar"><a href="../index.html">Kim Su Hwan</a><a href="../index.html#notes">← All notes</a></header>
+{image_loader}{media_loader}</head><body class="review-page"><a class="skip" href="#review-body">{skip_label}</a>
+<header class="review-topbar"><a href="../index.html">Kim Su Hwan</a><a href="../index.html#{home_anchor}">← {back_label}</a></header>
 <main class="review-shell"><article class="review-article"><header class="review-header"><p class="note-meta">{meta}</p><h1>{esc(note['title'])}</h1>{authors}<div class="review-links">{paper}</div></header>
 <div class="review-body" id="review-body">{rendered}</div>
-<footer class="review-footer"><a href="../index.html#notes">← Back to all notes</a><a href="#">Back to top ↑</a></footer></article>{outline}</main>
+<footer class="review-footer"><a href="../index.html#{home_anchor}">← {footer_label}</a><a href="#">Back to top ↑</a></footer></article>{outline}</main>
 </body></html>'''
  page='\n'.join(line.rstrip() for line in page.splitlines())+'\n'
- (dist/'notes'/f'{note["slug"]}.html').write_text(page)
- note['contentUrl']=f'notes/{note["slug"]}.html'
+ (dist/folder/f'{note["slug"]}.html').write_text(page)
+ note['contentUrl']=f'{folder}/{note["slug"]}.html'
 notes.sort(key=lambda n:n['title'].casefold())
 (dist/'notes.json').write_text(json.dumps(notes,ensure_ascii=False))
 # Version asset URLs so readers always receive the matching script and stylesheet.
@@ -143,4 +165,4 @@ for filename,attribute in [('script.js','src'),('style.css','href')]:
  index=index.replace(f'{attribute}="{filename}"',f'{attribute}="{filename}?v={version}"')
 (dist/'index.html').write_text(index)
 (dist/'.nojekyll').touch()
-print(f'Built {len(notes)} notes with {len(equations)} rendered equations.')
+print(f'Built {len(notes)} notes and {len(experiences)} experience pages with {len(equations)} rendered equations.')

@@ -1,0 +1,42 @@
+[
+  {
+    "slug": "madcamp-week-1",
+    "title": "Madcamp — Week 1: Fortune-Teller",
+    "category": "Experiences",
+    "topic": "KAIST Madcamp",
+    "period": "Winter 2023",
+    "file": "madcamp-week-1.md",
+    "sourceId": "2810ad69a5f88299b00a0189141bcc43",
+    "sourceFormat": "notion"
+  },
+  {
+    "slug": "madcamp-week-2",
+    "title": "Madcamp — Week 2: FindFriend",
+    "category": "Experiences",
+    "topic": "KAIST Madcamp",
+    "period": "Winter 2023",
+    "file": "madcamp-week-2.md",
+    "sourceId": "0690ad69a5f882c29d82815420b1fc14",
+    "sourceFormat": "notion"
+  },
+  {
+    "slug": "madcamp-week-3",
+    "title": "Madcamp — Week 3: Image Teller",
+    "category": "Experiences",
+    "topic": "KAIST Madcamp",
+    "period": "Winter 2023",
+    "file": "madcamp-week-3.md",
+    "sourceId": "4060ad69a5f88299b818816319728da8",
+    "sourceFormat": "notion"
+  },
+  {
+    "slug": "madcamp-week-4",
+    "title": "Madcamp — Week 4: BlindHelper",
+    "category": "Experiences",
+    "topic": "KAIST Madcamp",
+    "period": "Winter 2023",
+    "file": "madcamp-week-4.md",
+    "sourceId": "42c0ad69a5f8834e981981033ef2df0d",
+    "sourceFormat": "notion"
+  }
+]

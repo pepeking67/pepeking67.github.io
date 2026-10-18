@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Madcamp — Week 4: BlindHelper — Kim Su Hwan</title>
+<meta name="description" content="Madcamp — Week 4: BlindHelper">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../style.css?v=47dfab71076b"><link rel="stylesheet" href="../assets/katex/katex.min.css">
+<script src="../note-assets.js?v=85f6ed257548" defer></script></head><body class="review-page"><a class="skip" href="#review-body">Skip to content</a>
+<header class="review-topbar"><a href="../index.html">Kim Su Hwan</a><a href="../index.html#experiences">← All experiences</a></header>
+<main class="review-shell"><article class="review-article"><header class="review-header"><p class="note-meta">Experiences · KAIST Madcamp · Winter 2023</p><h1>Madcamp — Week 4: BlindHelper</h1><div class="review-links"></div></header>
+<div class="review-body" id="review-body"><p><a href="https://github.com/Madweek4/madcamp_week4/tree/main">GitHub - Madweek4/madcamp_week4: .</a>
+<img loading="lazy" decoding="async" alt="" src="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 2560 1212%22%3E%3C/svg%3E" width="2560" height="1212" data-image-pack="../assets/notes/pack-070.json" data-image-key="b07a94c96f2775368ea7.png" /></p>
+<h2 id="blindhelper">BlindHelper</h2>
+<p>MadCamp Week4 1분반</p>
+<ul>
+<li>시각 장애인들이 현재 사용하고 있는 프로그램은 이미지를 설명할 때 이미지의 대체 텍스트(alt)를 설명한다. 심지어 일반인들이 구매하기에 꽤 비싼 가격이다.</li>
+<li>이 대체 텍스트는 제대로 되어 있지 않은 웹페이지가 많고, 웹이 아닌 곳에서는 이미지를 읽어올 수 없다는 단점이 있다.</li>
+<li>이 단점을 보완하기 위해 구글 클라우드의 이미지 분석 api를 사용하여 이미지 자체를 분석하여 설명해주는 프로그램을 기획하였다.</li>
+<li>시각 장애인의 90%는 색깔을 구분할 수 있고 노란색을 가장 잘 보기 때문에 웹과 실행파일 gui를 만들 때 노란색을 주로 사용하였다.</li>
+<li>이 프로그램은 시각 장애 중 시력 및 시야 장애를 가진 분들을 타겟으로 하였고, 인터넷을 사용할 때 특정 부분에 대한 설명을 해줄 수 있도록 구성하였다.</li>
+</ul>
+<h3 id="a">a. 개발 팀원</h3>
+<ul>
+<li>김수환 - KAIST 전산학부(수리과학과) 22학번</li>
+<li>이형진 - KAIST 전산학부 22학번</li>
+</ul>
+<h3 id="b">b. 개발환경</h3>
+<ul>
+<li>Language: JavaScript, HTML, CSS, Python 3.10.1</li>
+<li>Server: Flask</li>
+<li>DataBase: MongoDB</li>
+<li>IDE: Visual Studio code</li>
+<li>배포 : aws</li>
+</ul>
+<h3 id="c-web">c. WEB</h3>
+<h4 id="1-">1 - 시작 페이지</h4>
+<p><img loading="lazy" decoding="async" alt="" src="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 2560 1339%22%3E%3C/svg%3E" width="2560" height="1339" data-image-pack="../assets/notes/pack-071.json" data-image-key="e8aef0e70cef6d1a1b9d.png" />
+<strong><em>Major features</em></strong></p>
+<ul>
+<li>BlindHelper와 License Program을 배포하기 위한 사이트이다.</li>
+<li>화면 중앙의 버튼 3개는 차례대로 로그인, 회원가입, 디테일 보기 버튼이다.</li>
+<li>페이지를 이동할 때마다 소리로 알려준다.</li>
+</ul>
+<h4 id="2-">2 - 로그인/회원가입 페이지</h4>
+<p><img loading="lazy" decoding="async" alt="" src="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 2560 1345%22%3E%3C/svg%3E" width="2560" height="1345" data-image-pack="../assets/notes/pack-072.json" data-image-key="c4032e05a318edc21acf.png" />
+<img loading="lazy" decoding="async" alt="" src="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 2560 1337%22%3E%3C/svg%3E" width="2560" height="1337" data-image-pack="../assets/notes/pack-073.json" data-image-key="261d4ec58bfbb3f2cdb7.png" />
+<strong><em>Major features</em></strong></p>
+<ul>
+<li>로그인을 하거나 회원가입을 통해 계정을 생성하고 MAIN페이지로 이동가능하다.</li>
+<li>아이디와 비번을 기반으로 토큰을 생성하여 앞으로의 클라이언트-서버 간 통신에 사용한다.</li>
+</ul>
+<h4 id="3-">3 - 디테일 페이지</h4>
+<p><img loading="lazy" decoding="async" alt="" src="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 2560 1343%22%3E%3C/svg%3E" width="2560" height="1343" data-image-pack="../assets/notes/pack-074.json" data-image-key="985ee2121321342d652c.png" />
+<img loading="lazy" decoding="async" alt="" src="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 2560 1347%22%3E%3C/svg%3E" width="2560" height="1347" data-image-pack="../assets/notes/pack-075.json" data-image-key="85ecdbc3b6eb0ac21b38.png" />
+<img loading="lazy" decoding="async" alt="" src="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 2560 1344%22%3E%3C/svg%3E" width="2560" height="1344" data-image-pack="../assets/notes/pack-076.json" data-image-key="40fd51c636061a355eb1.png" />
+<img loading="lazy" decoding="async" alt="" src="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 2560 1344%22%3E%3C/svg%3E" width="2560" height="1344" data-image-pack="../assets/notes/pack-077.json" data-image-key="d6d58d0faaa28911e095.png" />
+<img loading="lazy" decoding="async" alt="" src="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 2560 1344%22%3E%3C/svg%3E" width="2560" height="1344" data-image-pack="../assets/notes/pack-077.json" data-image-key="3a8c0aeffc0d20613acf.png" />
+<strong><em>Major features</em></strong></p>
+<ul>
+<li>우리 팀, 프로그램, 사용법, 더 많은 정보, 후원에 관한 정보를 설명하는 페이지이다.</li>
+<li>애니메이션을 적용하여 부드럽게 움직이는 듯한 느낌을 구현했다.</li>
+<li>Donate를 통해 후원을 할 수 있다. “금액은 자유, 많으면 좋음”</li>
+</ul>
+<h4 id="4-">4 - 다운로드 페이지</h4>
+<p><img loading="lazy" decoding="async" alt="" src="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 2560 1342%22%3E%3C/svg%3E" width="2560" height="1342" data-image-pack="../assets/notes/pack-078.json" data-image-key="213c3238aa1868af68eb.png" />
+<strong><em>Major features</em></strong></p>
+<ul>
+<li>결제를 하면 BlindHelper를 사용이 가능하다.</li>
+<li>데모 버전은 버튼을 누른 시점 기준으로 3일동안 무료로 BlindHelper의 모든 기능을 체험할 수 있다.</li>
+</ul>
+<h3 id="d-exe-program">d. EXE PROGRAM</h3>
+<h4 id="1-license-program">1. License Program</h4>
+<p><img loading="lazy" decoding="async" alt="" src="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1201 661%22%3E%3C/svg%3E" width="1201" height="661" data-image-pack="../assets/notes/pack-079.json" data-image-key="cb9efb5890a13671d4ee.png" /></p>
+<p><strong><em>Major features</em></strong></p>
+<ul>
+<li>BlindHelper 프로그램은 유료로 기획하였기에 무단 복제를 막고자 라이센스를 발급하는 실행파일을 만들었다.</li>
+<li>회원가입 후 결제를 한 사용자에게는 본래 라이센스 프로그램을 다운로드할 수 있게 하였고, 결제를 하지 않으면 데모판을 다운로드 할 수 있게 웹을 구성하였다.</li>
+<li>프로그램을 실행하면 아이디와 비밀번호를 입력할 수 있는 gui가 뜨고 노란색 버튼을 누르면 라이센스가 발급된다. 데모판의 경우에는 해당 라이센스는 3일 후 사용할 수 없다.</li>
+<li>최대한 마우스를 사용하지 않도록 탭을 사용하여 입력할 수 있는 곳을 지정할 수 있게 하였고, 음성(구글 클라우드 TTS api)으로 설명을 해주도록 설계했다.</li>
+<li>tkinter 파이썬 라이브러리로 gui를 구성하였다.</li>
+<li>uuid 라이브러리를 통해 사용자 컴퓨터의 mac 주소를 받아와 hashlib으로 암호화하여 이를 라이센스 코드로 사용하였다.</li>
+<li>pyinstaller로 실행파일을 만들었다.
+```plain text</li>
+</ul>
+<h1 id="cmd">실행파일을 만드는 코드(cmd)</h1>
+<p>pyinstaller --noconsole --onefile -n="BlindHelperLicense" --add-data "service_secret_key.json;." --add-data "error.mp3;." --add-data "get.mp3;." --add-data "getfinish.mp3;." check.py</p>
+<h1 id="exe-py">exe가 제대로 실행되기 위한 상대 주소 사용 함수(py)</h1>
+<p>def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+        return os.path.join(base_path, relative_path)</p>
+<pre><code>
+
+
+
+
+
+#### 2. BlindHelper Program
+실행 화면
+![](assets/notes/pack-079.json#71353bd4a2fc85fc89d5.png)
+글자 추출 과정 시각화
+![](assets/notes/pack-079.json#c34134b77bba6c64ad1c.png)
+글자 추출 과정 시각화(잘리는 부분 제거)
+![](assets/notes/pack-079.json#4d743457640bf82bfcb6.png)
+
+
+
+***Major features***
+
+- BlindHelper 프로그램은 실행한 후에 따로 ui가 존재하지 않고 음성으로만 설명이 되도록 만들었다.
+- 단축키들로 기능을 구현할 수 있다. &quot;ctrl+alt&quot;로 모든 단축키가 시작된다.
+```plain text
+ctrl+alt+q: 캡처 시작
+ctrl+alt+w: 음성 설명 취소
+ctrl+alt+e: 음성 설명 중지
+ctrl+alt+r: 음성 설명 다시재생(중지된 부분부터)
+ctrl+alt+d: 프로그램 종료
+ctrl+alt+f: 요약 시작
+</code></pre>
+<ul>
+<li>캡처가 시작되면 현재 화면에서 드래그하여 캡처 영역을 정할 수 있다. 드래그 영역은 노란색으로 표시하여 어느 부분을 캡처하는 지 인지할 수 있게 하였다.</li>
+<li>구글 클라우드 api를 통해 글자를 인식할 때 서로 가까이 있는 글자들을 한 그룹으로 인식하여 그리드 형태의 사이트에서도 문맥에 맞게 글자를 인식할 수 있게 하였다.</li>
+<li>인식된 글자는 pykospacing 라이브러리를 통해 띄어쓰기를 적용하여 TTS가 읽을 때 자연스럽게 읽도록 구성했다.</li>
+<li>TTS의 실행을 새로운 스레드에서 실행하여 음성 파일이 출력되는 동안 다른 기능을 수행할 수 있도록 구성했다.</li>
+<li><code>pip install git+https://github.com/haven-jeon/PyKoSpacing.git</code></li>
+<li>요약 기능이 시작되면 우선 구글 클라우드 api를 통해 캡처 이미지에서 이미지 컨텐츠들의 키워드들을 추출한다.</li>
+<li>이미지 키워드들을 추출할 때 confidence가 70% 이상인 키워드만 추출하여 정확도를 높였다.</li>
+<li>해당 키워드와 텍스트를 이용하여 chatgpt api가 요약한 후 이를 TTS로 출력한다.</li>
+<li>프롬프트를 구성할 때 텍스트만 있는 경우, 이미지만 있는 경우, 둘 다 있는 경우 세 가지로 나누어 프롬프트를 구성하여 자연스럽게 설명할 수 있도록 설계했다.</li>
+<li>
+<p>이 프로그램도 license 프로그램과 마찬가지로 상대 주소를 사용하고, pyinstaller로 exe 파일을 만들었다.<br></p>
+</li>
+<li>
+<p>첫 번재 사진은 프로그램에서 캡처를 진행할 때의 화면을 나타낸 것이고, 두, 세 번째 사진은 기술적으로 어떻게 인식된 글자를 가져오는 지 나타낸 사진이다.</p>
+</li>
+<li>캡처를 시작할 때 화면에서 움직이는 부분들이 있기에 우선 전체 화면을 캡처한다.</li>
+<li>그 후에 구글 api를 통해 전체 화면에서 글자들을 인식하고 인식된 글자들의 좌표를 추출한다. 이를 보여준 것이 2,3번째 사진이다.</li>
+<li>상단바나 하단바에 의해 잘린 글자들은 confidence로 판단하여 추출하지 않는다. 이는 3번째 사진에서 잘린 글자들에 초록색 박스가 없는 이유이다.</li>
+<li>드래그 했을 때 글자 박스의 좌표와 드래그 영역이 겹치는 모든 글자를 추출하도록 설계했다.</li>
+<li>이런 식으로 설계하여 글자가 잘렸을 때에도 제대로 글자를 추출할 수 있도록 만들었다.</li>
+</ul>
+<h3 id="e-directory-structure">e. DIRECTORY STRUCTURE</h3>
+<p>```plain text</p>
+<h1 id="_1">라이센스 프로그램</h1>
+<p>📦BlindHelperLicense
+ ┣ 📂<strong>pycache</strong>
+ ┃ ┗ 📜TTS.cpython-310.pyc
+ ┣ 📜check.py
+ ┣ 📜error.mp3
+ ┣ 📜get.mp3
+ ┣ 📜getfinish.mp3
+ ┣ 📜service_secret_key.json
+ ┗ 📜TTS.py</p>
+<pre><code>```plain text
+#BlindHelper 프로그램
+📦BlindHelper
+ ┣ 📂__pycache__
+ ┃ ┣ 📜ImageLabeler.cpython-310.pyc
+ ┃ ┣ 📜ImageLabeler.cpython-38.pyc
+ ┃ ┣ 📜NaverOCR.cpython-310.pyc
+ ┃ ┣ 📜NaverOCR.cpython-38.pyc
+ ┃ ┣ 📜OpenAIChat.cpython-310.pyc
+ ┃ ┣ 📜OpenAIChat.cpython-38.pyc
+ ┃ ┣ 📜screenshot.cpython-310.pyc
+ ┃ ┣ 📜screenshot.cpython-38.pyc
+ ┃ ┣ 📜TTS.cpython-310.pyc
+ ┃ ┗ 📜TTS.cpython-38.pyc
+ ┣ 📜BlindHelper.spec
+ ┣ 📜cancel.mp3
+ ┣ 📜capturecancel.mp3
+ ┣ 📜capturestart.mp3
+ ┣ 📜dragtest.py
+ ┣ 📜exefolder.ico
+ ┣ 📜fullscreenshot.png
+ ┣ 📜hash.mp3
+ ┣ 📜hash.txt
+ ┣ 📜ImageLabeler.py
+ ┣ 📜main.py
+ ┣ 📜NaverOCR.py
+ ┣ 📜notext.mp3
+ ┣ 📜OpenAIChat.py
+ ┣ 📜output.jpg
+ ┣ 📜programexit.mp3
+ ┣ 📜programstart.mp3
+ ┣ 📜screenshot.png
+ ┣ 📜screenshot.py
+ ┣ 📜service_secret_key.json
+ ┣ 📜summary.mp3
+ ┣ 📜sumstart.mp3
+ ┣ 📜test.mp3
+ ┣ 📜test.py
+ ┣ 📜text.mp3
+ ┣ 📜TTS.py
+ ┣ 📜ttt.py
+ ┗ 📜wait.mp3
+
+</code></pre>
+<p>```plain text</p>
+<h1 id="_2">웹서버/클라이언트</h1>
+<p>📦web
+ ┣ 📂static
+ ┃ ┣ 📂audio
+ ┃ ┃ ┣ 📂login
+ ┃ ┃ ┃ ┣ 📜faillogin.mp3
+ ┃ ┃ ┃ ┣ 📜login.mp3
+ ┃ ┃ ┃ ┗ 📜suclogin.mp3
+ ┃ ┃ ┣ 📂main
+ ┃ ┃ ┃ ┣ 📜demo.mp3
+ ┃ ┃ ┃ ┣ 📜downexe.mp3
+ ┃ ┃ ┃ ┣ 📜downexedemo.mp3
+ ┃ ┃ ┃ ┣ 📜downzip.mp3
+ ┃ ┃ ┃ ┣ 📜pay.mp3
+ ┃ ┃ ┃ ┗ 📜sucpay.mp3
+ ┃ ┃ ┣ 📂root
+ ┃ ┃ ┃ ┗ 📜welcome.mp3
+ ┃ ┃ ┗ 📂signup
+ ┃ ┃ ┃ ┣ 📜failsignup.mp3
+ ┃ ┃ ┃ ┣ 📜signup.mp3
+ ┃ ┃ ┃ ┗ 📜sucsignup.mp3
+ ┃ ┣ 📂css
+ ┃ ┃ ┣ 📂detail_images
+ ┃ ┃ ┃ ┣ 📂fulls
+ ┃ ┃ ┃ ┃ ┣ 📜01.jpg
+ ┃ ┃ ┃ ┃ ┣ 📜02.jpg
+ ┃ ┃ ┃ ┃ ┣ 📜03.jpg
+ ┃ ┃ ┃ ┃ ┣ 📜04.jpg
+ ┃ ┃ ┃ ┃ ┣ 📜05.jpg
+ ┃ ┃ ┃ ┃ ┗ 📜06.jpg
+ ┃ ┃ ┃ ┣ 📂thumbs
+ ┃ ┃ ┃ ┃ ┣ 📜01.jpg
+ ┃ ┃ ┃ ┃ ┣ 📜02.jpg
+ ┃ ┃ ┃ ┃ ┣ 📜03.jpg
+ ┃ ┃ ┃ ┃ ┣ 📜04.jpg
+ ┃ ┃ ┃ ┃ ┣ 📜05.jpg
+ ┃ ┃ ┃ ┃ ┣ 📜06.jpg
+ ┃ ┃ ┃ ┃ ┣ 📜notion01.png
+ ┃ ┃ ┃ ┃ ┣ 📜notion02.png
+ ┃ ┃ ┃ ┃ ┣ 📜notion03.png
+ ┃ ┃ ┃ ┃ ┗ 📜notion04.png
+ ┃ ┃ ┃ ┣ 📜arrow.svg
+ ┃ ┃ ┃ ┣ 📜dark-arrow.svg
+ ┃ ┃ ┃ ┣ 📜intro.jpg
+ ┃ ┃ ┃ ┣ 📜one.jpg
+ ┃ ┃ ┃ ┣ 📜overlay.png
+ ┃ ┃ ┃ ┣ 📜poptrox-closer.svg
+ ┃ ┃ ┃ ┣ 📜poptrox-nav.svg
+ ┃ ┃ ┃ ┗ 📜two.jpg
+ ┃ ┃ ┣ 📂start_images
+ ┃ ┃ ┃ ┣ 📂ie
+ ┃ ┃ ┃ ┃ ┣ 📜footer.png
+ ┃ ┃ ┃ ┃ ┗ 📜footer.svg
+ ┃ ┃ ┃ ┣ 📜bg.jpg
+ ┃ ┃ ┃ ┣ 📜overlay-pattern.png
+ ┃ ┃ ┃ ┗ 📜overlay.svg
+ ┃ ┃ ┣ 📜detail.css
+ ┃ ┃ ┣ 📜detail_noscript.css
+ ┃ ┃ ┣ 📜start.css
+ ┃ ┃ ┣ 📜start_noscript.css
+ ┃ ┃ ┗ 📜style.css
+ ┃ ┣ 📂js
+ ┃ ┃ ┣ 📂detail
+ ┃ ┃ ┃ ┣ 📜breakpoints.min.js
+ ┃ ┃ ┃ ┣ 📜browser.min.js
+ ┃ ┃ ┃ ┣ 📜donate.js
+ ┃ ┃ ┃ ┣ 📜jquery.min.js
+ ┃ ┃ ┃ ┣ 📜jquery.poptrox.min.js
+ ┃ ┃ ┃ ┣ 📜jquery.scrollex.min.js
+ ┃ ┃ ┃ ┣ 📜jquery.scrolly.min.js
+ ┃ ┃ ┃ ┣ 📜main.js
+ ┃ ┃ ┃ ┗ 📜util.js
+ ┃ ┃ ┣ 📜login.js
+ ┃ ┃ ┣ 📜main.js
+ ┃ ┃ ┣ 📜signup.js
+ ┃ ┃ ┣ 📜start.js
+ ┃ ┃ ┗ 📜url.js
+ ┃ ┗ 📂webfonts
+ ┃ ┃ ┣ 📜fa-brands-400.eot
+ ┃ ┃ ┣ 📜fa-brands-400.svg
+ ┃ ┃ ┣ 📜fa-brands-400.ttf
+ ┃ ┃ ┣ 📜fa-brands-400.woff
+ ┃ ┃ ┣ 📜fa-brands-400.woff2
+ ┃ ┃ ┣ 📜fa-regular-400.eot
+ ┃ ┃ ┣ 📜fa-regular-400.svg
+ ┃ ┃ ┣ 📜fa-regular-400.ttf
+ ┃ ┃ ┣ 📜fa-regular-400.woff
+ ┃ ┃ ┣ 📜fa-regular-400.woff2
+ ┃ ┃ ┣ 📜fa-solid-900.eot
+ ┃ ┃ ┣ 📜fa-solid-900.svg
+ ┃ ┃ ┣ 📜fa-solid-900.ttf
+ ┃ ┃ ┣ 📜fa-solid-900.woff
+ ┃ ┃ ┗ 📜fa-solid-900.woff2
+ ┣ 📂templates
+ ┃ ┣ 📜detail.html
+ ┃ ┣ 📜login.html
+ ┃ ┣ 📜main.html
+ ┃ ┣ 📜main2.html
+ ┃ ┣ 📜signup.html
+ ┃ ┗ 📜start.html
+ ┗ 📜app.py</p>
+<pre><code>```plain text
+#exe 만드는 cmd 코드
+
+#라이센스 발급
+pyinstaller --noconsole --onefile -n=&quot;BlindHelperLicense&quot; --add-data &quot;service_secret_key.json;.&quot; --add-data &quot;error.mp3;.&quot; --add-data &quot;get.mp3;.&quot; --add-data &quot;getfinish.mp3;.&quot; check.py
+#데모 라이센스 발급
+pyinstaller --noconsole --onefile -n=&quot;Demo-BlindHelperLicense&quot; --add-data &quot;service_secret_key.json;.&quot; --add-data &quot;error.mp3;.&quot; --add-data &quot;get.mp3;.&quot; --add-data &quot;getfinish.mp3;.&quot; check.py
+#BlindHelper 프로그램
+pyinstaller -n=&quot;BlindHelper&quot; --icon=&quot;exefolder.ico&quot; --noconsole --add-data &quot;C:\\\\Users\\\\KIMSUWHAN\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python310\\\\Lib\\\\site-packages\\\\pykospacing\\\\resources\\\\models\\\\kospacing;.\\\\pykospacing\\\\resources\\\\models&quot; --add-data &quot;C:\\\\Users\\\\KIMSUWHAN\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python310\\\\Lib\\\\site-packages\\\\pykospacing\\\\resources\\\\dicts\\\\c2v.dic;.\\\\pykospacing\\\\resources\\\\dicts&quot; --add-data &quot;service_secret_key.json;.&quot; main.py
+실행 후 mp3 파일들 _internal 폴더에 추가
+
+</code></pre></div>
+<footer class="review-footer"><a href="../index.html#experiences">← Back to experiences</a><a href="#">Back to top ↑</a></footer></article><aside class="review-outline" aria-label="Table of contents"><details open><summary>On this page</summary><div class="toc">
+<ul>
+<li><a href="#blindhelper">BlindHelper</a><ul>
+<li><a href="#a">a. 개발 팀원</a></li>
+<li><a href="#b">b. 개발환경</a></li>
+<li><a href="#c-web">c. WEB</a><ul>
+<li><a href="#1-">1 - 시작 페이지</a></li>
+<li><a href="#2-">2 - 로그인/회원가입 페이지</a></li>
+<li><a href="#3-">3 - 디테일 페이지</a></li>
+<li><a href="#4-">4 - 다운로드 페이지</a></li>
+</ul>
+</li>
+<li><a href="#d-exe-program">d. EXE PROGRAM</a><ul>
+<li><a href="#1-license-program">1. License Program</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#cmd">실행파일을 만드는 코드(cmd)</a></li>
+<li><a href="#exe-py">exe가 제대로 실행되기 위한 상대 주소 사용 함수(py)</a><ul>
+<li><a href="#e-directory-structure">e. DIRECTORY STRUCTURE</a></li>
+</ul>
+</li>
+<li><a href="#_1">라이센스 프로그램</a></li>
+<li><a href="#_2">웹서버/클라이언트</a></li>
+</ul>
+</div>
+</details></aside></main>
+</body></html>

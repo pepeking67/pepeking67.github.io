@@ -36,3 +36,9 @@ For newly imported Notion pages, set `sourceFormat` to `notion` in the metadata.
 
 ## Experience pages
 Madcamp week pages live in `content/experiences/` with their own metadata index and are linked from Experiences. They share the standalone reader and right-hand outline, retain original images and videos, and are excluded from Study / Notes counts. Unsupported Notion embeds remain links to their original blocks.
+
+## Courses
+
+The Courses section is generated from `content/courses/index.json`, in index order. Each course has a short syllabus-based description, a dedicated Markdown note in `content/courses/`, and Note / Certificate buttons. Course pages reuse the standalone reader and are excluded from Study / Notes counts. Descriptions summarize course content and do not claim completion.
+
+Add personal notes to the course's Markdown file. To activate its Certificate button, set `certificateUrl` to a public verification URL or a local PDF path such as `assets/certificates/course-name.pdf` (store the source PDF under `src/assets/certificates/`). Until then, the button remains disabled. Run `python build.py` and commit both source and generated files.

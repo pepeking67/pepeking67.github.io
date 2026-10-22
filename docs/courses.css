@@ -1,0 +1,13 @@
+/* Course rows follow the compact experience layout. */
+.course-row{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:22px 0;border-top:1px solid var(--line)}
+.course-row:first-of-type{border-top:0;padding-top:0}
+.course-row:last-child{padding-bottom:0}
+.course-copy{flex:1;min-width:0}
+.course-copy h3{margin:0;font-size:15px;line-height:1.6}
+.course-copy h3 a{color:var(--ink)}
+.course-copy h3 a:hover{color:var(--accent)}
+.course-actions{display:flex;align-items:center;justify-content:flex-end;gap:8px;flex-shrink:0}
+.course-button{display:inline-flex;align-items:center;justify-content:center;min-height:34px;border:1px solid #d9e1e6;border-radius:3px;padding:5px 10px;background:#fff;color:var(--accent);font:400 12px/1.6 Arial,Helvetica,sans-serif;white-space:nowrap;text-decoration:none}
+a.course-button:hover{background:#f5f8fa;text-decoration:none;border-color:#b0c6d5}
+.course-button:disabled{color:#777;border-color:#e5e5e5;background:#fafafa;cursor:not-allowed}
+@media(max-width:900px){.course-row{flex-wrap:wrap;gap:12px}.course-copy{flex-basis:100%}.course-actions{margin-left:auto}}

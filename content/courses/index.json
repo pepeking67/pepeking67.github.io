@@ -1,0 +1,42 @@
+[
+  {
+    "slug": "pytorch-for-deep-learning",
+    "title": "PyTorch for Deep Learning",
+    "category": "Courses",
+    "topic": "DeepLearning.AI · Coursera · Professional Certificate",
+    "summary": "PyTorch tensors, neural networks, and training pipelines, followed by transfer learning and advanced architectures. Model optimization, compression, and deployment using tools such as ONNX and MLflow.",
+    "courseUrl": "https://www.coursera.org/professional-certificates/pytorch-for-deep-learning",
+    "certificateUrl": null,
+    "file": "pytorch-for-deep-learning.md"
+  },
+  {
+    "slug": "deep-reinforcement-learning",
+    "title": "Deep Reinforcement Learning: From Theory to Practice",
+    "category": "Courses",
+    "topic": "University of Colorado Boulder · Coursera",
+    "summary": "Neural function approximation, DQN and its stabilizing techniques, policy gradients, and actor–critic methods. Implementation and evaluation of deep RL agents, including PPO, DDPG, and SAC.",
+    "courseUrl": "https://www.coursera.org/learn/deep-reinforcement-learning-from-theory-to-practice",
+    "certificateUrl": null,
+    "file": "deep-reinforcement-learning.md"
+  },
+  {
+    "slug": "computer-vision",
+    "title": "Computer Vision",
+    "category": "Courses",
+    "topic": "University of Colorado Boulder · Coursera · Specialization",
+    "summary": "Classical image processing and feature extraction, followed by CNNs for image classification and segmentation. Modern vision and multimodal models, including Vision Transformers, CLIP, and diffusion models.",
+    "courseUrl": "https://www.coursera.org/specializations/computer-vision-cu",
+    "certificateUrl": null,
+    "file": "computer-vision.md"
+  },
+  {
+    "slug": "vision-language-model-bootcamp",
+    "title": "Vision Language Model Bootcamp",
+    "category": "Courses",
+    "topic": "OpenCV University · Bootcamp",
+    "summary": "Multimodal embeddings and zero-shot image classification with CLIP. Hands-on image captioning and zero-shot object detection using Qwen2.5-VL.",
+    "courseUrl": "https://courses.opencv.org/courses/course-v1:Vision-Language-Models+Bootcamp+VLMs/course/",
+    "certificateUrl": null,
+    "file": "vision-language-model-bootcamp.md"
+  }
+]

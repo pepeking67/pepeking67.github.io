@@ -28,18 +28,21 @@ shutil.copy(root/'node_modules/katex/LICENSE',math_assets/'LICENSE')
 notes=json.loads((root/'content/notes/index.json').read_text())
 experience_index=root/'content/experiences/index.json'
 experiences=json.loads(experience_index.read_text()) if experience_index.exists() else []
-entries=notes+experiences
+course_index=root/'content/courses/index.json'
+courses=json.loads(course_index.read_text()) if course_index.exists() else []
+entries=notes+experiences+courses
 asset_map=json.loads((root/'content/notion-assets.json').read_text())
 image_dimensions=json.loads((root/'content/image-dimensions.json').read_text())
 asset_names={local:parse_qs(urlparse(original).query).get('name',[Path(local).name])[0] for original,local in asset_map.items()}
 (dist/'notes').mkdir(exist_ok=True)
 (dist/'experiences').mkdir(exist_ok=True)
-valid={'Paper Reviews','Mathematics','Computer Science','Coding','Miscellaneous','Experiences'}
+(dist/'courses').mkdir(exist_ok=True)
+valid={'Paper Reviews','Mathematics','Computer Science','Coding','Miscellaneous','Experiences','Courses'}
 seen=set();equations=[];prepared=[]
 for note in entries:
  assert note['slug'] not in seen,'Duplicate slug'
  seen.add(note['slug']);assert note['category'] in valid
- source_directory=root/('content/experiences' if note['category']=='Experiences' else 'content/notes')
+ source_directory=root/('content/experiences' if note['category']=='Experiences' else 'content/courses' if note['category']=='Courses' else 'content/notes')
  path=(source_directory/note['file']).resolve()
  assert path.is_relative_to(source_directory)
  source=path.read_text()
@@ -114,7 +117,8 @@ for note in entries:
    normalized.append(line)
   source='\n'.join(normalized)
  # One page title, then a consistent section hierarchy for all imported reviews.
- source=re.sub(r'^(#{1,5})(?= )',r'#\1',source,flags=re.M)
+ if note['category']!='Courses':
+  source=re.sub(r'^(#{1,5})(?= )',r'#\1',source,flags=re.M)
  md=markdown.Markdown(extensions=['fenced_code','tables','toc','md_in_html','sane_lists'],extension_configs={'toc':{'slugify':lambda value,separator:slugify(re.sub(r'NOTIONMATHPLACEHOLDER\d+END','formula',value),separator)}})
  for i,block in enumerate(code_blocks):source=source.replace('MADCAMPCODEBLOCK'+str(i)+'END',block)
  if note.get('introduction'):
@@ -147,14 +151,22 @@ for note,(rendered,toc) in zip(entries,prepared):
  esc=lambda value:html.escape(str(value),quote=True)
  meta=' · '.join(esc(note.get(k,'')) for k in ('category','topic','paperYear','period') if note.get(k))
  is_experience=note['category']=='Experiences'
- folder='experiences' if is_experience else 'notes'
- home_anchor='experiences' if is_experience else 'notes'
- back_label='All experiences' if is_experience else 'All notes'
- footer_label='Back to experiences' if is_experience else 'Back to all notes'
- skip_label='Skip to content' if is_experience else 'Skip to review'
+ is_course=note['category']=='Courses'
+ folder='experiences' if is_experience else 'courses' if is_course else 'notes'
+ home_anchor=folder
+ back_label='All experiences' if is_experience else 'All courses' if is_course else 'All notes'
+ footer_label='Back to experiences' if is_experience else 'Back to courses' if is_course else 'Back to all notes'
+ skip_label='Skip to content' if is_experience or is_course else 'Skip to review'
  paper=(f'<a href="{esc(note["paperUrl"])}" target="_blank" rel="noopener noreferrer">Original paper ↗</a>' if note.get('paperUrl') else '')
  if is_experience:
   paper=' '.join(f'<a href="{esc(link["url"])}" target="_blank" rel="noopener noreferrer">{esc(link["label"])} ↗</a>' for link in note.get('codeLinks',[]))
+ if is_course:
+  paper=f'<a href="{esc(note["courseUrl"])}" target="_blank" rel="noopener noreferrer">Course website ↗</a>'
+  if note.get('certificateUrl'):
+   certificate_url=note['certificateUrl']
+   if not urlparse(certificate_url).scheme and not certificate_url.startswith('/'):
+    certificate_url='../'+certificate_url
+   paper+=f' <a href="{esc(certificate_url)}" target="_blank" rel="noopener noreferrer">Certificate ↗</a>'
  authors=f'<p class="review-authors">{esc(note["authors"])}</p>' if note.get('authors') else ''
  version=hashlib.sha256((dist/'style.css').read_bytes()).hexdigest()[:12]
  loader_version=hashlib.sha256((dist/'note-assets.js').read_bytes()).hexdigest()[:12]
@@ -180,9 +192,15 @@ notes.sort(key=lambda n:n['title'].casefold())
 (dist/'notes.json').write_text(json.dumps(notes,ensure_ascii=False))
 # Version asset URLs so readers always receive the matching script and stylesheet.
 index=(dist/'index.html').read_text()
-for filename,attribute in [('script.js','src'),('style.css','href')]:
+course_rows=[]
+for course in courses:
+ esc=lambda value:html.escape(str(value),quote=True)
+ certificate=(f'<a class="course-button" href="{esc(course["certificateUrl"])}" target="_blank" rel="noopener noreferrer" aria-label="Certificate for {esc(course["title"])}">Certificate ↗</a>' if course.get('certificateUrl') else f'<button class="course-button" type="button" disabled title="Certificate not added yet" aria-label="Certificate for {esc(course["title"])} — not added yet">Certificate</button>')
+ course_rows.append(f'''<article class="experience course-row"><div class="course-copy"><h3><a href="{esc(course['courseUrl'])}" target="_blank" rel="noopener noreferrer">{esc(course['title'])}</a></h3><p class="experience-role">{esc(course['topic'])}</p><p class="experience-description">{esc(course['summary'])}</p></div><div class="course-actions"><a class="course-button" href="courses/{esc(course['slug'])}.html" aria-label="Note for {esc(course['title'])}">Note</a>{certificate}</div></article>''')
+index=index.replace('<!-- COURSE_ROWS -->','\n'.join(course_rows))
+for filename,attribute in [('script.js','src'),('style.css','href'),('courses.css','href')]:
  version=hashlib.sha256((dist/filename).read_bytes()).hexdigest()[:12]
  index=index.replace(f'{attribute}="{filename}"',f'{attribute}="{filename}?v={version}"')
 (dist/'index.html').write_text(index)
 (dist/'.nojekyll').touch()
-print(f'Built {len(notes)} notes and {len(experiences)} experience pages with {len(equations)} rendered equations.')
+print(f'Built {len(notes)} notes, {len(experiences)} experience pages, and {len(courses)} course pages with {len(equations)} rendered equations.')

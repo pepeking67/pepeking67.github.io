@@ -235,5 +235,20 @@
     "file": "differential-geometry.md",
     "sourceId": "3fc0ad69a5f881bf9cf2d90f3d1ece19",
     "sourceFormat": "notion"
+  },
+  {
+    "slug": "vae",
+    "title": "Diffusion_1. Auto-Encoding Variational Bayes",
+    "date": "2026-11-22",
+    "category": "Paper Reviews",
+    "topic": "Diffusion",
+    "paperYear": "2013",
+    "paperUrl": "https://arxiv.org/abs/1312.6114",
+    "summary": "VAE, ELBO, reparametrization, recognition model",
+    "file": "vae.md",
+    "dateLabel": "Imported",
+    "sourceId": "3f90ad69a5f881848d19c7dbf23ff8fb",
+    "authors": "Diederik P. Kingma, Max Welling",
+    "sourceFormat": "notion"
   }
 ]

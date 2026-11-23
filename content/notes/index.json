@@ -250,5 +250,20 @@
     "sourceId": "3f90ad69a5f881848d19c7dbf23ff8fb",
     "authors": "Diederik P. Kingma, Max Welling",
     "sourceFormat": "notion"
+  },
+  {
+    "slug": "ddpm",
+    "title": "Diffusion_2. Denoising Diffusion Probabilistic Models",
+    "date": "2026-11-23",
+    "category": "Paper Reviews",
+    "topic": "Diffusion",
+    "paperYear": "2020",
+    "paperUrl": "https://arxiv.org/abs/2006.11239",
+    "summary": "DDPM, reverse process, forward process",
+    "file": "ddpm.md",
+    "dateLabel": "Imported",
+    "sourceId": "3df0ad69a5f881439a72fceeea290aef",
+    "authors": "Ho et al.",
+    "sourceFormat": "notion"
   }
 ]

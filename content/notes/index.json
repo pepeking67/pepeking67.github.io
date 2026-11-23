@@ -265,5 +265,20 @@
     "sourceId": "3df0ad69a5f881439a72fceeea290aef",
     "authors": "Ho et al.",
     "sourceFormat": "notion"
+  },
+  {
+    "slug": "act",
+    "title": "VLA_7. ACT: Learning Fine-Grained Bimanual Manipulation with Low-Cost Hardware",
+    "date": "2026-11-23",
+    "category": "Paper Reviews",
+    "topic": "VLA",
+    "paperYear": "2023",
+    "paperUrl": "https://arxiv.org/abs/2304.13705",
+    "summary": "Action chunking, temporal ensembling",
+    "file": "act.md",
+    "dateLabel": "Imported",
+    "sourceId": "3df0ad69a5f8816997c8c3ac4a5a41a9",
+    "authors": "Zhao et al.",
+    "sourceFormat": "notion"
   }
 ]

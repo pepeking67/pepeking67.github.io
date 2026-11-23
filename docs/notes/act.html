@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VLA_7. ACT: Learning Fine-Grained Bimanual Manipulation with Low-Cost Hardware — Kim Su Hwan</title>
+<meta name="description" content="Action chunking, temporal ensembling">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../style.css?v=47dfab71076b"><link rel="stylesheet" href="../assets/katex/katex.min.css">
+</head><body class="review-page"><a class="skip" href="#review-body">Skip to review</a>
+<header class="review-topbar"><a href="../index.html">Kim Su Hwan</a><a href="../index.html#notes">← All notes</a></header>
+<main class="review-shell"><article class="review-article"><header class="review-header"><p class="note-meta">Paper Reviews · VLA · 2023</p><h1>VLA_7. ACT: Learning Fine-Grained Bimanual Manipulation with Low-Cost Hardware</h1><p class="review-authors">Zhao et al.</p><div class="review-links"><a href="https://arxiv.org/abs/2304.13705" target="_blank" rel="noopener noreferrer">Original paper ↗</a></div></header>
+<div class="review-body" id="review-body"><h2 id="introduction">Introduction</h2>
+<p>Existing models use high-end sensors for precise estimation. Out goal is to develop a low-cost and imprecise hardware to perform fine manipulation tasks. Since the performance depends on the training data, so we build <b>ALOHA</b>, which is <b>dexterous teleoperation system</b> for data collection.
+<img loading="lazy" decoding="async" alt="" src="../assets/notes/act-1.png" /></p>
+<p>We show two main ideas:</p>
+<ol>
+<li><b>Teleoperation system: ALOHA</b></li>
+<li><b>Imitation learning algorithm: ACT</b></li>
+</ol>
+<p><b>Action chunking</b> is a concept that the policy predicts the next k target joint positions. This reduces the <b>effective horizon</b>, which is<b> </b>the number of decision-making, and <b>compounding errors</b>.</p>
+<p>To make the policy more smooth, we use <b>temporal ensembling</b>, which averages overlapping action chunks predicted at different time steps.</p>
+<h2 id="action-chunking-with-transformers">Action chunking with transformers</h2>
+<h3 id="action-chunking-and-temporal-ensemble">Action chunking and temporal ensemble</h3>
+<p><img loading="lazy" decoding="async" alt="" src="../assets/notes/act-2.png" /></p>
+<p>Temporal ensemble performs a weighted average using <b>exponential weight</b> <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>w</mi><mi>i</mi></msub><mo>=</mo><mi>exp</mi><mo>⁡</mo><mo stretchy="false">(</mo><mo>−</mo><mi>m</mi><mo>∗</mo><mi>i</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">w_i=\exp(-m*i)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0269em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop">exp</span><span class="mopen">(</span><span class="mord">−</span><span class="mord mathnormal">m</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">i</span><span class="mclose">)</span></span></span></span>, where <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>w</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">w_0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0269em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> is the weight of the oldest action. For large <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">m</span></span></span></span>, it weights older data more and for small <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">m</span></span></span></span>, recent predictions receive more weight, so that the model can <b>incorporate new observations quickly</b>.</p>
+<h3 id="modeling-human-data">Modeling human data</h3>
+<p>To tackle challenge of training noisy human demonstration, we train the policy by conditional variational autoencoder(<b>CVAE</b>), which is conditioned on current observations.
+<img loading="lazy" decoding="async" alt="" src="../assets/notes/act-3.png" /></p>
+<h3 id="implementation">Implementation</h3>
+<p><img loading="lazy" decoding="async" alt="" src="../assets/notes/act-4.png" />
+<img loading="lazy" decoding="async" alt="" src="../assets/notes/act-5.png" />
+<img loading="lazy" decoding="async" alt="" src="../assets/notes/act-6.png" /></p>
+<h2 id="experiments">Experiments</h2>
+<p><img loading="lazy" decoding="async" alt="" src="../assets/notes/act-7.png" /></p>
+<p>Prior methods have poor performance since they cannot treat the <b>compounding errors</b> and <b>non-Markovian behaviors</b>. Especially, with a single-action prediction, it is difficult for the robot to determine when to pause and when to move based solely on its current state.
+<img loading="lazy" decoding="async" alt="" src="../assets/notes/act-8.png" /></p>
+<p>We observe low performance at Thread Velcro task. We hypothesize this is due to <b>low contrast</b> between background and <b>small fraction</b> of cable ties in the images. So it is hard to determine the exact position of the cable ties from image observations.</p>
+<figure>
+<p><img loading="lazy" decoding="async" alt="" src="../assets/notes/act-9.png" /></p>
+<figcaption>Fig. 10: Example of Thread Velcro task image observation.</figcaption>
+</figure>
+<h2 id="ablations">Ablations</h2>
+<p><img loading="lazy" decoding="async" alt="" src="../assets/notes/act-10.png" /></p>
+<h3 id="a-action-chunking">(a): Action chunking</h3>
+<p>From (a), we disable temporal ensembling to measure only effect of action chunking. From k=1 to k=100, ACT performance improves. Predicting <b>too many chunkings</b> has the difficulty in modeling long action sequences and lack of receive behaviors. </p>
+<p>Other model with action chunking improves, so we can see that action chunking is <b>generally beneficial</b>.</p>
+<h3 id="b-temporal-ensembling">(b): Temporal ensembling</h3>
+<p>We hypothesize that the temporal ensembling <b>benefits parametric methods by sampling smoothly</b>, but the VINN is a non-parametric model, so it doesn’t suffer from this problem.</p>
+<h3 id="c-cvae">(c): CVAE</h3>
+<p>Since the scriped data is deterministic, there is no difference in the CVAE objective.</p>
+<p>However, probabilistic action prediction using a CVAE is beneficial for learning from non-deterministic human demonstrations.</p>
+<p>Note that <a href="https://arxiv.org/abs/2609.16745">The Latent That Never Was: A Forensic Re-run of the CVAE Ablation in Action Chunking Transformers</a> reported improved performance after removing the CVAE encoder, these findings are limited to specific simulation settings and require further validation. </p>
+<h3 id="d-high-frequency">(d): High-frequency</h3>
+<p>50Hz performs highly dexterous and precise tasks in a short time, but 5Hz results in a 62% increase in teleoperation time.</p></div>
+<footer class="review-footer"><a href="../index.html#notes">← Back to all notes</a><a href="#">Back to top ↑</a></footer></article><aside class="review-outline" aria-label="Table of contents"><details open><summary>On this page</summary><div class="toc">
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#action-chunking-with-transformers">Action chunking with transformers</a><ul>
+<li><a href="#action-chunking-and-temporal-ensemble">Action chunking and temporal ensemble</a></li>
+<li><a href="#modeling-human-data">Modeling human data</a></li>
+<li><a href="#implementation">Implementation</a></li>
+</ul>
+</li>
+<li><a href="#experiments">Experiments</a></li>
+<li><a href="#ablations">Ablations</a><ul>
+<li><a href="#a-action-chunking">(a): Action chunking</a></li>
+<li><a href="#b-temporal-ensembling">(b): Temporal ensembling</a></li>
+<li><a href="#c-cvae">(c): CVAE</a></li>
+<li><a href="#d-high-frequency">(d): High-frequency</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</details></aside></main>
+</body></html>

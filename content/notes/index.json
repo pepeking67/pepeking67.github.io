@@ -280,5 +280,20 @@
     "sourceId": "3df0ad69a5f8816997c8c3ac4a5a41a9",
     "authors": "Zhao et al.",
     "sourceFormat": "notion"
+  },
+  {
+    "slug": "smolvla",
+    "title": "VLA_8. SmolVLA: A Vision-Language-Action Model for Affordable and Efficient Robotics",
+    "date": "2026-11-24",
+    "category": "Paper Reviews",
+    "topic": "VLA",
+    "paperYear": "2025",
+    "paperUrl": "https://arxiv.org/abs/2506.01844",
+    "summary": "Asynchronous inference, layer skipping",
+    "file": "smolvla.md",
+    "dateLabel": "Imported",
+    "sourceId": "3df0ad69a5f881ec95c5c1fea19ac44a",
+    "authors": "Shukor et al.",
+    "sourceFormat": "notion"
   }
 ]

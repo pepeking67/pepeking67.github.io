@@ -5,7 +5,7 @@
 
 
 
-Existing models use high-end sensors for precise estimation. Out goal is to develop a low-cost and imprecise hardware to perform fine manipulation tasks. Since the performance depends on the training data, so we build <b>ALOHA</b>, which is <b>dexterous teleoperation system</b> for data collection. 
+Existing models use high-end sensors for precise estimation. Our goal is to develop a low-cost and imprecise hardware to perform fine manipulation tasks. Since the performance depends on the training data, so we build <b>ALOHA</b>, which is <b>dexterous teleoperation system</b> for data collection. 
 
 
 

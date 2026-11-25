@@ -987,3 +987,1061 @@ $$
 	$$
 	Therefore $`|z|\le(b-a)|f'(x)|`$.
 </details>
+
+# Chapter 6. The Riemann–Stieltjes Integral
+
+## Riemann Integral and Riemann–Stieltjes Integral
+
+<callout icon="📘" color="blue_bg">
+<b>Def. (Riemann Integral).</b>
+
+Partition $`P`$:
+
+$$
+a=x_0\le x_1\le\cdots\le x_n=b,\qquad \Delta x_i=x_i-x_{i-1}.
+$$
+
+$$
+M_i=\sup_x f(x),\qquad m_i=\inf_x f(x)\quad\text{for }x_{i-1}\le x\le x_i.
+$$
+
+$$
+U(P,f)=\sum_{i=1}^n M_i\Delta x_i,\qquad L(P,f)=\sum_{i=1}^n m_i\Delta x_i.
+$$
+
+$$
+\overline{\int_a^b}f\,dx=\inf_P U(P,f),\qquad
+\underline{\int_a^b}f\,dx=\sup_P L(P,f):\quad\text{upper / lower Riemann integrals}.
+$$
+
+If $`\overline\int=\underline\int`$, then $`f`$ is Riemann integrable, $`f\in\mathcal R`$.
+</callout>
+
+<callout icon="📘" color="blue_bg">
+<b>Def. (Riemann–Stieltjes Integral).</b>
+
+$`\alpha`$: monotonically increasing function on $`[a,b]`$.
+
+$$
+\Delta\alpha_i=\alpha(x_i)-\alpha(x_{i-1}).
+$$
+
+$$
+U(P,f,\alpha)=\sum_{i=1}^n M_i\Delta\alpha_i,\qquad L(P,f,\alpha)=\sum_{i=1}^n m_i\Delta\alpha_i.
+$$
+
+$$
+\overline{\int_a^b}f\,d\alpha=\inf U(P,f,\alpha),\qquad
+\underline{\int_a^b}f\,d\alpha=\sup L(P,f,\alpha).
+$$
+
+If
+
+$$
+\overline{\int_a^b}f\,d\alpha=\underline{\int_a^b}f\,d\alpha=\int_a^b f(x)\,d\alpha(x),
+$$
+
+then $`f\in\mathcal R(\alpha)`$.
+</callout>
+
+*Note:* $`\alpha`$ need not be continuous. For above definitions $`f`$ should be bdd.
+
+<callout icon="📘" color="blue_bg">
+<b>Def. (Refinement).</b>
+
+$`P^*`$ is a refinement of $`P`$ if $`P^*\supset P`$.
+
+$`P^*`$ is common refinement if $`P^*=P_1\cup P_2`$.
+</callout>
+
+<callout icon="📜" color="yellow_bg">
+<b>Thm. 6.4.</b>
+
+$$
+L(P,f,\alpha)\le L(P^*,f,\alpha),\qquad U(P^*,f,\alpha)\le U(P,f,\alpha).
+$$
+</callout>
+
+![다시 그린 분할 세분 그림](assets/notes/analysis-6-7/refinement-redrawn.png)
+
+<details>
+<summary>Proof</summary>
+
+Suppose $`P^*`$ just has one more point $`x^*`$.
+</details>
+
+<callout icon="📜" color="yellow_bg">
+<b>Thm. 6.5.</b>
+
+$$
+\underline{\int_a^b}f\,d\alpha\le\overline{\int_a^b}f\,d\alpha.
+$$
+</callout>
+
+<details>
+<summary>Proof</summary>
+
+Let $`P^*=P_1\cup P_2`$. Then
+
+$$
+L(P_1,f,\alpha)\le L(P^*,f,\alpha)\le U(P^*,f,\alpha)\le U(P_2,f,\alpha).
+$$
+
+Thus $`L(P_1,f,\alpha)\le U(P_2,f,\alpha)`$.
+</details>
+
+<callout icon="📜" color="yellow_bg">
+<b>Thm. 6.6.</b>
+
+$$
+f\in\mathcal R(\alpha)\text{ on }[a,b]
+\iff \forall\varepsilon>0,\ \exists P\text{ s.t. }U(P,f,\alpha)-L(P,f,\alpha)<\varepsilon.
+$$
+</callout>
+
+<details>
+<summary>Proof</summary>
+
+($`\Leftarrow`$)
+
+$$
+L(P,f,\alpha)\le\underline\int f\,d\alpha\le\overline\int f\,d\alpha\le U(P,f,\alpha),
+$$
+
+so that $`0\le\overline\int f\,d\alpha-\underline\int f\,d\alpha<\varepsilon`$.
+
+($`\Rightarrow`$) $`\exists P_1,P_2`$ s.t.
+
+$$
+U(P_2,f,\alpha)-\int f\,d\alpha<\frac\varepsilon2,\qquad
+\int f\,d\alpha-L(P_1,f,\alpha)<\frac\varepsilon2.
+$$
+
+Let $`P=P_1\cup P_2`$.
+
+$$
+U(P,f,\alpha)\le U(P_2,f,\alpha)<\int f\,d\alpha+\frac\varepsilon2
+<L(P_1,f,\alpha)+\varepsilon\le L(P,f,\alpha)+\varepsilon.
+$$
+</details>
+
+
+<callout icon="📜" color="yellow_bg">
+<b>Thm. 6.7.</b>
+
+(a) $`U(P,f,\alpha)-L(P,f,\alpha)<\varepsilon`$ for some $`P,\varepsilon`$, then it holds for $`\forall P^*`$. (13)
+
+(b) If (13) holds for $`P=\{x_0,\ldots,x_n\}`$ and $`s_i,t_i\in[x_{i-1},x_i]`$, then
+
+$$
+\sum_{i=1}^n|f(s_i)-f(t_i)|\Delta\alpha_i<\varepsilon.
+$$
+
+(c) If $`f\in\mathcal R(\alpha)`$ and (b) hold, then
+
+$$
+\left|\sum_{i=1}^n f(t_i)\Delta\alpha_i-\int_a^b f\,d\alpha\right|<\varepsilon.
+$$
+</callout>
+
+## Integrability
+
+<callout icon="📜" color="yellow_bg">
+<b>Thm. 6.8.</b>
+
+If $`f`$ is cont. on $`[a,b]`$, then $`f\in\mathcal R(\alpha)`$ on $`[a,b]`$.
+</callout>
+
+<details>
+<summary>Proof</summary>
+
+Given $`\varepsilon>0`$, $`\exists\eta>0`$ s.t. $`[\alpha(b)-\alpha(a)]\eta<\varepsilon`$.
+
+Since $`[a,b]`$ is compact, $`f`$ is uniformly cont.
+
+Thus $`\exists\delta>0`$ s.t. $`|f(x)-f(t)|<\eta`$ if $`|x-t|<\delta`$.
+
+If $`\Delta x_i<\delta`$ for all $`i`$, then $`M_i-m_i\le\eta`$.
+</details>
+
+<callout icon="📜" color="yellow_bg">
+<b>Thm. 6.9.</b>
+
+If $`f`$ is monotonic and $`\alpha`$ is cont. then $`f\in\mathcal R(\alpha)`$.
+</callout>
+
+<details>
+<summary>Proof</summary>
+
+By thm 4.23, choose a partition s.t.
+
+$$
+\Delta\alpha_i=\frac{\alpha(b)-\alpha(a)}n.
+$$
+
+Suppose $`f`$ is monotonic increasing, then $`M_i=f(x_i)`$, $`m_i=f(x_{i-1})`$.
+
+$$
+\begin{aligned}
+U(P,f,\alpha)-L(P,f,\alpha)
+&=\frac{\alpha(b)-\alpha(a)}n\sum_{i=1}^n[f(x_i)-f(x_{i-1})]\\
+&=\frac{\alpha(b)-\alpha(a)}n(f(b)-f(a))<\varepsilon
+\end{aligned}
+$$
+
+if $`n\to\infty`$.
+</details>
+
+<callout icon="📜" color="yellow_bg">
+<b>Thm. 6.10.</b>
+
+$`f`$ is bdd. $`f`$ has only finitely many discontinuous points.
+
+If $`\alpha`$ is cont. at every point which $`f`$ is discontinuous, then $`f\in\mathcal R(\alpha)`$.
+</callout>
+
+<details>
+<summary>Proof</summary>
+
+Given $`\varepsilon>0`$, $`M=\sup|f(x)|`$. Let $`E`$ be the set of discont. points.
+
+Since $`E`$ is finite and $`\alpha`$ is cont. at $`E`$, we can cover finitely many disjoint intervals $`[u_j,v_j]`$ s.t. sum of $`\alpha(v_j)-\alpha(u_j)`$ is less than $`\varepsilon`$.
+
+$`K=[a,b]\setminus(u_j,v_j)`$. Since $`K`$ is compact, $`f`$ is uniformly cont. on $`K`$.
+
+$`\exists\delta>0`$ s.t. $`|s-t|<\delta\Rightarrow|f(s)-f(t)|<\varepsilon`$.
+
+Form $`P=\{x_0,\ldots,x_n\}`$ as follows: $`u_j,v_j\in P`$, no point of $`(u_j,v_j)\in P`$.
+
+If $`x_{i-1}`$ is not one of the $`u_j`$, then $`\Delta x_i<\delta`$. $`\Rightarrow M_i-m_i\le\varepsilon`$.
+
+Thus
+
+$$
+U(P,f,\alpha)-L(P,f,\alpha)\le[\alpha(b)-\alpha(a)]\varepsilon+2M\varepsilon.
+$$
+</details>
+
+<callout icon="📜" color="yellow_bg">
+<b>Thm. 6.11.</b>
+
+$`f\in\mathcal R(\alpha)`$ on $`[a,b]`$, $`m\le f\le M`$. $`\phi`$ is cont. on $`[m,M]`$. $`h(x)=\phi(f(x))`$.
+
+Then $`h\in\mathcal R(\alpha)`$ on $`[a,b]`$.
+</callout>
+
+<details>
+<summary>Proof</summary>
+
+Since $`\phi`$ is uniformly cont., $`\exists\delta>0`$ s.t. $`\delta<\varepsilon`$ and $`|s-t|\le\delta\Rightarrow|\phi(s)-\phi(t)|<\varepsilon`$.
+
+Since $`f\in\mathcal R(\alpha)`$, $`U(P,f,\alpha)-L(P,f,\alpha)<\delta^2`$.
+
+Let $`M_i^*=\sup h(x)`$, $`m_i^*=\inf h(x)`$. Let $`i\in A`$ if $`M_i-m_i<\delta`$, $`i\in B`$ if $`M_i-m_i\ge\delta`$.
+
+For $`i\in A`$, $`M_i^*-m_i^*\le\varepsilon`$.
+
+For $`i\in B`$, $`M_i^*-m_i^*\le2K`$, $`K=\sup|\phi(t)|`$.
+
+$$
+\delta\sum_{i\in B}\Delta\alpha_i\le\sum_{i\in B}(M_i-m_i)\Delta\alpha_i<\delta^2,
+\quad\text{so that }\sum_{i\in B}\Delta\alpha_i<\delta.
+$$
+
+$$
+\begin{aligned}
+U(P,h,\alpha)-L(P,h,\alpha)
+&=\sum_{i\in A}(M_i^*-m_i^*)\Delta\alpha_i+\sum_{i\in B}(M_i^*-m_i^*)\Delta\alpha_i\\
+&\le\varepsilon[\alpha(b)-\alpha(a)]+2K\delta\\
+&<[\alpha(b)-\alpha(a)+2K]\varepsilon.
+\end{aligned}
+$$
+</details>
+
+
+## Operations and Step Functions
+
+<callout icon="📜" color="yellow_bg">
+<b>Thm. 6.12.</b>
+
+(a) $`f_1,f_2\in\mathcal R(\alpha)`$, then $`f_1+f_2\in\mathcal R(\alpha)`$.
+
+(b) $`f\in\mathcal R(\alpha_1),\mathcal R(\alpha_2)`$, then $`f\in\mathcal R(\alpha_1+\alpha_2)`$ and
+
+$$
+\int f\,d(\alpha_1+\alpha_2)=\int f\,d\alpha_1+\int f\,d\alpha_2.
+$$
+</callout>
+
+<details>
+<summary>Proof (a)</summary>
+
+$`f=f_1+f_2`$.
+
+$$
+L(P,f_1,\alpha)+L(P,f_2,\alpha)\le L(P,f,\alpha)\le U(P,f,\alpha)\le U(P,f_1,\alpha)+U(P,f_2,\alpha).
+$$
+
+Since $`f_1,f_2\in\mathcal R(\alpha)`$, $`U(P_j,f_j,\alpha)-L(P_j,f_j,\alpha)<\varepsilon`$.
+
+Let $`P=P_1\cup P_2`$, then $`U(P,f,\alpha)-L(P,f,\alpha)<2\varepsilon`$.
+</details>
+
+<callout icon="📜" color="yellow_bg">
+<b>Thm. 6.13.</b>
+
+$`f,g\in\mathcal R(\alpha)`$.
+
+(a) $`fg\in\mathcal R(\alpha)`$.
+
+(b) $`|f|\in\mathcal R(\alpha)`$ and $`\left|\int f\,d\alpha\right|\le\int|f|\,d\alpha`$.
+</callout>
+
+<details>
+<summary>Proof</summary>
+
+$`\phi(t)=t^2`$, by thm 6.11, $`f^2\in\mathcal R(\alpha)`$.
+
+$`\therefore`$ consider $`4fg=(f+g)^2-(f-g)^2`$.
+
+$`\phi(t)=|t|`$, by thm 6.11, $`|f|\in\mathcal R(\alpha)`$.
+</details>
+
+<callout icon="📘" color="blue_bg">
+<b>Def. (Unit step function).</b>
+
+$$
+I(x)=\begin{cases}0&x\le0,\\1&x>0.\end{cases}
+$$
+</callout>
+
+<callout icon="📜" color="yellow_bg">
+<b>Thm. 6.15.</b>
+
+If $`a<s<b`$, $`f`$ is bdd on $`[a,b]`$, $`f`$ is cont at $`s`$, $`\alpha(x)=I(x-s)`$, then
+
+$$
+\int_a^b f\,d\alpha=f(s).
+$$
+</callout>
+
+<details>
+<summary>Proof</summary>
+
+$`x_0=a<x_1=s<x_2<\cdots<x_n=b`$. Since $`f`$ is cont at $`s`$, $`U(P,f,\alpha),L(P,f,\alpha)\to f(s)`$ as $`x_2\to s`$.
+</details>
+
+<callout icon="📜" color="yellow_bg">
+<b>Thm. 6.16.</b>
+
+$`c_n\ge0`$, $`\sum c_n`$ converges, $`\{s_n\}`$ is a sequence of distinct points in $`(a,b)`$.
+
+$$
+\alpha(x)=\sum_{n=1}^\infty c_nI(x-s_n).
+$$
+
+Let $`f`$ be cont on $`[a,b]`$. Then
+
+$$
+\int_a^b f\,d\alpha=\sum_{n=1}^\infty c_nf(s_n).
+$$
+</callout>
+
+<details>
+<summary>Proof</summary>
+
+By comparison test, $`\alpha(x)`$ converges. $`\alpha(x)`$ is monotonic and $`\alpha(a)=0`$, $`\alpha(b)=\sum c_n`$.
+
+Since $`\sum c_n`$ converges, $`\exists N`$ s.t. $`\sum_{N+1}^\infty c_n<\varepsilon`$.
+
+Let
+
+$$
+\alpha_1(x)=\sum_{n=1}^N c_nI(x-s_n),\qquad
+\alpha_2(x)=\sum_{N+1}^\infty c_nI(x-s_n).
+$$
+
+By thm 6.12, 6.15,
+
+$$
+\int_a^b f\,d\alpha_1=\sum_{i=1}^N c_nf(s_n).
+$$
+
+Since $`\alpha_2(b)-\alpha_2(a)<\varepsilon`$,
+
+$$
+\left|\int_a^b f\,d\alpha_2\right|\le M\varepsilon,\qquad M=\sup|f(x)|.
+$$
+
+$$
+\therefore\left|\int_a^b f\,d\alpha_2\right|
+=\left|\int_a^b f\,d\alpha-\sum_{n=1}^N c_nf(s_n)\right|\le M\varepsilon.
+$$
+</details>
+
+
+## Change of Variable and the Fundamental Theorem of Calculus
+
+<callout icon="📜" color="yellow_bg">
+<b>Thm. 6.17.</b>
+
+$`\alpha`$ increases monotonically, $`\alpha'\in\mathcal R`$ on $`[a,b]`$, $`f`$ is bdd.
+
+Then $`f\in\mathcal R(\alpha)\iff f\alpha'\in\mathcal R`$,
+
+$$
+\int_a^b f\,d\alpha=\int_a^b f(x)\alpha'(x)\,dx.
+$$
+</callout>
+
+<details>
+<summary>Proof</summary>
+
+Since $`\alpha'\in\mathcal R`$, $`\exists P=\{x_0,\ldots,x_n\}`$ s.t. $`U(P,\alpha')-L(P,\alpha')<\varepsilon`$.
+
+By MVT, $`\exists t_i\in[x_{i-1},x_i]`$ s.t. $`\Delta\alpha_i=\alpha'(t_i)\Delta x_i`$.
+
+So for $`s_i\in[x_{i-1},x_i]`$,
+
+$$
+\sum_{i=1}^n|\alpha'(s_i)-\alpha'(t_i)|\Delta x_i<\varepsilon.
+$$
+
+$$
+\sum_{i=1}^n f(s_i)\Delta\alpha_i=\sum_{i=1}^n f(s_i)\alpha'(t_i)\Delta x_i,
+$$
+
+so that
+
+$$
+\left|\sum f(s_i)\Delta\alpha_i-\sum f(s_i)\alpha'(s_i)\Delta x_i\right|\le M\varepsilon
+$$
+
+where $`M=\sup|f(x)|`$. Thus $`\sum f(s_i)\Delta\alpha_i\le U(P,f\alpha')+M\varepsilon`$.
+
+$`\therefore U(P,f,\alpha)\le U(P,f\alpha')+M\varepsilon`$.
+
+Also $`U(P,f\alpha')\le U(P,f,\alpha)+M\varepsilon`$, so that
+
+$$
+|U(P,f,\alpha)-U(P,f\alpha')|\le M\varepsilon.
+$$
+
+$$
+\therefore\overline{\int_a^b}f\,d\alpha=\overline{\int_a^b}f(x)\alpha'(x)\,dx.
+$$
+
+Lower integral in same way.
+</details>
+
+<callout icon="📜" color="yellow_bg">
+<b>Thm. 6.19 (Change of variable).</b>
+
+$`\varphi`$ is strictly increasing cont $`[A,B]\to[a,b]`$, $`f\in\mathcal R(\alpha)`$ on $`[a,b]`$.
+
+$`\beta(y)=\alpha(\varphi(y))`$, $`g(y)=f(\varphi(y))`$.
+
+Then $`g\in\mathcal R(\beta)`$ and
+
+$$
+\int_A^B g\,d\beta=\int_a^b f\,d\alpha.
+$$
+</callout>
+
+<details>
+<summary>Proof</summary>
+
+$`P=\{x_0,\ldots,x_n\}`$, $`Q=\{y_0,\ldots,y_n\}`$, $`x_i=\varphi(y_i)`$.
+
+Then $`U(Q,g,\beta)=U(P,f,\alpha)`$, $`L(Q,g,\beta)=L(P,f,\alpha)`$.
+</details>
+
+<callout icon="📜" color="yellow_bg">
+<b>Thm. 6.20.</b>
+
+$`f\in\mathcal R`$ on $`[a,b]`$. $`F(x)=\int_a^x f(t)\,dt`$. Then $`F`$ is cont on $`[a,b]`$.
+
+If $`f`$ is cont at $`x_0`$, then $`F`$ is diff'ble at $`x_0`$ and $`F'(x_0)=f(x_0)`$.
+</callout>
+
+<details>
+<summary>Proof</summary>
+
+Since $`f\in\mathcal R`$, $`f`$ is bdd. $`|f(t)|\le M`$.
+
+If $`a\le x<y\le b`$, then
+
+$$
+|F(y)-F(x)|=\left|\int_x^y f(t)\,dt\right|\le M(y-x).
+$$
+
+For $`\delta=\frac\varepsilon M`$, $`|F(y)-F(x)|<\varepsilon`$, so that $`F`$ is cont.
+
+If $`f`$ is cont, then $`|f(t)-f(x_0)|<\varepsilon`$ for $`|t-x_0|<\delta`$.
+
+For $`x_0-\delta<s\le x_0\le t<x_0+\delta`$,
+
+$$
+\left|\frac{F(t)-F(s)}{t-s}-f(x_0)\right|
+=\left|\frac1{t-s}\int_s^t(f(u)-f(x_0))\,du\right|<\varepsilon.
+$$
+</details>
+
+<callout icon="📜" color="yellow_bg">
+<b>Thm. 6.21 (The fundamental thm of calculus).</b>
+
+If $`f\in\mathcal R`$, $`F'=f`$, then
+
+$$
+\int_a^b f(x)\,dx=F(b)-F(a).
+$$
+</callout>
+
+<details>
+<summary>Proof</summary>
+
+$`U(P,f)-L(P,f)<\varepsilon`$.
+
+By MVT, $`F(x_i)-F(x_{i-1})=f(t_i)\Delta x_i`$.
+
+Thus $`\sum_{i=1}^n f(t_i)\Delta x_i=F(b)-F(a)`$.
+
+By thm 6.7(c),
+
+$$
+\left|F(b)-F(a)-\int_a^b f(x)\,dx\right|<\varepsilon.
+$$
+</details>
+
+<callout icon="📜" color="yellow_bg">
+<b>Thm. 6.22 (Integration by parts).</b>
+
+$`F'=f\in\mathcal R`$, $`G'=g\in\mathcal R`$, then
+
+$$
+\int_a^b F(x)g(x)\,dx=F(b)G(b)-F(a)G(a)-\int_a^b f(x)G(x)\,dx.
+$$
+</callout>
+
+<details>
+<summary>Proof</summary>
+
+$`H(x)=f(x)G(x)`$, apply thm 6.21.
+</details>
+
+
+## Curves and Length
+
+<callout icon="📘" color="blue_bg">
+<b>Def. (Curve).</b>
+
+A continuous mapping $`\gamma:[a,b]\to\mathbb R^k`$ is curve.
+
+If $`\gamma`$ is 1–1, $`\gamma`$ is arc.
+
+If $`\gamma(a)=\gamma(b)`$, $`\gamma`$ is closed curve.
+
+$$
+\Lambda(P,\gamma)=\sum_{i=1}^n|\gamma(x_i)-\gamma(x_{i-1})|:\quad\text{length of a polygonal path}.
+$$
+
+Length of $`\gamma`$: $`\Lambda(\gamma)=\sup\Lambda(P,\gamma)`$.
+
+If $`\Lambda(\gamma)<\infty`$, $`\gamma`$ is rectifiable.
+</callout>
+
+<callout icon="📜" color="yellow_bg">
+<b>Thm. 6.27.</b>
+
+If $`\gamma'`$ is cont, then $`\gamma`$ is rectifiable and
+
+$$
+\Lambda(\gamma)=\int_a^b|\gamma'(t)|\,dt.
+$$
+</callout>
+
+<details>
+<summary>Proof</summary>
+
+By fundamental thm,
+
+$$
+|\gamma(x_i)-\gamma(x_{i-1})|=\left|\int_{x_{i-1}}^{x_i}\gamma'(t)\,dt\right|\le\int_{x_{i-1}}^{x_i}|\gamma'(t)|\,dt.
+$$
+
+Hence $`\Lambda(P,\gamma)\le\int_a^b|\gamma'(t)|\,dt`$ for every $`P`$, so that $`\Lambda(\gamma)\le\int_a^b|\gamma'(t)|\,dt`$.
+
+Since $`\gamma'`$ is uniformly continuous on $`[a,b]`$, $`\exists\delta`$ s.t. $`|s-t|<\delta\Rightarrow|\gamma'(s)-\gamma'(t)|<\varepsilon`$.
+
+Let $`P`$ with $`\Delta x_i<\delta`$. If $`t\in[x_{i-1},x_i]`$, then $`|\gamma'(t)|\le|\gamma'(x_i)|+\varepsilon`$.
+
+Thus
+
+$$
+\begin{aligned}
+\int_{x_{i-1}}^{x_i}|\gamma'(t)|\,dt
+&\le|\gamma'(x_i)|\Delta x_i+\varepsilon\Delta x_i\\
+&=\left|\int_{x_{i-1}}^{x_i}[\gamma'(t)+\gamma'(x_i)-\gamma'(t)]\,dt\right|+\varepsilon\Delta x_i\\
+&\le\left|\int_{x_{i-1}}^{x_i}\gamma'(t)\,dt\right|+\left|\int_{x_{i-1}}^{x_i}\gamma'(x_i)-\gamma'(t)\,dt\right|+\varepsilon\Delta x_i\\
+&\le|\gamma(x_i)-\gamma(x_{i-1})|+2\varepsilon\Delta x_i.
+\end{aligned}
+$$
+
+$$
+\therefore\int_a^b|\gamma'(t)|\,dt\le\Lambda(P,\gamma)+2\varepsilon(b-a)\le\Lambda(\gamma)+2\varepsilon(b-a).
+$$
+</details>
+
+
+# Chapter 7. Sequences & Series of Functions
+
+## Limit Function and Uniform Convergence
+
+<callout icon="📘" color="blue_bg">
+<b>Def. (Limit function).</b>
+
+If $`\{f_n(x)\}`$ converges for every $`x\in E`$, then we can define limit function of $`\{f_n\}`$, $`f`$ by
+
+$$
+f(x)=\lim_{n\to\infty}f_n(x).
+$$
+</callout>
+
+*Note)* We also say that $`\{f_n\}`$ converges to $`f`$ <u>pointwise</u> on $`E`$.
+
+If $`\sum f_n(x)`$ converges for every $`x\in E`$, then sum of the series $`\sum f_n`$:
+
+$$
+f(x)=\sum_{n=1}^\infty f_n(x).
+$$
+
+If $`\lim_{t\to x}\lim_{n\to\infty}f_n(t)=\lim_{n\to\infty}\lim_{t\to x}f_n(t)`$, then the limit of a seq of continuous function is continuous.
+
+<b>(ex)</b>
+
+$$
+f_n(x)=\frac{x^2}{(1+x^2)^n},\qquad
+f(x)=\sum f_n(x)=\begin{cases}0&x=0,\\1+x^2&x\ne0.\end{cases}
+$$
+
+We can see that convergent series of cont functions may have discont sum.
+
+If limit processes are interchanged carelessly, then for cont, integrable, diff'ble $`f_n`$, $`f`$ may be not. Thus we will define stronger defi. of convergence.
+
+<callout icon="📘" color="blue_bg">
+<b>Def. (Uniform convergence).</b>
+
+$`\forall\varepsilon>0`$, $`\exists N`$ s.t. for $`n\ge N`$, $`|f_n(x)-f(x)|\le\varepsilon`$ for all $`x\in E`$.
+</callout>
+
+*Note)* Uniformly convergent seq is pointwise convergent.
+
+<callout icon="📜" color="yellow_bg">
+<b>Thm. 7.8 (Cauchy criterion for uniformly convergence).</b>
+
+$`\{f_n\}`$ converges uniformly $`\iff\exists N`$ s.t. for $`m,n\ge N`$, $`\forall x`$, $`|f_n(x)-f_m(x)|\le\varepsilon`$.
+</callout>
+
+<callout icon="📜" color="yellow_bg">
+<b>Thm. 7.10.</b>
+
+If $`|f_n(x)|\le M_n`$, then $`\sum f_n`$ converges uniformly if $`\sum M_n`$ converges.
+</callout>
+
+<details>
+<summary>Proof</summary>
+
+$$
+\left|\sum_{i=n}^m f_i(x)\right|\le\sum_{i=n}^m M_i\le\varepsilon.
+$$
+</details>
+
+<callout icon="📜" color="yellow_bg">
+<b>Thm. 7.9.</b>
+
+$$
+\lim_{n\to\infty}f_n(x)=f(x),\qquad M_n=\sup_{x\in E}|f_n(x)-f(x)|.
+$$
+
+Then $`f_n\to f`$ uniformly $`\iff M_n\to0`$ as $`n\to\infty`$.
+</callout>
+
+
+## Uniform Convergence and Continuity
+
+<callout icon="📜" color="yellow_bg">
+<b>Thm. 7.11.</b>
+
+$`f_n\to f`$ uniformly, $`x`$ is a limit point of $`E`$, $`\lim_{t\to x}f_n(t)=A_n`$.
+
+Then $`\{A_n\}`$ converges and $`\lim_{t\to x}f(t)=\lim_{n\to\infty}A_n`$, i.e.
+
+$$
+\lim_{t\to x}\lim_{n\to\infty}f_n(t)=\lim_{n\to\infty}\lim_{t\to x}f_n(t).
+$$
+</callout>
+
+<details>
+<summary>Proof</summary>
+
+$`\exists N`$ s.t. for $`n,m\ge N`$, $`|f_n(t)-f_m(t)|\le\varepsilon`$.
+
+Let $`t\to x`$, $`|A_n-A_m|\le\varepsilon`$, so that $`\{A_n\}`$ is Cauchy so $`A_n\to A`$.
+
+Consider
+
+$$
+|f(t)-A|\le|f(t)-f_n(t)|+|f_n(t)-A_n|+|A_n-A|\le\varepsilon.
+$$
+</details>
+
+<callout icon="📜" color="yellow_bg">
+<b>Thm. 7.12. ☆</b>
+
+If $`\{f_n\}`$ is a seq of cont functions and $`f_n\to f`$ uniformly, then $`f`$ is cont.
+</callout>
+
+The converse is not true, but there is a case in which we can assert true.
+
+<callout icon="📜" color="yellow_bg">
+<b>Thm. 7.13.</b>
+
+$`K`$ is compact.
+
+(a) $`f_n`$ is cont on $`K`$.
+
+(b) $`\{f_n\}\to f`$ pointwise on $`K`$, where $`f`$ is cont.
+
+(c) $`f_n(x)\ge f_{n+1}(x)`$.
+
+Then $`f_n\to f`$ uniformly on $`K`$.
+</callout>
+
+<details>
+<summary>Proof</summary>
+
+$`g_n=f_n-f`$ is cont. $`g_n\to0`$ pointwise and $`g_n\ge g_{n+1}`$.
+
+WTS: $`g_n\to0`$ uniformly on $`K`$.
+
+Let $`K_n`$ be the set of all $`x\in K`$ with $`g_n(x)\ge\varepsilon`$.
+
+Since $`g_n`$ is cont, by thm 4.8, $`K_n`$ is closed, hence compact.
+
+Since $`g_n\ge g_{n+1}`$, $`K_n\supset K_{n+1}`$.
+
+Fixed $`x\in K`$, since $`g_n(x)\to0`$, $`x\notin K_n`$ for large $`n`$.
+
+Thus $`x\notin\bigcap K_n`$. So $`\bigcap K_n`$ is empty.
+
+It means that $`0\le g_n(x)<\varepsilon`$ for $`\forall x\in K`$, $`\forall n\ge N`$.
+</details>
+
+<callout icon="📘" color="blue_bg">
+<b>Def. (Class).</b>
+
+$`\mathcal C(X)`$: set of all complex-valued, cont, bdd with domain $`X`$.
+
+Supremum norm $`\|f\|=\sup_{x\in X}|f(x)|`$.
+
+Distance for $`\mathcal C(X)`$ is defined as $`\|f-g\|`$.
+
+By thm 7.9, $`\{f_n\}\to f`$ with respect to metric $`\mathcal C(X)\iff f_n\to f`$ uniformly.
+</callout>
+
+<callout icon="📜" color="yellow_bg">
+<b>Thm. 7.15.</b>
+
+Above metric makes $`\mathcal C(X)`$ complete.
+</callout>
+
+
+## Integration and Differentiation
+
+<callout icon="📜" color="yellow_bg">
+<b>Thm. 7.16.</b>
+
+$`\alpha`$: monotonically increasing on $`[a,b]`$, $`f_n\in\mathcal R(\alpha)`$, $`f_n\to f`$ uniformly.
+
+Then $`f\in\mathcal R(\alpha)`$ and
+
+$$
+\int_a^b f\,d\alpha=\lim_{n\to\infty}\int_a^b f_n\,d\alpha.
+$$
+</callout>
+
+<details>
+<summary>Proof</summary>
+
+$`\varepsilon_n=\sup_{a\le x\le b}|f_n(x)-f(x)|`$. Then $`f_n-\varepsilon_n\le f\le f_n+\varepsilon_n`$.
+
+So
+
+$$
+\int_a^b(f_n-\varepsilon_n)\,d\alpha\le\underline\int f\,d\alpha\le\overline\int f\,d\alpha\le\int_a^b(f_n+\varepsilon_n)\,d\alpha.
+$$
+
+$$
+\therefore 0\le\overline\int f\,d\alpha-\underline\int f\,d\alpha\le2\varepsilon_n[\alpha(b)-\alpha(a)]\Rightarrow f\in\mathcal R(\alpha).
+$$
+
+Also
+
+$$
+\left|\int_a^b f\,d\alpha-\int_a^b f_n\,d\alpha\right|\le\varepsilon_n[\alpha(b)-\alpha(a)].
+$$
+</details>
+
+Uniform convergence doesn't imply the differentiation. Thus stronger hypotheses are required for $`f_n'\to f'`$ if $`f_n\to f`$.
+
+<callout icon="📜" color="yellow_bg">
+<b>Thm. 7.17.</b>
+
+$`f_n`$ is diff'ble on $`[a,b]`$, $`\{f_n(x_0)\}`$ converges for some point $`x_0`$.
+
+If $`\{f_n'\}`$ converges uniformly, then $`\{f_n\}\to f`$ uniformly and
+
+$$
+f'(x)=\lim_{n\to\infty}f_n'(x).
+$$
+</callout>
+
+<details>
+<summary>Proof</summary>
+
+$`\exists N`$ s.t.
+
+$$
+|f_n(x_0)-f_m(x_0)|<\frac\varepsilon2\quad\text{and}\quad
+|f_n'(t)-f_m'(t)|<\frac\varepsilon{2(b-a)},\quad a\le t\le b.
+$$
+
+By MVT to $`f_n-f_m`$,
+
+$$
+|f_n(x)-f_m(x)-f_n(t)+f_m(t)|\le\frac{|x-t|\varepsilon}{2(b-a)}\le\frac\varepsilon2.
+$$
+
+Thus
+
+$$
+|f_n(x)-f_m(x)|\le|f_n(x)-f_m(x)-f_n(x_0)+f_m(x_0)|+|f_n(x_0)-f_m(x_0)|\le\varepsilon.
+$$
+
+$`\therefore\{f_n\}`$ converges uniformly.
+
+Let $`f(x)=\lim_{n\to\infty}f_n(x)`$, for fixed $`x`$,
+
+$$
+\phi_n(t)=\frac{f_n(t)-f_n(x)}{t-x}\quad\text{and}\quad\phi(t)=\frac{f(t)-f(x)}{t-x}.
+$$
+
+Then $`\lim_{t\to x}\phi_n(t)=f_n'(x)`$.
+
+Since $`|\phi_n(t)-\phi_m(t)|\le\frac\varepsilon{2(b-a)}`$, so $`\{\phi_n\}`$ converges uniformly.
+
+Since $`\{f_n\}\to f`$, so $`\lim_{n\to\infty}\phi_n(t)=\phi(t)`$.
+
+By thm 7.11, $`\lim_{t\to x}\phi(t)=\lim_{n\to\infty}f_n'(x)`$.
+</details>
+
+<callout icon="📜" color="yellow_bg">
+<b>Thm. 7.18.</b>
+
+There exists a real cont function on the real line which is nowhere diff'ble.
+</callout>
+
+For $`\varphi(x)=|x|`$, $`-1\le x\le1`$ and $`\varphi(x+2)=\varphi(x)`$,
+
+$$
+f(x)=\sum_{n=0}^\infty\left(\frac34\right)^n\varphi(4^n x).
+$$
+
+
+## Boundedness and Equicontinuity
+
+Every bdd seq in $`\mathbb C`$ has a convergent subsequence. We discuss whether something similar is true.
+
+<callout icon="📘" color="blue_bg">
+<b>Def.</b>
+
+$`\{f_n\}`$ is pointwise bounded on $`E`$ if $`\exists\phi`$ s.t. $`|f_n(x)|<\phi(x)`$.
+
+$`\{f_n\}`$ is uniformly bounded on $`E`$ if $`\exists M`$ s.t. $`|f_n(x)|<M`$.
+</callout>
+
+<callout icon="📘" color="blue_bg">
+<b>Def. (Equicontinuous).</b>
+
+A family $`F`$ of complex functions $`f`$ is equicontinuous if $`\forall\varepsilon>0`$, $`\exists\delta>0`$ s.t. $`|f(x)-f(y)|<\varepsilon`$.
+</callout>
+
+*Note)* Every member of equicont. family is uniformly cont.
+
+<callout icon="📜" color="yellow_bg">
+<b>Thm. 7.23.</b>
+
+If $`\{f_n\}`$ is a pointwise bounded seq of complex functions on countable $`E`$, then $`\{f_n\}`$ has $`\{f_{n_k}\}`$ s.t. converges for $`\forall x\in E`$.
+</callout>
+
+<details>
+<summary>Proof</summary>
+
+$`E=\{x_i\}`$. Since $`\{f_n(x_1)\}`$ is bdd, $`\exists\{f_{1,k}\}`$ s.t. $`\{f_{1,k}(x_1)\}`$ converges as $`k\to\infty`$.
+
+$$
+\begin{array}{lllll}
+S_1:&f_{1,1}&f_{1,2}&f_{1,3}&\cdots\\
+S_2:&f_{2,1}&f_{2,2}&f_{2,3}&\cdots
+\end{array}
+$$
+
+where
+
+(a) $`S_n`$ is a subsequence of $`S_{n-1}`$.
+
+(b) $`\{f_{n,k}(x_n)\}`$ converges.
+
+Let $`S:f_{1,1}\quad f_{2,2}\quad f_{3,3}\quad\cdots`$, then $`\{f_{n,n}(x_i)\}`$ converges as $`n\to\infty`$.
+</details>
+
+<callout icon="📜" color="yellow_bg">
+<b>Thm. 7.24.</b>
+
+If $`K`$ is compact and $`f_n\in\mathcal C(K)`$ and $`\{f_n\}`$ converges uniformly on $`K`$, then $`\{f_n\}`$ is equicontinuous on $`K`$.
+</callout>
+
+<details>
+<summary>Proof</summary>
+
+$`\|f_n-f_N\|<\varepsilon`$. Since $`f_i`$ is uniformly cont, $`\exists\delta>0`$ s.t. $`|f_i(x)-f_i(y)|<\varepsilon`$.
+
+$$
+|f_n(x)-f_n(y)|\le|f_n(x)-f_N(x)|+|f_N(x)-f_N(y)|+|f_N(y)-f_n(y)|<3\varepsilon.
+$$
+</details>
+
+<callout icon="📜" color="yellow_bg">
+<b>Thm. 7.25.</b>
+
+If $`K`$ is compact, $`f_n\in\mathcal C(K)`$, $`\{f_n\}`$ is pointwise bdd and equicont on $`K`$, then
+
+(a) $`\{f_n\}`$ is uniformly bdd.
+
+(b) $`\{f_n\}`$ contains a uniformly convergent subsequence.
+</callout>
+
+<details>
+<summary>Proof (a)</summary>
+
+$`\exists p_1,\ldots,p_r\in K`$ s.t. $`\forall x\in K`$ in at least one $`d(x,p_i)<\delta`$.
+
+By pointwise bdd, $`|f_n(p_i)|<M_i\Rightarrow M=\max M_i`$.
+</details>
+
+
+## Polynomial Approximation and Algebras
+
+<callout icon="📜" color="yellow_bg">
+<b>Thm. 7.26 (Weierstrass thm).</b>
+
+If $`f`$ is cont complex function on $`[a,b]`$, there exists a sequence of polynomials $`P_n`$ s.t. $`\lim_{n\to\infty}P_n(x)=f(x)`$ uniformly on $`[a,b]`$.
+</callout>
+
+<callout icon="📜" color="yellow_bg">
+<b>Cor. 7.27.</b>
+
+For $`[-a,a]`$, there is a sequence of real polynomials $`P_n`$ s.t. $`P_n(0)=0`$ and $`\lim_{n\to\infty}P_n(x)=|x|`$ uniformly.
+</callout>
+
+<callout icon="📘" color="blue_bg">
+<b>Def. (Algebra).</b>
+
+A family $`\mathcal A`$ of complex functions is algebra if
+
+(1) $`f+g\in\mathcal A`$　(2) $`fg\in\mathcal A`$　(3) $`cf\in\mathcal A`$.
+
+If $`f\in\mathcal A`$ whenever $`f_n\in\mathcal A`$ and $`f_n\to f`$ uniformly, then <u>uniformly closed</u>.
+
+$`\mathcal B`$: set of all functions which are limits of uniformly convergent seqs of members of $`\mathcal A`$ is <u>uniform closure</u> of $`\mathcal A`$.
+</callout>
+
+<b>(ex)</b> The set of all polynomials is an algebra.
+
+By thm 7.26, the set of continuous functions is the uniform closure of the set of polynomials.
+
+<callout icon="📜" color="yellow_bg">
+<b>Thm. 7.29.</b>
+
+$`\mathcal B`$: uniform closure of an algebra $`\mathcal A`$ of bdd functions.
+
+Then $`\mathcal B`$ is a uniformly closed algebra.
+</callout>
+
+<details>
+<summary>Proof</summary>
+
+For $`f,g\in\mathcal B`$, let $`f_n\to f`$, $`g_n\to g`$, …
+</details>
+
+<callout icon="📘" color="blue_bg">
+<b>Def. (Separate points).</b>
+
+$`\mathcal A`$: family of functions.
+
+$`\mathcal A`$ is separate points if for $`\forall x_1\ne x_2\in E`$, $`\exists f\in\mathcal A`$ s.t. $`f(x_1)\ne f(x_2)`$.
+
+If $`\forall x\in E`$, $`\exists g\in\mathcal A`$ s.t. $`g(x)\ne0`$, $`\mathcal A`$ vanishes at no point of $`E`$.
+</callout>
+
+<callout icon="📜" color="yellow_bg">
+<b>Thm. 7.31.</b>
+
+$`\mathcal A`$ separates points and vanishes at no point. $`x_1\ne x_2`$.
+
+Then $`\mathcal A`$ contains $`f`$ s.t. $`f(x_1)=c_1`$, $`f(x_2)=c_2`$.
+</callout>
+
+<details>
+<summary>Proof</summary>
+
+Let $`g(x_1)\ne g(x_2)`$, $`h(x_1)\ne0`$, $`k(x_2)\ne0`$.
+
+Put $`u=gk-g(x_1)k`$, $`v=gh-g(x_2)h`$.
+
+$$
+f=\frac{c_1v}{v(x_1)}+\frac{c_2u}{u(x_2)}.
+$$
+</details>
+
+
+<callout icon="📜" color="yellow_bg">
+<b>Thm. 7.32.</b>
+
+$`\mathcal A`$: algebra of real cont functions on compact $`K`$.
+
+If $`\mathcal A`$ separates points and vanishes at no point, then the uniform closure $`\mathcal B`$ consists of all real cont functions on $`K`$.
+</callout>
+
+It doesn't hold for complex algebras.
+
+If an extra condition: self-adjoint is imposed on $`\mathcal A`$, then the conclusion of the thm holds.
+
+Self-adjoint: if $`f\in\mathcal A`$, then $`\overline f\in\mathcal A`$.
+
+<callout icon="📜" color="yellow_bg">
+<b>Thm. 7.33.</b>
+
+$`\mathcal A`$: self-adjoint algebra of complex cont functions on compact $`K`$.
+
+$`\mathcal A`$ separates points and vanishes at no point.
+
+Then the uniform closure $`\mathcal B`$ consists of all continuous complex functions on $`K`$. i.e. $`\mathcal A`$ is dense $`\mathcal C(K)`$.
+</callout>
+
+
+<details>
+<summary>6·7단원 원본 PDF</summary>
+
+[CamScanner 2026. 11. 25. 17.03.pdf](assets/notes/analysis-6-7/original.pdf)
+</details>

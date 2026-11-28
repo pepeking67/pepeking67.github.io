@@ -2040,8 +2040,4 @@ Then the uniform closure $`\mathcal B`$ consists of all continuous complex funct
 </callout>
 
 
-<details>
-<summary>6·7단원 원본 PDF</summary>
 
-[CamScanner 2026. 11. 25. 17.03.pdf](assets/notes/analysis-6-7/original.pdf)
-</details>
